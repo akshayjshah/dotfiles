@@ -1,0 +1,42 @@
+# Compiled source #
+###################
+*.chi
+*.chs.h
+*.class
+*.com
+*.dll
+*.exe
+*.hi
+*.o
+*.pyc
+*.pyo
+*.so
+
+# Packages #
+############
+# Unpack these files and commit the raw source, since
+# git has built-in compression.
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Vim undo files #
+##################
+*.un~
