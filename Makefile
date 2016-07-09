@@ -8,7 +8,7 @@ help:
 all: go python spacemacs text-tools ranger zsh fzf blog ## Set up a new development machine
 
 .PHONY: spacemacs
-spacemacs: brew .emacs.d ## Install spacemacs
+spacemacs: brew .notes ## Install spacemacs
 ifeq ($(wildcard .emacs.d/.*),)
 	git clone https://github.com/syl20bnr/spacemacs .emacs.d
 endif
@@ -93,3 +93,7 @@ curl: brew ## Install cURL
 brew: ## Install and update Homebrew
 	brew -h > /dev/null || /usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew update
+
+.notes:
+	mkdir -p 'Dropbox (Personal)/notes'
+	ln -s 'Dropbox (Personal)/notes' .notes

@@ -24,6 +24,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
+     deft
      emacs-lisp
      git
      (go :variables
@@ -257,6 +258,9 @@ you should place your code here."
 
   ;; Nicer powerline.
   (setq powerline-default-separator 'wave)
+
+  ;; Keep notes in a sane location.
+  (setq deft-directory "~/.notes")
 
   ;; Move by visual line.
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
