@@ -17,10 +17,11 @@ endif
 	brew install trash
 	brew tap d12frosted/emacs-plus
 	brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
-	brew linkapps
+	brew linkapps emacs-plus
+ifeq ($(wildcard bin/emacsclient),)
 	mkdir -p bin
-	# Homebrew doesn't install the emacs-plus binaries anywhere useful.
 	ln -s /usr/local/Cellar/emacs-plus/24.5/bin/emacsclient bin/emacsclient
+endif
 
 .PHONY: text-tools
 text-tools: brew ## Install GNU sed and ag
