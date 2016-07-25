@@ -37,6 +37,7 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-# Vim undo files #
-##################
+# Editor detritus #
+###################
 *.un~
+*.#*
