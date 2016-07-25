@@ -44,6 +44,7 @@ go: brew git ## Install Go and a variety of useful packages
 		golang.org/x/tools/cmd/oracle \
 		golang.org/x/tools/cmd/present \
 		golang.org/x/tools/cmd/guru \
+		github.com/google/godepq \
 		github.com/kisielk/errcheck \
 		github.com/lukehoban/go-outline \
 		github.com/newhook/go-symbols \
