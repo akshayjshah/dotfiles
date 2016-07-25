@@ -26,12 +26,14 @@ values."
      auto-completion
      deft
      emacs-lisp
+     evil-cleverparens
      git
      (go :variables
          gofmt-command "goimports")
      html
      markdown
-     org
+     (org :variables
+          org-enable-github-support t)
      osx
      (python :variables
              python-test-runner 'pytest
@@ -161,7 +163,7 @@ values."
    ;; If non nil then `ido' replaces `helm' for some commands. For now only
    ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
    ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
-   dotspacemacs-use-ido nil
+   dotspacemacs-use-ido t
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
@@ -255,6 +257,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; Override common vim commands to keep parens balanced.
+  (spacemacs/toggle-evil-cleverparens-on)
 
   ;; Nicer powerline.
   (setq powerline-default-separator 'wave)
