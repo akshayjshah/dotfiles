@@ -13,25 +13,12 @@ Plug 'altercation/vim-colors-solarized'
 " Fancy prompts everywhere.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/promptline.vim'
-Plug 'edkolev/tmuxline.vim'
 
-" File type support. (Find more at github.com/sheerun/vim-polyglot.)
-Plug 'tpope/vim-git'
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'tejr/vim-tmux', { 'for': 'tmux' }
-Plug 'solarnz/thrift.vim', { 'for': 'thrift' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 'rodjek/vim-puppet', {'for': 'puppet'}
-
-" Other plugins.
+" General plugins.
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'myusuf3/numbers.vim'
-Plug 'neomake/neomake'
 Plug 'spolu/dwm.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -40,11 +27,22 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe'
 
+" File type support. (Find more at github.com/sheerun/vim-polyglot.)
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+" vim-go uses CtrlP.
+Plug 'ctrlpvim/ctrlp.vim', { 'for': 'go' }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'keith/tmux.vim', { 'for': 'tmux' }
+Plug 'solarnz/thrift.vim', { 'for': 'thrift' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }
+
+
 call plug#end()
 
-let g:go_fmt_command = "goimports"
 let g:ycm_autoclose_preview_window_after_insertion = 1
-autocmd! BufWritePost * Neomake
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Tabs, Indents, and Linebreaks
@@ -70,8 +68,17 @@ set textwidth=80
 " See :help fo-table for details.
 set formatoptions=tcqjn
 
+fun! s:strip_trailing_whitespace()
+    let l = line(".")
+    let c = col(".")
+    let s=@/
+    %s/\s\+$//e
+    call cursor(l, c)
+    let @/=s
+endfun
+
 """""""""""""""""""""""""""""""""""""""""""""""""
-" Keybindings
+" Universal Keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""
 " I never want to be in Ex mode.
 nnoremap Q <nop>
@@ -79,11 +86,11 @@ nnoremap Q <nop>
 " Escape insert mode with 'jj'.
 inoremap jj <ESC>
 
+" The default makes no sense.
+nnoremap Y y$
+
 " For the love of God, stop F1 from launching help.
 noremap <F1> <ESC>
-
-" Convenient sudo write alias.
-cnoremap sudow w !sudo tee % >/dev/null
 
 " No arrow keys for movement. Vi or death!
 nmap <up> [e
@@ -118,44 +125,51 @@ nmap <C-x> <plug>DWMClose
 " Which keys should wrap onto the next line?
 set whichwrap=b,s,<,>,~,h,l,[,]
 
+cnoremap sudow w !sudo tee % >/dev/null
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Custom Commands
+" => Custom Commands, like Spacemacs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set the leader for custom commands.
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
-let maplocalleader = "\<Space>"
-let g:maplocalleader = "\<Space>"
+let maplocalleader = ","
+let g:maplocalleader = ","
 
-" Hide search highlighting.
-nnoremap <silent> <leader>/ :nohlsearch<cr>
+" Buffers: leader-b
+" Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+nnoremap <leader>bb :Buffers<cr>
 
-" Strip all trailing whitespace.
-nmap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>:nohlsearch<cr>
+" Files: leader-f
+nnoremap <leader>ff :Files<cr>
+nnoremap <leader>fp :GitFiles<cr>
+nnoremap <leader>fh :History<cr>
+nnoremap <leader>fv :e $MYVIMRC<cr>
 
-" Toggle relative numbering.
-nnoremap <leader>n :NumbersToggle<cr>
+" Git: leader-g
+nnoremap <leader>gg :Commits<cr>
 
-" Fuzzy file finder.
-nmap <leader>f :GitFiles<cr>
+" Help: leader-h
+nnoremap <leader>hh :Helptags<cr>
+nnoremap <leader>hk :Maps<cr>
+nnoremap <leader>hc :Commands<cr>
 
-" Fuzzy history matcher.
-nmap <leader>h :History<cr>
+" Misc: leader-M
+nnoremap <leader>Mc viw~ " capitalize a word.
 
-" Select just-pasted blocks.
-nnoremap <leader>v V`]
+" Search/Select: leader-s
+nnoremap <leader>ss :Ag<Space>
+nnoremap <leader>sb :BLines<Space>
+nnoremap <silent> <leader>sc :nohlsearch<cr>
+nnoremap <leader>sw :call <SID>strip_trailing_whitespace()<cr>
+" select just-pasted blocks
+nnoremap <leader>sv V`]
 
-" Toggle spellcheck.
-map <leader>ss :setlocal spell!<cr>
-
-" Capitalize a word.
-nnoremap <leader>` viw~
-
-" Show the undo tree.
-nnoremap <leader>u :UndotreeToggle<cr>
-
-" Test the local Go function.
-nmap <leader>t :GoTestFunc<cr>
+" Toggles: leader-t
+nnoremap <leader>tn :NumbersToggle<cr>
+nnoremap <leader>ts :setlocal spell!<cr>
+nnoremap <leader>tu :UndotreeToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
@@ -252,7 +266,7 @@ set clipboard+=unnamedplus
 " => Spelling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set spelllang="en_us"
-set spellfile="~/.vim/en_us.utf-8.add"
+set spellfile="~/.en_us.utf-8.add"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline

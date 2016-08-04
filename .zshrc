@@ -1,7 +1,7 @@
 #######################################
 # vi everywhere
 #######################################
-export EDITOR="emacsclient -t"
+export EDITOR="vim"
 # Force emacsclient -t to start a server if necessary.
 export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
@@ -13,8 +13,6 @@ fi
 #######################################
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-# This is a lie, but makes zsh work in emacs.
-export TERM=xterm-256color
 
 #######################################
 # Plugins and Completion
@@ -87,7 +85,6 @@ setopt share_history
 #######################################
 # Aliases and shortcuts
 #######################################
-alias e="emacsclient -t"
 alias ls="ls -CF"
 alias ll="ls -ahlF"
 alias la="ls -A"

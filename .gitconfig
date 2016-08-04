@@ -2,7 +2,7 @@
 	name = Akshay Shah
 	email = shah@uber.com
 [core]
-	editor = emacsclient -t
+	editor = nvim
 	pager = less -FRSX
 	excludesfile = ~/.gitignore_global
 	autocrlf = input

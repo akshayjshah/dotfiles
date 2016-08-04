@@ -5,23 +5,7 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
 .PHONY: all
-all: go python spacemacs text-tools ranger zsh fzf blog ## Set up a new development machine
-
-.PHONY: spacemacs
-spacemacs: brew .notes ## Install spacemacs
-ifeq ($(wildcard .emacs.d/.*),)
-	git clone https://github.com/syl20bnr/spacemacs .emacs.d
-endif
-	brew install aspell
-	brew install coreutils
-	brew install trash
-	brew tap d12frosted/emacs-plus
-	brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
-	brew linkapps emacs-plus
-ifeq ($(wildcard bin/emacsclient),)
-	mkdir -p bin
-	ln -s /usr/local/Cellar/emacs-plus/24.5/bin/emacsclient bin/emacsclient
-endif
+all: go python neovim text-tools ranger zsh fzf blog fix-mac .notes ## Set up a new development machine
 
 .PHONY: text-tools
 text-tools: brew ## Install GNU sed and ag
@@ -34,23 +18,11 @@ go: brew git ## Install Go and a variety of useful packages
 	go get -u \
 		github.com/golang/lint/golint \
 		golang.org/x/tools/cmd/benchcmp \
-		golang.org/x/tools/cmd/callgraph \
 		golang.org/x/tools/cmd/cover \
-		golang.org/x/tools/cmd/eg \
 		golang.org/x/tools/cmd/godoc \
 		golang.org/x/tools/cmd/goimports \
-		golang.org/x/tools/cmd/gomvpkg \
-		golang.org/x/tools/cmd/gorename \
-		golang.org/x/tools/cmd/oracle \
 		golang.org/x/tools/cmd/present \
-		golang.org/x/tools/cmd/guru \
-		github.com/google/godepq \
-		github.com/kisielk/errcheck \
-		github.com/lukehoban/go-outline \
-		github.com/newhook/go-symbols \
-		github.com/nsf/gocode \
-		github.com/rogpeppe/godef \
-		github.com/tpng/gopkgs
+		github.com/google/godepq
 
 .PHONY: python
 python: ## Install python and virtualenvwrapper
@@ -98,3 +70,7 @@ brew: ## Install and update Homebrew
 .notes:
 	mkdir -p 'Dropbox (Personal)/notes'
 	ln -s 'Dropbox (Personal)/notes' .notes
+
+fix-mac: ## Reconfigure some MacOS settings
+	# Enable press-and-hold for key repeat.
+	defaults write -g ApplePressAndHoldEnabled -bool false
