@@ -1,7 +1,8 @@
 #######################################
 # vi everywhere
 #######################################
-export EDITOR="vim"
+export EDITOR="emacsclient -t"
+alias e="emacsclient -t"
 # Force emacsclient -t to start a server if necessary.
 export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
@@ -20,31 +21,8 @@ export LC_ALL=en_US.UTF-8
 autoload -U compinit
 compinit -i
 
-zplugs=()
-ZPLUG_HOME=$HOME/.zsh/zplug
-{ [[ -d $ZPLUG_HOME ]] || git clone https://github.com/zplug/zplug $ZPLUG_HOME }
-source $ZPLUG_HOME/init.zsh
-zplug "zplug/zplug"
-
-zplug "plugins/gitignore", from:oh-my-zsh, if:"(( $+commands[git] ))"
-zplug "plugins/golang", from:oh-my-zsh, if:"(( $+commands[go] ))"
-zplug "plugins/tmux", from:oh-my-zsh, if:"(( $+commands[tmux] ))"
-zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "plugins/z", from:oh-my-zsh
-
-# Install plugins if necessary.
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-zplug load
-
+eval "$(fasd --init auto)"
 [[ -f ~/.zsh/theme.zsh ]] && source ~/.zsh/theme.zsh
-[[ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]] && source /usr/local/opt/fzf/shell/key-bindings.zsh
-[[ -f /usr/local/opt/fzf/shell/completion.zsh ]] && source /usr/local/opt/fzf/shell/completion.zsh
 
 #######################################
 # Options
@@ -89,41 +67,28 @@ alias ls="ls -CF"
 alias ll="ls -ahlF"
 alias la="ls -A"
 
+alias ts="tmux new-session"
+alias ta="tmux attach"
+alias tls="tmux ls"
+
 autoload -U zmv
 alias mmv="noglob zmv -W"
 
 #######################################
 # Path additions
 #######################################
-if command -v brew >/dev/null 2>&1
-then
-    export PATH=$(brew --prefix)/sbin:$(brew --prefix)/bin:$PATH
-    if [[ -d $(brew --prefix)/lib/node_modules ]]
-    then
-        export NODE_PATH=$(brew --prefix)/lib/node_modules:$NODE_PATH
-    fi
-fi
-
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-[[ -d ~/projects ]] && hash -d p=~/projects
 
 #######################################
 # Go
 #######################################
 export GOPATH=$HOME
 
-if [[ -d /usr/local/opt/go/libexec ]]
-then
-    export GOROOT=/usr/local/opt/go/libexec
-    export PATH=$PATH:/usr/local/opt/go/libexec/bin
-fi
-
 #######################################
 # Python
 #######################################
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PROJECT_HOME=$HOME/projects
-[ -s "/usr/local/bin/virtualenvwrapper.sh" ] && . /usr/local/bin/virtualenvwrapper.sh
 
 #######################################
 # node.js

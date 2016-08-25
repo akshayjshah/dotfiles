@@ -29,35 +29,12 @@ function git_prompt_status() {
   local INDEX STATUS
   INDEX=$(command git status --porcelain -b 2> /dev/null)
   STATUS=""
-  if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
-  elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_RENAMED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
-  elif $(echo "$INDEX" | grep '^D  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
-  elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
+  if [ -n "$(git status --porcelain)" ]; then
+    STATUS="$ZSH_THEME_GIT_PROMPT_DIRTY$STATUS"
+  else
+    STATUS="$ZSH_THEME_GIT_PROMPT_CLEAN$STATUS"
   fi
 
-  if [[ -n $STATUS ]]; then
-    STATUS="$STATUS "
-  fi
   echo $STATUS
 }
 
@@ -73,13 +50,10 @@ function _user_host() {
   fi
 }
 
-local _return_status="%(?.•.⍉)"
+local _return_status="%(?.•.✖)"
 
-ZSH_THEME_GIT_PROMPT_UNTRACKED="◒"
-ZSH_THEME_GIT_PROMPT_ADDED="✓"
-ZSH_THEME_GIT_PROMPT_MODIFIED="⚑"
-ZSH_THEME_GIT_PROMPT_DELETED="✖"
-ZSH_THEME_GIT_PROMPT_RENAMED="♻"
+ZSH_THEME_GIT_PROMPT_DIRTY="⚑ "
+ZSH_THEME_GIT_PROMPT_CLEAN="✓ "
 
 PROMPT='${_return_status} $(_user_host)%c $(git_prompt_status)→ '
 RPROMPT=' $(git_prompt_info)'
