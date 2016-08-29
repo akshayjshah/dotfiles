@@ -74,6 +74,10 @@ alias tls="tmux ls"
 autoload -U zmv
 alias mmv="noglob zmv -W"
 
+if (($+commands[xclip])); then
+    alias pbcopy='xclip -selection clipboard'
+fi
+
 #######################################
 # Path additions
 #######################################
@@ -83,6 +87,8 @@ alias mmv="noglob zmv -W"
 # Go
 #######################################
 export GOPATH=$HOME
+[[ -d /usr/lib/go-1.7/bin ]] && export PATH=$PATH:/usr/lib/go-1.7/bin
+
 
 #######################################
 # Python
