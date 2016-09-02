@@ -8,6 +8,8 @@ export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
     alias vim="nvim"
 fi
+export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=screen-256color
 
 #######################################
 # Languages and Terminfo
@@ -21,7 +23,7 @@ export LC_ALL=en_US.UTF-8
 autoload -U compinit
 compinit -i
 
-eval "$(fasd --init auto)"
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -f ~/.zsh/theme.zsh ]] && source ~/.zsh/theme.zsh
 
 #######################################
@@ -63,12 +65,14 @@ setopt share_history
 #######################################
 # Aliases and shortcuts
 #######################################
+alias :q="exit"
+
 alias ls="ls -CF"
 alias ll="ls -ahlF"
 alias la="ls -A"
 
-alias ts="tmux new-session"
-alias ta="tmux attach"
+alias ts="tmux new-session -s"
+alias ta="tmux attach -t"
 alias tls="tmux ls"
 
 autoload -U zmv
