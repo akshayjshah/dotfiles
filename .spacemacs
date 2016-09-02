@@ -34,9 +34,6 @@ values."
        markdown
        (org :variables
             org-enable-github-support t)
-       (python :variables
-               python-test-runner 'pytest
-               python-enable-yapf-format-on-save t)
        puppet
        (shell :variables
               shell-default-shell 'ansi-term
@@ -262,6 +259,7 @@ you should place your code here."
 
     ;; Nicer powerline.
     (setq powerline-default-separator 'wave)
+
 
     ;; Keep notes in a sane location.
     (setq deft-directory "~/.notes")
