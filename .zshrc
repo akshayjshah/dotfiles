@@ -23,6 +23,7 @@ export LC_ALL=en_US.UTF-8
 autoload -U compinit
 compinit -i
 
+[[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -f ~/.zsh/theme.zsh ]] && source ~/.zsh/theme.zsh
 
