@@ -257,10 +257,6 @@ you should place your code here."
     ;; Override common vim commands to keep parens balanced.
     (spacemacs/toggle-evil-cleverparens-on)
 
-    ;; Nicer powerline.
-    (setq powerline-default-separator 'wave)
-
-
     ;; Keep notes in a sane location.
     (setq deft-directory "~/.notes")
 
