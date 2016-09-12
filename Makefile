@@ -28,7 +28,8 @@ deb-pkg: deb-base ## Install a variety of useful Debian packages
 		nautilus-dropbox \
 		xclip \
 		fonts-roboto \
-		yui-compressor
+		yui-compressor \
+		lastpass-cli
 
 .PHONY: farc
 farc: deb-base projects ## Install farc, a sane workflow tool for Phabricator
