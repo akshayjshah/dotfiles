@@ -20,6 +20,7 @@ brew-fonts: brew ## Use Homebrew to install some fonts
 		font-inconsolata-for-powerline \
 		font-source-code-pro-for-powerline \
 		font-fira-code \
+		font-fira-mono \
 		font-hack \
 		font-noto-emoji \
 		font-noto-color-emoji \
