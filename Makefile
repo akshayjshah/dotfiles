@@ -29,6 +29,7 @@ brew-fonts: brew ## Use Homebrew to install some fonts
 
 .PHONY: brew-pkg
 brew-pkg: brew ## Install a selection of Homebrew packages
+	brew upgrade
 	brew install \
 		coreutils \
 		git \
