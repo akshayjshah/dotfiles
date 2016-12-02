@@ -5,7 +5,7 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
 .PHONY: all
-all: brew-pkg go-pkg brew-fonts projects spacemacs arcanist farc projects/z ## Set up a new development machine
+all: brew-pkg go-pkg node-pkg brew-fonts projects spacemacs arcanist farc projects/z ## Set up a new development machine
 
 .PHONY: brew
 brew: ## Install the Homebrew package manager
@@ -47,7 +47,7 @@ brew-pkg: brew ## Install a selection of Homebrew packages
 		ranger \
 		curl \
 		go
-	brew cask install hyper || true
+	brew cask install hyper
 
 .PHONY: spacemacs
 spacemacs: brew-pkg .notes .emacs.d ## Install the Spacemacs emacs distribution
@@ -62,7 +62,6 @@ farc: brew-pkg projects ## Install farc, a sane workflow tool for Phabricator
 
 .PHONY: go-pkg
 go-pkg: brew-pkg ## Install commonly-used Go language libraries
-# TODO: automate replacing system Go.
 	go get -u \
 		github.com/golang/lint/golint \
 		golang.org/x/tools/cmd/... \
@@ -70,6 +69,10 @@ go-pkg: brew-pkg ## Install commonly-used Go language libraries
 		github.com/nsf/gocode \
 		github.com/rogpeppe/godef \
 		github.com/alecthomas/gometalinter
+
+.PHONY: node-pkg
+node-pkg: brew-pkg  ## Install a bare minimum set of Node libraries
+	npm install -g tern
 
 projects: ## Create directories for code projects and binaries
 	mkdir -p ~/bin
