@@ -3,7 +3,6 @@
 !README.md
 !Makefile
 
-!.aspell.*
 !.config/
 !.config/flake8
 !.config/nvim/
@@ -12,7 +11,6 @@
 !.config/nvim/indent/*
 !.config/nvim/ftplugin/
 !.config/nvim/ftplugin/*
-!.en_us.utf-8.add
 !.gitconfig
 !.gitignore
 !.gitignore_global

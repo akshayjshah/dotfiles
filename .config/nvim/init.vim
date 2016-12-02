@@ -1,14 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""
+set shell=/bin/zsh
 if isdirectory("/usr/local/opt/fzf")
   set rtp+=/usr/local/opt/fzf
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-
-" Colors.
-Plug 'altercation/vim-colors-solarized'
 
 " Fancy prompts everywhere.
 Plug 'vim-airline/vim-airline'
@@ -229,12 +227,20 @@ set magic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set shell=/bin/zsh
-
-set t_Co=256
-let g:solarized_termtrans=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
-colorscheme solarized
+colorscheme default
+
+set fillchars+=vert:\|
+
+hi clear IncSearch
+hi def link IncSearch Search
+hi clear VertSplit
+hi def link VertSplit Comment
+hi clear StatusLine
+hi def link StatusLine ModeMsg
+hi clear StatusLineNC
+hi def link StatusLineNC ModeMsg
 
 try
     lang en_US

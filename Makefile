@@ -5,7 +5,7 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
 .PHONY: all
-all: brew-pkg go-pkg brew-fonts projects spacemacs arcanist farc projects/z .fzf ## Set up a new development machine
+all: brew-pkg go-pkg brew-fonts projects spacemacs arcanist farc projects/z ## Set up a new development machine
 
 .PHONY: brew
 brew: ## Install the Homebrew package manager
@@ -32,6 +32,8 @@ brew-pkg: brew ## Install a selection of Homebrew packages
 	brew upgrade
 	brew install \
 		coreutils \
+		emacs \
+		fzf \
 		git \
 		zsh \
 		tmux \
@@ -45,17 +47,10 @@ brew-pkg: brew ## Install a selection of Homebrew packages
 		ranger \
 		curl \
 		go
-	brew cask install hyper
+	brew cask install hyper || true
 
 .PHONY: spacemacs
 spacemacs: brew-pkg .notes .emacs.d ## Install the Spacemacs emacs distribution
-	brew tap d12frosted/emacs-plus
-	brew install emacs-plus
-	brew linkapps emacs-plus
-ifeq ($(wildcard bin/emacsclient),)
-	mkdir -p bin
-	ln -s /usr/local/Cellar/emacs-plus/24.5/bin/emacsclient bin/emacsclient
-endif
 
 .emacs.d:
 	git clone https://github.com/syl20bnr/spacemacs .emacs.d
@@ -73,7 +68,8 @@ go-pkg: brew-pkg ## Install commonly-used Go language libraries
 		golang.org/x/tools/cmd/... \
 		github.com/google/godepq \
 		github.com/nsf/gocode \
-		github.com/rogpeppe/godef
+		github.com/rogpeppe/godef \
+		github.com/alecthomas/gometalinter
 
 projects: ## Create directories for code projects and binaries
 	mkdir -p ~/bin
@@ -83,10 +79,6 @@ projects: ## Create directories for code projects and binaries
 .notes: ## Create a convenient symlink to my Dropbox notes
 	mkdir -p 'Dropbox/notes'
 	ln -s 'Dropbox/notes' .notes
-
-.fzf: brew-pkg ## Install the fzf fuzzy-finder
-	git clone https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install
 
 projects/z: brew-pkg projects ## Install the z auto-jumper
 	git clone https://github.com/rupa/z ~/projects/z

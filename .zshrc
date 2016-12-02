@@ -1,15 +1,13 @@
 #######################################
 # vi everywhere
 #######################################
-export EDITOR="emacsclient -t"
 alias e="emacsclient -t"
+export EDITOR="e"
 # Force emacsclient -t to start a server if necessary.
 export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
     alias vim="nvim"
 fi
-export TERM=xterm-256color
-[ -n "$TMUX" ] && export TERM=screen-256color
 
 #######################################
 # Languages and Terminfo
@@ -79,6 +77,7 @@ alias tls="tmux ls"
 autoload -U zmv
 alias mmv="noglob zmv -W"
 
+# pbcopy-like alias for xclip on Linux
 if (($+commands[xclip])); then
     alias pbcopy='xclip -selection clipboard'
 fi
@@ -92,8 +91,6 @@ fi
 # Go
 #######################################
 export GOPATH=$HOME
-[[ -d /usr/lib/go-1.7/bin ]] && export PATH=$PATH:/usr/lib/go-1.7/bin
-
 
 #######################################
 # Python
