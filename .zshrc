@@ -1,8 +1,8 @@
 #######################################
 # vi everywhere
 #######################################
-alias e="emacsclient -t"
-export EDITOR="e"
+alias e="vim"
+export EDITOR="vim"
 # Force emacsclient -t to start a server if necessary.
 export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
@@ -108,3 +108,4 @@ export PROJECT_HOME=$HOME/projects
 #######################################
 export GITHUB_USER=akshayjshah
 source ~/.zsh/uber.zsh
+alias lunch="http://uber.cafebonappetit.com/cafe/uber-cafe/"

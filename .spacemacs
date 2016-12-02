@@ -32,6 +32,7 @@ values."
            go-tab-width 4
            gofmt-command "goimports")
        html
+       ivy
        javascript
        markdown
        osx
