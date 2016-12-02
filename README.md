@@ -1,5 +1,4 @@
-dotfiles
-========
+# dotfiles
 
 Configuration for a terminal-centric MacOS development environment.
 
@@ -12,5 +11,5 @@ Makefile.
 ```
 cd ~
 git clone https://github.com/akshayjshah/dotfiles.git .
-make
+make all
 ```
