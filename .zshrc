@@ -108,4 +108,3 @@ export PROJECT_HOME=$HOME/projects
 #######################################
 export GITHUB_USER=akshayjshah
 source ~/.zsh/uber.zsh
-alias lunch="http://uber.cafebonappetit.com/cafe/uber-cafe/"
