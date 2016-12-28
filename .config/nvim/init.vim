@@ -197,10 +197,6 @@ set mat=2
 " Don't redraw so often - especially mid-macro.
 set lazyredraw
 
-" Highlight current line, but only in current window.
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-
 " Allow buffer switching without saving.
 set hidden
 
