@@ -1,8 +1,8 @@
 #######################################
 # vi everywhere
 #######################################
-alias e="vim"
-export EDITOR="vim"
+alias e="emacsclient -t"
+export EDITOR="emacsclient -t"
 # Force emacsclient -t to start a server if necessary.
 export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
