@@ -66,9 +66,10 @@ go-pkg: brew-pkg ## Install commonly-used Go language libraries
 		github.com/golang/lint/golint \
 		golang.org/x/tools/cmd/... \
 		github.com/google/godepq \
+		github.com/alecthomas/gometalinter \
+		github.com/mdempsky/maligned \
 		github.com/nsf/gocode \
-		github.com/rogpeppe/godef \
-		github.com/alecthomas/gometalinter
+		github.com/rogpeppe/godef
 
 .PHONY: node-pkg
 node-pkg: brew-pkg  ## Install a bare minimum set of Node libraries
