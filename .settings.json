@@ -1,0 +1,62 @@
+{
+    "editor.cursorBlinking": "phase",
+    // "editor.fontFamily": "Consolas",
+    // "editor.fontSize": 24,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "editor.formatOnType": true,
+    "editor.glyphMargin": true,
+    "editor.lineNumbers": "relative",
+    "editor.renderIndentGuides": true,
+    "editor.rulers": [80, 120],
+    "editor.scrollBeyondLastLine": false,
+    "editor.tabSize": 2,
+
+    "extensions.autoUpdate": true,
+
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
+    "files.watcherExclude": {
+        "**/lint.log": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/vendor": true,
+        "**/*.xml": true,
+        "**/.tmp/": true
+    },
+
+    "search.exclude": {
+        "**/lint.log": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/vendor": true,
+        "**/*.xml": true,
+        "**/.tmp/": true
+    },
+
+    "terminal.integrated.fontLigatures": true,
+
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.formatFlags": ["-s"],
+
+    "projectManager.openInNewWindow": false,
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<escape>"]
+        }
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        },
+        {
+            "before": ["k"],
+            "after": ["g", "k"]
+        }
+    ],
+    "vim.useSystemClipboard": true
+}
