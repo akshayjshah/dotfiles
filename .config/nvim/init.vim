@@ -123,6 +123,7 @@ nmap <C-x> <plug>DWMClose
 " Which keys should wrap onto the next line?
 set whichwrap=b,s,<,>,~,h,l,[,]
 
+" Add an alias for sudo write.
 cnoremap sudow w !sudo tee % >/dev/null
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -153,8 +154,8 @@ nnoremap <leader>hh :Helptags<cr>
 nnoremap <leader>hk :Maps<cr>
 nnoremap <leader>hc :Commands<cr>
 
-" Misc: leader-M
-nnoremap <leader>Mc viw~ " capitalize a word.
+" Misc: leader-m
+nnoremap <leader>mc viw~ " capitalize a word.
 
 " Search/Select: leader-s
 nnoremap <leader>ss :Ag<Space>
@@ -172,6 +173,9 @@ nnoremap <leader>tu :UndotreeToggle<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable incremental commands
+set inccommand=nosplit
+
 " Show mode and current command.
 set showmode
 set showcmd
@@ -184,6 +188,9 @@ set showbreak=↪
 
 "Always show current position.
 set ruler
+
+" Highlight the current line.
+set cursorline
 
 " Keep 3 lines of context at bottom of screen.
 set scrolloff=3

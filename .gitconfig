@@ -2,10 +2,11 @@
 	name = Akshay Shah
 	email = shah@uber.com
 [core]
-	pager = less -FRSX
+	pager = "diff-so-fancy | less --tabs=4 -RFX"
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 [branch]
+    autosetupmerge = always
 	autosetuprebase = always
 [fetch]
 	prune = true
@@ -14,7 +15,7 @@
 [rerere]
 	enabled = true
 [color]
-	UI = true
+	ui = auto
 [diff]
 	algorithm = patience
 [format]
@@ -37,11 +38,14 @@
 	wipe = !git add -A && git commit -qm 'Wipe savepoint' && git reset --hard HEAD^
 	wtf = log --follow --stat -p
 
-	trim = !sh -c 'git branch -D $1 && git push origin :$1' -
-	deforest = !sh -c 'git checkout master && git branch --merged | grep -v master | grep -v bugs | xargs -I "{}" git trim "{}" && git branch -v'
+	deforest = !sh -c 'git checkout master && git branch --merged | grep -v master | xargs -I "{}" git branch -D "{}" && git branch -v'
 [github]
 	user = akshayjshah
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [url "ssh://gitolite@code.uber.internal:2222/"]
 	insteadOf = https://code.uber.internal/
+[url "ssh://code.uber.internal/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://config.uber.internal/"]
+	insteadOf = https://config.uber.internal/

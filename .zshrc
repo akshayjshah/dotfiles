@@ -2,11 +2,12 @@
 # vi everywhere
 #######################################
 alias e="emacsclient -t"
-export EDITOR="emacsclient -t"
+export EDITOR="vim"
 # Force emacsclient -t to start a server if necessary.
 export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
     alias vim="nvim"
+    export EDITOR="nvim"
 fi
 
 #######################################
@@ -65,6 +66,7 @@ setopt share_history
 # Aliases and shortcuts
 #######################################
 alias :q="exit"
+alias :e=$EDITOR
 
 alias ls="ls -CF"
 alias ll="ls -ahlF"
@@ -86,6 +88,7 @@ fi
 # Path additions
 #######################################
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
 
 #######################################
 # Go
