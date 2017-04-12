@@ -63,6 +63,10 @@ set linebreak
 " Override this for code files!
 set textwidth=80
 
+" When wrapping text blocks, be civilized and use only a single space between
+" sentences.
+set nojoinspaces
+
 " See :help fo-table for details.
 set formatoptions=tcqjn
 
