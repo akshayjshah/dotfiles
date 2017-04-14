@@ -15,6 +15,7 @@
      (go :variables
          go-tab-width 4
          gofmt-command "goimports")
+     ivy
      html
      markdown
      osx
@@ -85,7 +86,7 @@
    dotspacemacs-smooth-scrolling t
    dotspacemacs-line-numbers 'relative
    dotspacemacs-folding-method 'evil
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-smart-closing-parenthesis t
    dotspacemacs-highlight-delimiters 'all
    dotspacemacs-persistent-server nil
@@ -118,7 +119,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode which-key web-mode use-package toc-org restart-emacs pug-mode persp-mode osx-dictionary orgit org-plus-contrib neotree move-text mmm-mode markdown-toc markdown-mode link-hint info+ indent-guide hungry-delete highlight-indentation hide-comnt help-fns+ helm-projectile helm-make projectile helm-gitignore request helm-flx helm-company helm-c-yasnippet helm-ag go-eldoc gitattributes-mode git-timemachine git-link git-gutter-fringe eyebrowse expand-region exec-path-from-shell evil-surround evil-nerd-commenter evil-mc evil-matchit evil-escape evil-ediff evil-anzu dumb-jump company-statistics company-go auto-compile packed aggressive-indent ace-window ace-link auto-complete avy yasnippet company smartparens highlight f evil flycheck flyspell-correct go-mode helm helm-core magit magit-popup git-commit with-editor async hydra haml-mode dash ws-butler winum volatile-highlights vi-tilde-fringe uuidgen undo-tree tagedit spaceline smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder rainbow-delimiters popwin pkg-info pcre2el pbcopy paradox osx-trash org-bullets open-junk-file magit-gitflow macrostep lorem-ipsum linum-relative less-css-mode launchctl hl-todo highlight-parentheses highlight-numbers helm-themes helm-swoop helm-mode-manager helm-descbinds helm-css-scss goto-chg google-translate golden-ratio go-guru gitignore-mode gitconfig-mode git-messenger git-gutter-fringe+ git-gutter gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-args eval-sexp-fu emmet-mode elisp-slime-nav diminish diff-hl deft company-web column-enforce-mode clean-aindent-mode bind-key auto-yasnippet auto-highlight-symbol auto-dictionary anzu adaptive-wrap ace-jump-helm-line ac-ispell))))
+    (wgrep smex ivy-hydra flyspell-correct-ivy counsel-projectile counsel swiper ivy yaml-mode which-key web-mode use-package toc-org restart-emacs pug-mode persp-mode osx-dictionary orgit org-plus-contrib neotree move-text mmm-mode markdown-toc markdown-mode link-hint info+ indent-guide hungry-delete highlight-indentation hide-comnt help-fns+ helm-projectile helm-make projectile helm-gitignore request helm-flx helm-company helm-c-yasnippet helm-ag go-eldoc gitattributes-mode git-timemachine git-link git-gutter-fringe eyebrowse expand-region exec-path-from-shell evil-surround evil-nerd-commenter evil-mc evil-matchit evil-escape evil-ediff evil-anzu dumb-jump company-statistics company-go auto-compile packed aggressive-indent ace-window ace-link auto-complete avy yasnippet company smartparens highlight f evil flycheck flyspell-correct go-mode helm helm-core magit magit-popup git-commit with-editor async hydra haml-mode dash ws-butler winum volatile-highlights vi-tilde-fringe uuidgen undo-tree tagedit spaceline smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder rainbow-delimiters popwin pkg-info pcre2el pbcopy paradox osx-trash org-bullets open-junk-file magit-gitflow macrostep lorem-ipsum linum-relative less-css-mode launchctl hl-todo highlight-parentheses highlight-numbers helm-themes helm-swoop helm-mode-manager helm-descbinds helm-css-scss goto-chg google-translate golden-ratio go-guru gitignore-mode gitconfig-mode git-messenger git-gutter-fringe+ git-gutter gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-args eval-sexp-fu emmet-mode elisp-slime-nav diminish diff-hl deft company-web column-enforce-mode clean-aindent-mode bind-key auto-yasnippet auto-highlight-symbol auto-dictionary anzu adaptive-wrap ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

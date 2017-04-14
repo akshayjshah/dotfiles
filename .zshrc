@@ -1,19 +1,13 @@
 #######################################
 # vi everywhere
 #######################################
-alias e="emacsclient -t"
 export EDITOR="emacsclient -t"
+alias e=$EDITOR
 # Force emacsclient -t to start a server if necessary.
 export ALTERNATE_EDITOR=""
 if (($+commands[nvim])); then
     alias vim="nvim"
 fi
-
-#######################################
-# Languages and Terminfo
-#######################################
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
 
 #######################################
 # Plugins and Completion
@@ -82,31 +76,3 @@ alias mmv="noglob zmv -W"
 if (($+commands[xclip])); then
     alias pbcopy='xclip -selection clipboard'
 fi
-
-#######################################
-# Path additions
-#######################################
-[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
-
-#######################################
-# Go
-#######################################
-export GOPATH=$HOME
-
-#######################################
-# Python
-#######################################
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-export PROJECT_HOME=$HOME/projects
-
-#######################################
-# node.js
-#######################################
-[ -s "$HOME/.nvm/nvm.sh" ] && . $HOME/.nvm/nvm.sh
-
-#######################################
-# Job-related
-#######################################
-export GITHUB_USER=akshayjshah
-source ~/.zsh/uber.zsh

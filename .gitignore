@@ -15,9 +15,9 @@
 !.gitconfig
 !.gitignore
 !.gitignore_global
-!.settings.json
 !.spacemacs
 !.tmux.conf
 !.zsh/
 !.zsh/theme.zsh
 !.zshrc
+!.zshenv
