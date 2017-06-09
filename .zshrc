@@ -1,13 +1,12 @@
 #######################################
 # vi everywhere
 #######################################
-export EDITOR="emacsclient -t"
-alias e=$EDITOR
-# Force emacsclient -t to start a server if necessary.
-export ALTERNATE_EDITOR=""
+export EDITOR="vim"
 if (($+commands[nvim])); then
     alias vim="nvim"
+    export EDITOR="nvim"
 fi
+alias e=$EDITOR
 
 #######################################
 # Plugins and Completion
@@ -76,3 +75,10 @@ alias mmv="noglob zmv -W"
 if (($+commands[xclip])); then
     alias pbcopy='xclip -selection clipboard'
 fi
+
+#######################################
+# node.js
+#######################################
+nodeup() {
+    [ -s "$HOME/.nvm/nvm.sh" ] && . $HOME/.nvm/nvm.sh
+}

@@ -7,15 +7,10 @@
 !.config/flake8
 !.config/nvim/
 !.config/nvim/init.vim
-!.config/nvim/indent/
-!.config/nvim/indent/*
-!.config/nvim/ftplugin/
-!.config/nvim/ftplugin/*
 !.en_us.utf-8.add
 !.gitconfig
 !.gitignore
 !.gitignore_global
-!.spacemacs
 !.tmux.conf
 !.zsh/
 !.zsh/theme.zsh
