@@ -202,6 +202,12 @@ augroup AutoReload
     autocmd FocusGained,BufEnter * :checktime
 augroup end
 
+function! s:ClosePreview()
+    if pumvisible() == 0 && bufname('%') != "[Command Line]"
+        silent! pclose
+    endif
+endfunction
+
 " ClosePreviewOnMove closes the preview window once the cursor moves.
 function! s:ClosePreviewOnMove()
     autocmd CursorMovedI <buffer> call s:ClosePreview()
@@ -349,6 +355,7 @@ function! s:SetupGo()
     setlocal noexpandtab
     setlocal formatoptions=rq
     setlocal commentstring=//\ %s
+    setlocal nolist
 
     " Build: b
     nnoremap <localleader>bb :call <SID>BuildGoFile()<cr>

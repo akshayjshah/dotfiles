@@ -61,12 +61,12 @@ go-pkg: brew-pkg ## Install commonly-used Go language libraries
 		github.com/mdempsky/maligned \
 		github.com/nsf/gocode \
 		github.com/rogpeppe/godef \
-		honnef.co/go/tools/cmd/gosimple
+		honnef.co/go/tools/cmd/...
 
 .PHONY: py-pkg
 py-pkg: brew-pkg ## Install commonly-used Python language libraries
-	pip2 install --user -U neovim
-	pip3 install --user -U neovim
+	pip2 install --user -U neovim yapf
+	pip3 install --user -U neovim yapf
 
 projects: ## Create directories for code projects and binaries
 	mkdir -p ~/bin
