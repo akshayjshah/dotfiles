@@ -2,12 +2,12 @@
 " Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""
 if isdirectory("/usr/local/opt/fzf")
-  set rtp+=/usr/local/opt/fzf
+    set rtp+=/usr/local/opt/fzf
 endif
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
@@ -136,8 +136,8 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 0
 let g:ale_emit_conflict_warnings = 0
 let g:ale_linters = {
-    \ 'go': ['gosimple', 'go vet', 'golint', 'go build'],
-    \ }
+            \ 'go': ['gosimple', 'go vet', 'golint', 'go build'],
+            \ }
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 10
@@ -161,13 +161,13 @@ let g:go_highlight_space_tab_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 
 let g:grepper =
-    \ {
-    \ 'tools': ['rg', 'ag', 'git'],
-    \ 'open': 1,
-    \ 'switch': 1,
-    \ 'jump': 0,
-    \ 'dir': 'file',
-    \ }
+            \ {
+            \ 'tools': ['rg', 'ag', 'git'],
+            \ 'open': 1,
+            \ 'switch': 1,
+            \ 'jump': 0,
+            \ 'dir': 'file',
+            \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Global Autocommands and Functions
@@ -227,12 +227,21 @@ endfunction
 
 " Run :GoBuild or :GoTestCompile based on the current file.
 function! s:BuildGoFile()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
+    let l:file = expand('%')
+    if l:file =~# '^\f\+_test\.go$'
+        call go#cmd#Test(0, 1)
+    elseif l:file =~# '^\f\+\.go$'
+        call go#cmd#Build(0)
+    endif
+endfunction
+
+" Tab-completion.
+function! s:HandleTab()
+    if pumvisible()
+        return "\<c-n>"
+    else
+        return "\<tab>"
+    endif
 endfunction
 
 
