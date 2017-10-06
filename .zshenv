@@ -14,6 +14,7 @@ export LC_ALL=en_US.UTF-8
 # Go
 #######################################
 export GOPATH=$HOME
+[[ -d ~/.gimme/envs ]] && source ~/.gimme/envs/latest.env
 
 #######################################
 # Python
