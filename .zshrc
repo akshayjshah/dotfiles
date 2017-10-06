@@ -77,6 +77,13 @@ if (($+commands[xclip])); then
     alias pbpaste='xclip -selection clipboard -o'
 fi
 
+# open Nautilus from terminals
+if (($+commands[nautilus])); then
+    open() {
+        nautilus $1 &
+    }
+fi
+
 #######################################
 # node.js
 #######################################
