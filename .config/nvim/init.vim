@@ -139,7 +139,7 @@ let g:ale_linters = {
             \ 'go': ['gosimple', 'go vet', 'golint', 'go build'],
             \ }
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#ale#enabled = 1
 
