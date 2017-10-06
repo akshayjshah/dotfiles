@@ -74,6 +74,7 @@ alias mmv="noglob zmv -W"
 # pbcopy-like alias for xclip on Linux
 if (($+commands[xclip])); then
     alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
 fi
 
 #######################################
