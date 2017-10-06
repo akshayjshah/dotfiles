@@ -29,7 +29,7 @@ function git_prompt_status() {
   local INDEX STATUS
   INDEX=$(command git status --porcelain -b 2> /dev/null)
   STATUS=""
-  if [ -n "$(git status --porcelain)" ]; then
+  if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
     STATUS="$ZSH_THEME_GIT_PROMPT_DIRTY$STATUS"
   else
     STATUS="$ZSH_THEME_GIT_PROMPT_CLEAN$STATUS"
