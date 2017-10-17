@@ -1,8 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""
-if isdirectory("/usr/local/opt/fzf")
-    set rtp+=/usr/local/opt/fzf
+if isdirectory("/usr/share/vim/vimfiles")
+    set rtp+=/usr/share/vim/vimfiles
 endif
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -141,7 +141,7 @@ let g:ale_linters = {
 
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#displayed_head_limit = 10
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 
 let g:deoplete#enable_at_startup = 1
 
