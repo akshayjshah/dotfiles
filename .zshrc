@@ -122,6 +122,7 @@ export GOPATH=$HOME
 # Python
 #######################################
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
 #######################################
 # SSH

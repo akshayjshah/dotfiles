@@ -18,8 +18,8 @@ go-pkg: ## Install commonly-used Go language libraries
 
 .PHONY: py-pkg
 py-pkg: ## Install commonly-used Python language libraries
-	pip2 install --user -U neovim yapf proselint
-	pip3 install --user -U neovim yapf proselint
+	pip2 install --user -U neovim yapf proselint virtualenv
+	pip3 install --user -U neovim yapf proselint virtualenv
 
 projects: ## Create directories for code projects and binaries
 	mkdir -p ~/bin
