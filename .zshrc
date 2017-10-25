@@ -117,6 +117,10 @@ export LC_ALL=en_US.UTF-8
 #######################################
 export GOPATH=$HOME
 [[ -d ~/.gimme/envs ]] && source ~/.gimme/envs/latest.env 2> /dev/null
+if (($+commands[hardhat])); then
+    alias hh="hardhat"
+    eval "$(hardhat --completion-script-zsh)"
+fi
 
 #######################################
 # Python
