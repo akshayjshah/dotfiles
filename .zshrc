@@ -63,7 +63,7 @@ alias :e=$EDITOR
 
 if (($+commands[exa])); then
     alias ls="exa"
-    alias ll="exa -l"
+    alias ll="exa -al"
     alias la="exa -a"
 else
     alias ls="ls -CF"
