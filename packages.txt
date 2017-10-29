@@ -29,6 +29,7 @@ nvm
 openssh
 otf-fira-mono
 otf-fira-sans
+powerline-fonts
 python
 python-pip
 python2
