@@ -25,6 +25,7 @@
 	amend = commit -a --amend
 	c = commit
 	co = checkout
+    delbranch = branch -D
 	graph = log --graph
 	l = log origin/master..
 	s = status
