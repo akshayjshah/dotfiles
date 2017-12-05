@@ -114,7 +114,7 @@ set wig+=*/dist,*.o,*.class,*.pyc,*.pyo
 
 " Use global Python, so plugins work in virtualenvs.
 let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 try
     lang en_US
