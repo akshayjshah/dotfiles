@@ -1,49 +1,42 @@
-1password-cli
-aspell
-base
-base-devel
-curl
-diff-so-fancy
-dosfstools
+x aspell
+x build-essential
+x curl
+x git
+x htop
+x jq
+x keychain
+x ppa-purge
+x python-dev
+x python-pip
+x python3-dev
+x python3-pip
+x ranger
+x software-properties-common
+x tig
+x tmux
+x vim-nox
+x wget
+x xclip
+x zsh
+
+from browser:
+google-chrome
+
+from PPA:
+neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
+
+pip install --upgrade neovim
+pip3 install --upgrade neovim
+install nvm: https://github.com/creationix/nvm#install-script
+install cargo: https://www.rust-lang.org/en-US/install.html
+diff-so-fancy: https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+nova for gnome-terminal: https://trevordmiller.com/projects/nova
+
+
+TODO:
 dropbox
-e2fsprogs
 exa
 fd-rs
-fzf
 gimme-git
-git
-gnome
-gnome-extras
-google-chrome
-htop
-intel-ucode
-iw
-jq
-keychain
 nautilus-dropbox
-neovim
-network-manager
-noto-fonts
-noto-fonts-emoji
-nvm
-openssh
-otf-fira-mono
-otf-fira-sans
-powerline-fonts
-python
-python-pip
-python2
-python2-pip
-ranger
 ripgrep
-rmlint
-sudo
-tig
-tmux
-tree
-ttf-fira-code
-ttf-liberation
-vim
-wpa_supplicant
-xclip
-zsh
