@@ -15,9 +15,11 @@ autoload -U compinit
 compinit -i
 
 [[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
-[[ -f ~/.fzf/completion.zsh ]] && source ~/.fzf/completion.zsh
-[[ -f ~/.fzf/key-bindings.zsh ]] && source ~/.fzf/key-bindings.zsh
 [[ -f ~/.zsh/theme.zsh ]] && source ~/.zsh/theme.zsh
+
+[[ -d ~/.fzf/bin ]] && export PATH=$HOME/.fzf/bin:$PATH
+[[ -f ~/.fzf/shell/completion.zsh ]] && source ~/.fzf/shell/completion.zsh
+[[ -f ~/.fzf/shell/key-bindings.zsh ]] && source ~/.fzf/shell/key-bindings.zsh
 
 #######################################
 # Options
@@ -92,15 +94,6 @@ if (($+commands[nautilus])); then
 fi
 
 #######################################
-# node.js
-#######################################
-[[ -d "$HOME/.node-modules/bin" ]] && export PATH="$HOME/.node_modules/bin:$PATH"
-export npm_config_prefix=~/.node_modules
-nodeup() {
-    [ -s "/usr/share/nvm/nvm.sh" ] && . /usr/share/nvm/nvm.sh
-}
-
-#######################################
 # Languages and Terminfo
 #######################################
 export LANG=en_US.UTF-8
@@ -132,6 +125,16 @@ fi
 #######################################
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+
+#######################################
+# node.js
+#######################################
+export NVM_DIR="$HOME/.nvm"
+[[ -d "$HOME/.node-modules/bin" ]] && export PATH="$HOME/.node_modules/bin:$PATH"
+export npm_config_prefix=~/.node_modules
+nodeup() {
+    [ -s "$NVM_DIR/nvm.sh" ] && . $NVM_DIR/nvm.sh
+}
 
 #######################################
 # SSH
