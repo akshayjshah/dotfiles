@@ -1,102 +1,102 @@
 [user]
-	name = Akshay Shah
-	email = shah@uber.com
+    name = Akshay Shah
+    email = shah@uber.com
 [core]
-	pager = "diff-so-fancy | less --tabs=4 -RFX"
-	excludesfile = ~/.gitignore_global
-	autocrlf = input
+    pager = "diff-so-fancy | less --tabs=4 -RFX"
+    excludesfile = ~/.gitignore_global
+    autocrlf = input
 [branch]
     autosetupmerge = always
-	autosetuprebase = always
+    autosetuprebase = always
 [fetch]
-	prune = true
+    prune = true
 [push]
-	default = simple
+    default = simple
 [rerere]
-	enabled = true
+    enabled = true
 [diff]
-	algorithm = patience
+    algorithm = patience
 [format]
-	pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
-	abbrev-commit = true
-	date = relative
+    pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+    abbrev-commit = true
+    date = relative
 [alias]
-	a = add
-	amend = commit -a --amend
-	c = commit
-	co = checkout
+    a = add
+    amend = commit -a --amend
+    c = commit
+    co = checkout
     delbranch = branch -D
-	graph = log --graph
-	l = log origin/master..
-	s = status
-	save = !git add -A && git commit -m 'Savepoint'
-	stashall = stash --include-untracked
-	undo = reset --mixed HEAD^
-	wip = !git add -u && git commit -m 'WIP'
-	wipe = !git add -A && git commit -qm 'Wipe savepoint' && git reset --hard HEAD^
-	wtf = log --follow --stat -p
+    graph = log --graph
+    l = log origin/master..
+    s = status
+    save = !git add -A && git commit -m 'Savepoint'
+    stashall = stash --include-untracked
+    undo = reset --mixed HEAD^
+    wip = !git add -u && git commit -m 'WIP'
+    wipe = !git add -A && git commit -qm 'Wipe savepoint' && git reset --hard HEAD^
+    wtf = log --follow --stat -p
 [github]
-	user = akshayjshah
+    user = akshayjshah
 [color]
-	pager = true
-	ui = auto
-	status = auto
-	diff = auto
-	branch = auto
-	showBranch = auto
-	interactive = auto
-	grep = auto
+    pager = true
+    ui = auto
+    status = auto
+    diff = auto
+    branch = auto
+    showBranch = auto
+    interactive = auto
+    grep = auto
 [color "status"]
-	header = black bold
-	branch = cyan
-	nobranch = red
-	unmerged = red
-	untracked = cyan
-	added = green
-	changed = red bold
+    header = black bold
+    branch = cyan
+    nobranch = red
+    unmerged = red
+    untracked = cyan
+    added = green
+    changed = red bold
 [color "diff"]
-	meta = red bold
-	frag = black bold
-	func = blue
-	old = red strike
-	new = green
-	commit = blue
-	whitespace = red
-	context = normal
+    meta = red bold
+    frag = black bold
+    func = blue
+    old = red strike
+    new = green
+    commit = blue
+    whitespace = red
+    context = normal
 [color "branch"]
-	current = cyan
-	local = blue
-	remote = magenta
-	upstream = magenta
-	plain = normal
+    current = cyan
+    local = blue
+    remote = magenta
+    upstream = magenta
+    plain = normal
 [color "decorate"]
-	branch = blue
-	remoteBranch = magenta
-	tag = magenta
-	stash = cyan
-	HEAD = blue
+    branch = blue
+    remoteBranch = magenta
+    tag = magenta
+    stash = cyan
+    HEAD = blue
 [color "interactive"]
-	prompt = red
-	header = red bold
-	error = red
-	help = black bold
+    prompt = red
+    header = red bold
+    error = red
+    help = black bold
 [color "grep"]
-	context = normal
-	match = cyan
-	filename = blue
-	function = blue
-	selected = normal
-	separator = red bold
-	linenumber = normal
+    context = normal
+    match = cyan
+    filename = blue
+    function = blue
+    selected = normal
+    separator = red bold
+    linenumber = normal
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 [url "ssh://gitolite@code.uber.internal:2222/"]
-	insteadOf = https://code.uber.internal/
+    insteadOf = https://code.uber.internal/
 [url "ssh://code.uber.internal/"]
-	insteadOf = https://code.uber.internal/
+    insteadOf = https://code.uber.internal/
 [url "ssh://config.uber.internal/"]
-	insteadOf = https://config.uber.internal/
+    insteadOf = https://config.uber.internal/
 [http "https://gopkg.uberinternal.com"]
-	followRedirects = true
+    followRedirects = true
 [http "https://gopkg.in"]
-	followRedirects = true
+    followRedirects = true
