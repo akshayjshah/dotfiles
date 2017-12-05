@@ -15,8 +15,8 @@ autoload -U compinit
 compinit -i
 
 [[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
-[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
-[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+[[ -f ~/.fzf/completion.zsh ]] && source ~/.fzf/completion.zsh
+[[ -f ~/.fzf/key-bindings.zsh ]] && source ~/.fzf/key-bindings.zsh
 [[ -f ~/.zsh/theme.zsh ]] && source ~/.zsh/theme.zsh
 
 #######################################
@@ -123,6 +123,11 @@ if (($+commands[hardhat])); then
 fi
 
 #######################################
+# Rust
+#######################################
+[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
+
+#######################################
 # Python
 #######################################
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -131,10 +136,12 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #######################################
 # SSH
 #######################################
-eval $(keychain --eval --quiet ~/.ssh/id_rsa)
+if (($+commands[keychain])); then
+    eval $(keychain --eval --quiet ~/.ssh/id_rsa)
+fi
 
 #######################################
 # Job-related
 #######################################
 export GITHUB_USER=akshayjshah
-source ~/.zsh/uber.zsh
+[[ -f ~/.zsh/work.zsh ]] && source ~/.zsh/work.zsh
