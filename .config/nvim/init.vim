@@ -137,7 +137,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 0
 let g:ale_emit_conflict_warnings = 0
 let g:ale_linters = {
-            \ 'go': ['gosimple', 'go vet', 'golint', 'go build'],
+            \ 'go': ['go vet', 'golint', 'go build'],
             \ }
 
 let g:airline_powerline_fonts = 1
