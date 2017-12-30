@@ -325,6 +325,7 @@ nnoremap <leader>fp :GitFiles<cr>
 nnoremap <leader>fh :History<cr>
 nnoremap <leader>fv :e $MYVIMRC<cr>
 nnoremap <leader>fs :source $MYVIMRC<cr>
+nnoremap <leader>ft :e ~/todo<cr>
 
 " Git: leader-g
 nnoremap <leader>gc :Commits<cr>
