@@ -27,7 +27,8 @@ cargo: .cargo/bin/cargo ## Install cargo, the Rust package manager
 
 .PHONY: rust-pkg
 rust-pkg: cargo ## Install commonly-used Rust language libraries
-	cargo install \
+	rustup update
+	cargo install --force \
 		ripgrep \
 		exa \
 		fd-find
