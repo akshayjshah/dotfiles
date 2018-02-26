@@ -12,6 +12,7 @@ go-pkg: ## Install commonly-used Go language libraries
 		github.com/google/godepq \
 		github.com/alecthomas/gometalinter \
 		honnef.co/go/tools/cmd/... \
+		github.com/mvdan/gogrep \
 		github.com/akshayjshah/hardhat
 
 .PHONY: py-pkg
