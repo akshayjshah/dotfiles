@@ -68,7 +68,9 @@ fedora: ## Install Fedora system packages & FlatPaks
 		zsh
 	sudo flatpak remote-add --if-not-exists --from gnome https://sdk.gnome.org/gnome.flatpakrepo
 	sudo flatpak remote-add --if-not-exists --from org.mozilla.FirefoxRepo https://firefox-flatpak.mojefedora.cz/org.mozilla.FirefoxRepo.flatpakrepo
+	sudo flatpak remote-add --if-not-exists --from flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 	sudo flatpak install org.mozilla.FirefoxRepo org.mozilla.FirefoxDevEdition
+	sudo flatpak install flathub com.slack.Slack
 
 .PHONY: update-fedora
 update-fedora: ## Update Fedora system packages & FlatPaks
