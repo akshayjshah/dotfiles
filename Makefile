@@ -9,6 +9,7 @@ go-pkg: ## Install commonly-used Go language libraries
 	go get -u \
 		github.com/golang/lint/golint \
 		golang.org/x/tools/cmd/... \
+		golang.org/x/vgo \
 		github.com/google/godepq \
 		github.com/alecthomas/gometalinter \
 		honnef.co/go/tools/cmd/... \
