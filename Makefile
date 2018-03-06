@@ -71,6 +71,7 @@ fedora: ## Install Fedora system packages & FlatPaks
 	sudo flatpak remote-add --if-not-exists --from flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 	sudo flatpak install org.mozilla.FirefoxRepo org.mozilla.FirefoxDevEdition
 	sudo flatpak install flathub com.slack.Slack
+	sudo flatpak install flathub us.zoom.Zoom
 
 .PHONY: update-fedora
 update-fedora: ## Update Fedora system packages & FlatPaks
