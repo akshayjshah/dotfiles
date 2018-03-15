@@ -59,6 +59,7 @@ fedora: ## Install Fedora system packages & FlatPaks
 		python3-neovim \
 		ranger \
 		redis \
+		ruby \
 		tig \
 		tmux \
 		vim-enhanced \
