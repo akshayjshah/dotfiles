@@ -44,6 +44,7 @@ fedora: ## Install Fedora system packages & FlatPaks
 		gcc \
 		gcc-c++ \
 		git \
+		git-fame \
 		gnome-tweak-tool \
 		htop \
 		jq \
