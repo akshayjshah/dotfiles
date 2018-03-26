@@ -58,6 +58,63 @@ setopt inc_append_history
 setopt share_history
 
 #######################################
+# Languages and Terminfo
+#######################################
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+#######################################
+# Path additions
+#######################################
+[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
+
+#######################################
+# Go
+#######################################
+export GOPATH=$HOME
+[[ -d ~/.gimme/envs ]] && source ~/.gimme/envs/go1.10.env 2> /dev/null
+if (($+commands[hardhat])); then
+    alias hh="hardhat"
+    eval "$(hardhat --completion-script-zsh)"
+fi
+alias gotree="tree -I 'vendor|go-build|glide|Makefile'"
+
+#######################################
+# Rust
+#######################################
+[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
+
+#######################################
+# Python
+#######################################
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+
+#######################################
+# node.js
+#######################################
+export NVM_DIR="$HOME/.nvm"
+[[ -d "$HOME/.node-modules/bin" ]] && export PATH="$HOME/.node_modules/bin:$PATH"
+export npm_config_prefix=~/.node_modules
+nodeup() {
+    [ -s "$NVM_DIR/nvm.sh" ] && . $NVM_DIR/nvm.sh
+}
+
+#######################################
+# SSH
+#######################################
+if (($+commands[keychain])); then
+    eval $(keychain --eval --quiet ~/.ssh/id_rsa)
+fi
+
+#######################################
+# Job-related
+#######################################
+export GITHUB_USER=akshayjshah
+[[ -f ~/.zsh/work.zsh ]] && source ~/.zsh/work.zsh
+
+#######################################
 # Aliases and shortcuts
 #######################################
 alias :q="exit"
@@ -93,58 +150,3 @@ if (($+commands[nautilus])); then
     }
 fi
 
-#######################################
-# Languages and Terminfo
-#######################################
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-#######################################
-# Path additions
-#######################################
-[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
-
-#######################################
-# Go
-#######################################
-export GOPATH=$HOME
-[[ -d ~/.gimme/envs ]] && source ~/.gimme/envs/go1.10.env 2> /dev/null
-if (($+commands[hardhat])); then
-    alias hh="hardhat"
-    eval "$(hardhat --completion-script-zsh)"
-fi
-
-#######################################
-# Rust
-#######################################
-[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
-
-#######################################
-# Python
-#######################################
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
-
-#######################################
-# node.js
-#######################################
-export NVM_DIR="$HOME/.nvm"
-[[ -d "$HOME/.node-modules/bin" ]] && export PATH="$HOME/.node_modules/bin:$PATH"
-export npm_config_prefix=~/.node_modules
-nodeup() {
-    [ -s "$NVM_DIR/nvm.sh" ] && . $NVM_DIR/nvm.sh
-}
-
-#######################################
-# SSH
-#######################################
-if (($+commands[keychain])); then
-    eval $(keychain --eval --quiet ~/.ssh/id_rsa)
-fi
-
-#######################################
-# Job-related
-#######################################
-export GITHUB_USER=akshayjshah
-[[ -f ~/.zsh/work.zsh ]] && source ~/.zsh/work.zsh
