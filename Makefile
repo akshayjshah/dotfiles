@@ -61,6 +61,7 @@ fedora: ## Install Fedora system packages & FlatPaks
 		ranger \
 		redis \
 		ruby \
+		sqlite \
 		tig \
 		tmux \
 		vim-enhanced \
