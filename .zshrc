@@ -94,11 +94,11 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #######################################
 # node.js
 #######################################
-export NVM_DIR="$HOME/.nvm"
-[[ -d "$HOME/.node-modules/bin" ]] && export PATH="$HOME/.node_modules/bin:$PATH"
+export NVM_DIR=$HOME/.nvm
+[[ -d $HOME/.node-modules/bin ]] && export PATH=$HOME/.node_modules/bin:$PATH
 export npm_config_prefix=~/.node_modules
 nodeup() {
-    [ -s "$NVM_DIR/nvm.sh" ] && . $NVM_DIR/nvm.sh
+    [ -s $NVM_DIR/nvm.sh ] && . $NVM_DIR/nvm.sh
 }
 
 #######################################
