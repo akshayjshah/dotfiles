@@ -66,8 +66,9 @@ export LC_ALL=en_US.UTF-8
 #######################################
 # Path additions
 #######################################
-[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 [[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
+[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+[[ -d $HOME/projects/buck/bin ]] && export PATH=$HOME/projects/buck/bin:$PATH
 
 #######################################
 # Go

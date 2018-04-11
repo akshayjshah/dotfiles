@@ -143,3 +143,32 @@ fira-powerline: .fonts/fura-mono-regular-powerline.otf ## Install a Powerline-pa
 	mkdir -p .fonts
 	wget -O .fonts/fura-mono-regular-powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Regular%20Powerline.otf
 	fc-cache -v
+
+.PHONY: buck
+buck: ## Install Facebook's Buck build tool
+	# Need Oracle JDK: download from website, install with `sudo rpm -ivh
+	# jdk.rpm`, and then `sudo alternatives --config java`
+	sudo dnf install ant python2 git
+	mkdir -p projects/buck
+	git clone https://github.com/facebook/buck.git projects/buck || true
+	cd projects/buck && git checkout master && git pull
+	cd projects/buck && ant
+
+WATCHMAN_VERSION := v4.9.0
+.PHONY: watchman
+watchman:
+	sudo dnf install \
+		openssl-devel \
+		autoconf \
+		automake \
+		libtool \
+		pcre \
+		python-devel
+	git clone https://github.com/facebook/watchman.git projects/watchman || true
+	cd projects/watchman && git checkout master && git pull && git checkout $(WATCHMAN_VERSION)
+	cd projects/watchman && ./autogen.sh
+	cd projects/watchman && ./configure
+	$(MAKE) -C projects/watchman -j $(shell nproc)
+	sudo $(MAKE) -C projects/watchman install
+	# https://facebook.github.io/watchman/docs/install.html#system-specific-preparation
+	echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
