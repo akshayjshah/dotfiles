@@ -13,7 +13,7 @@ go-pkg: ## Install commonly-used Go language libraries
 		github.com/google/godepq \
 		github.com/alecthomas/gometalinter \
 		honnef.co/go/tools/cmd/... \
-		github.com/mvdan/gogrep \
+		mvdan.cc/gogrep \
 		github.com/akshayjshah/hardhat
 
 .PHONY: py-pkg
@@ -36,11 +36,12 @@ rust-pkg: cargo ## Install commonly-used Rust language libraries
 		fd-find
 
 .PHONY: fedora
-fedora: ## Install Fedora system packages & FlatPaks
+fedora: ## Install Fedora system packages
 	sudo dnf install \
-		aspell	\
+		aspell \
 		cmake \
 		curl \
+		dnf-plugins-core \
 		gcc \
 		gcc-c++ \
 		git \
@@ -69,6 +70,9 @@ fedora: ## Install Fedora system packages & FlatPaks
 		xclip \
 		zlib-devel \
 		zsh
+
+.PHONY: flatpak
+flatpak: ## Install FlatPaks
 	sudo flatpak remote-add --if-not-exists --from gnome https://sdk.gnome.org/gnome.flatpakrepo
 	sudo flatpak remote-add --if-not-exists --from org.mozilla.FirefoxRepo https://firefox-flatpak.mojefedora.cz/org.mozilla.FirefoxRepo.flatpakrepo
 	sudo flatpak remote-add --if-not-exists --from flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -76,8 +80,16 @@ fedora: ## Install Fedora system packages & FlatPaks
 	sudo flatpak install flathub com.slack.Slack
 	sudo flatpak install flathub us.zoom.Zoom
 
-.PHONY: update-fedora
-update-fedora: ## Update Fedora system packages & FlatPaks
+.PHONY: docker
+docker: ## Install Docker
+	sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+	sudo dnf install docker-ce
+	sudo usermod -aG docker $(USER)
+	sudo systemctl enable docker
+	sudo systemctl start docker
+
+.PHONY: update
+update: ## Update Fedora system packages & FlatPaks
 	sudo dnf upgrade
 	sudo flatpak update
 
