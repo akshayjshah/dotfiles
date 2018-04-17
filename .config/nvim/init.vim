@@ -302,8 +302,8 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" Add an alias for sudo write.
-cnoremap sudow w !sudo tee % >/dev/null
+" Sudo, then write.
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Easy align.
 xmap ga <Plug>(EasyAlign)
