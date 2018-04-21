@@ -8,6 +8,7 @@ help:
 go-pkg: ## Install commonly-used Go language libraries
 	go get -u \
 		github.com/golang/lint/golint \
+		github.com/golang/dep/cmd/dep \
 		golang.org/x/tools/cmd/... \
 		golang.org/x/vgo \
 		github.com/google/godepq \
