@@ -71,6 +71,8 @@ fedora: ## Install Fedora system packages
 		xclip \
 		zlib-devel \
 		zsh
+	sudo dnf copr enable --assumeyes vbatts/bazel
+	sudo dnf install --assumeyes bazel
 
 .PHONY: flatpak
 flatpak: ## Install FlatPaks

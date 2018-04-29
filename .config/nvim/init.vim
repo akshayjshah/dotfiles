@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " General plugins.
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'google/vim-maktaba' " required for vim-bazel
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -33,6 +34,7 @@ Plug 'vim-scripts/visualrepeat'
 Plug 'w0rp/ale'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
+Plug 'bazelbuild/vim-bazel'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
