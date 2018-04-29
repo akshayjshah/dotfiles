@@ -91,7 +91,7 @@ docker: ## Install Docker
 
 .PHONY: update
 update: ## Update Fedora system packages & FlatPaks
-	sudo dnf upgrade
+	sudo dnf upgrade --assumeyes
 	sudo flatpak update
 
 .PHONY: dirs
