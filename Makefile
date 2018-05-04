@@ -95,6 +95,7 @@ docker: ## Install Docker
 update: ## Update Fedora system packages & FlatPaks
 	sudo dnf upgrade --assumeyes
 	sudo flatpak update
+	nvim +PlugUpgrade +PlugUpdate +qa
 
 .PHONY: dirs
 dirs: projects bin projects/uber ## Create directories for code projects and binaries
