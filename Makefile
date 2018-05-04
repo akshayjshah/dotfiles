@@ -23,7 +23,7 @@ py-pkg: ## Install commonly-used Python language libraries
 	pip3 install --user -U neovim yapf virtualenv
 
 .PHONY: cargo
-cargo: .cargo/bin/cargo ## Install cargo, the Rust package manager
+cargo: .cargo/bin/cargo
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
