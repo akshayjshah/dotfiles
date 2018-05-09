@@ -25,9 +25,10 @@
     amend = commit -a --amend
     c = commit
     co = checkout
-    delbranch = branch -D
+    rmbranch = branch -D
     graph = log --graph
     l = log origin/master..
+    ls = branch -v
     s = status
     save = !git add -A && git commit -m 'Savepoint'
     stashall = stash --include-untracked
