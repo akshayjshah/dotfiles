@@ -63,6 +63,7 @@ fedora: ## Install Fedora system packages
 		ranger \
 		redis \
 		ruby \
+		ShellCheck \
 		sqlite \
 		tig \
 		tmux \
