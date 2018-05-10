@@ -96,12 +96,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #######################################
 # node.js
 #######################################
-export NVM_DIR=$HOME/.nvm
-[[ -d $HOME/.node-modules/bin ]] && export PATH=$HOME/.node_modules/bin:$PATH
-export npm_config_prefix=~/.node_modules
-nodeup() {
-    [ -s $NVM_DIR/nvm.sh ] && . $NVM_DIR/nvm.sh
-}
+export N_PREFIX="$HOME/n"
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 #######################################
 # SSH
@@ -151,4 +147,3 @@ if (($+commands[nautilus])); then
         nautilus $1 &
     }
 fi
-

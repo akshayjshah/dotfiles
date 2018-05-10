@@ -129,11 +129,11 @@ bin/diff-so-fancy: bin
 	wget -O bin/diff-so-fancy https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
 	chmod +x bin/diff-so-fancy
 
-.PHONY: nvm
-nvm: .nvm/nvm.sh ## Install the node.js version manager
+.PHONY: node
+node: n/bin/n ## Install the node.js version manager
 
-.nvm/nvm.sh:
-	wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+n/bin/n:
+	curl -L https://git.io/n-install | bash
 
 .PHONY: nova
 nova: bin/nova-gnome-terminal.sh ## Install a script to add Nova colors to a GNOME Terminal profile
