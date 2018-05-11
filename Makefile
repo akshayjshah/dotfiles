@@ -43,6 +43,7 @@ fedora: ## Install Fedora system packages
 		cmake \
 		curl \
 		dnf-plugins-core \
+		dnf-plugin-system-upgrade \
 		gcc \
 		gcc-c++ \
 		git \
