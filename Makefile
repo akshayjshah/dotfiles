@@ -32,6 +32,8 @@ cargo: .cargo/bin/cargo
 rust-pkg: cargo ## Install commonly-used Rust language libraries
 	rustup update
 	cargo install --force \
+		dutree \
+		fastmod \
 		ripgrep \
 		exa \
 		fd-find
