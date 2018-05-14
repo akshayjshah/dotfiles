@@ -19,8 +19,8 @@ go-pkg: ## Install commonly-used Go language libraries
 
 .PHONY: py-pkg
 py-pkg: ## Install commonly-used Python language libraries
-	pip2 install --user -U neovim yapf virtualenv
-	pip3 install --user -U neovim yapf virtualenv
+	pip2 install --user -U neovim virtualenv
+	pip3 install --user -U asciinema pipenv neovim yapf
 
 .PHONY: cargo
 cargo: .cargo/bin/cargo
