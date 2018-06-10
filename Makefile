@@ -46,10 +46,12 @@ fedora: ## Install Fedora system packages
 		curl \
 		dnf-plugins-core \
 		dnf-plugin-system-upgrade \
+		emacs \
 		gcc \
 		gcc-c++ \
 		git \
 		git-fame \
+		graphviz \
 		gnome-tweak-tool \
 		htop \
 		jq \
