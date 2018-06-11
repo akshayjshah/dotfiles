@@ -123,3 +123,9 @@ rust-pkg: .cargo/bin/cargo
 		ripgrep \
 		exa \
 		fd-find
+
+.PHONY: todo
+todo: ## List software not managed by this Makefile
+	@echo "Chrome:\t\thttps://www.google.com/chrome/"
+	@echo "Dropbox:\thttps://www.dropbox.com/install-linux"
+	@echo "Zoom:\t\thttps://zoom.us/download?os=linux"
