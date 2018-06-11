@@ -5,8 +5,14 @@ GO_VERSION := 1.10.3
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
+.PHONY: todo
+todo:: ## List software not managed by this Makefile
+	@echo "Chrome:\t\thttps://www.google.com/chrome/"
+	@echo "Dropbox:\thttps://www.dropbox.com/install-linux"
+	@echo "Zoom:\t\thttps://zoom.us/download?os=linux"
+
 .PHONY: setup
-setup: ## Set up a Debian development environment
+setup:: ## Set up a Debian development environment
 	@# Required for further apt operations.
 	sudo apt install --assume-yes \
 		apt-transport-https \
@@ -49,7 +55,6 @@ setup: ## Set up a Debian development environment
 		zlib1g-dev \
 		zsh
 	sudo snap install --classic slack
-	mkdir -p projects/uber
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme
 	$(MAKE) projects/z/z.sh  # z auto-jumper
@@ -60,9 +65,8 @@ setup: ## Set up a Debian development environment
 	$(MAKE) py-pkg
 	$(MAKE) rust-pkg
 
-
 .PHONY: update
-update: ## Update all managed packages and tools
+update:: ## Update all managed packages and tools
 	sudo apt upgrade
 	sudo snap refresh
 	@# It's not worth sorting out which of these can run in parallel with
@@ -124,8 +128,4 @@ rust-pkg: .cargo/bin/cargo
 		exa \
 		fd-find
 
-.PHONY: todo
-todo: ## List software not managed by this Makefile
-	@echo "Chrome:\t\thttps://www.google.com/chrome/"
-	@echo "Dropbox:\thttps://www.dropbox.com/install-linux"
-	@echo "Zoom:\t\thttps://zoom.us/download?os=linux"
+-include work.mk
