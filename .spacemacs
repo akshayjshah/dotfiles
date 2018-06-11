@@ -56,7 +56,7 @@
                          spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Fira Mono"
-                               :size 14
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -100,7 +100,7 @@
    dotspacemacs-smart-closing-parenthesis t
    dotspacemacs-highlight-delimiters 'all
    dotspacemacs-persistent-server t
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep") ;; TODO rg
+   dotspacemacs-search-tools '("ag" "grep")
    dotspacemacs-default-package-repository nil
    dotspacemacs-whitespace-cleanup changed
    ))
@@ -119,6 +119,12 @@
   ;; Enable evil-cleverparens
   (spacemacs/toggle-evil-cleverparens-on)
   (add-hook 'go-mode-hook #'evil-cleverparens-mode)
+
+  ;; Use ripgrep for search, which currently requires diving down into helm-ag directly.
+  ;; https://github.com/syl20bnr/spacemacs/issues/7370
+  (custom-set-variables
+   '(helm-ag-base-command "rg --no-heading")
+   )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
