@@ -6,7 +6,8 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
 .PHONY: todo
-todo:: ## List software not managed by this Makefile
+todo:: ## List tasks not managed by this Makefile
+	@echo "Create an SSH key and upload it to GitHub"
 	@echo "Chrome:\t\thttps://www.google.com/chrome/"
 	@echo "Dropbox:\thttps://www.dropbox.com/install-linux"
 	@echo "Zoom:\t\thttps://zoom.us/download?os=linux"
