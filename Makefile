@@ -104,7 +104,7 @@ bin/nova-gnome-terminal.sh:
 
 .PHONY: go-pkg
 go-pkg:
-	eval `GIMME_GO_VERSION=$(GO_VERSION) bin/gimme` && go get -u \
+	eval `GIMME_GO_VERSION=$(GO_VERSION) bin/gimme` && GOPATH=$(HOME) go get -u \
 		github.com/golang/lint/golint \
 		github.com/golang/dep/cmd/dep \
 		golang.org/x/tools/cmd/... \
