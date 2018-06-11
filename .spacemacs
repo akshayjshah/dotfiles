@@ -114,7 +114,7 @@
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 
   ;; Always use spacemacs for git commits.
-  ;; (global-git-commit-mode t)
+  (global-git-commit-mode t)
 
   ;; Enable evil-cleverparens
   (spacemacs/toggle-evil-cleverparens-on)
