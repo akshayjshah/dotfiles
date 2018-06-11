@@ -23,6 +23,7 @@ setup:: ## Set up a Debian development environment
 		software-properties-common
 	echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 	curl -fsSL https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+	sudo add-apt-repository ppa:plt/racket
 	sudo apt update
 	sudo apt install --assume-yes \
 		aspell \
@@ -43,6 +44,7 @@ setup:: ## Set up a Debian development environment
 		python-pip \
 		python3 \
 		python3-pip \
+		racket \
 		ranger \
 		redis \
 		ruby \
