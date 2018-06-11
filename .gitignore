@@ -3,6 +3,7 @@
 !README.md
 !Makefile
 
+!.aspell.*
 !.config/
 !.config/flake8
 !.config/nvim/

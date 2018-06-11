@@ -58,6 +58,7 @@ setup:: ## Set up a Debian development environment
 		zlib1g-dev \
 		zsh
 	sudo snap install --classic slack
+	$(MAKE) .emacs.d/spacemacs.mk
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme
 	$(MAKE) projects/z/z.sh  # z auto-jumper
@@ -130,5 +131,8 @@ rust-pkg: .cargo/bin/cargo
 		ripgrep \
 		exa \
 		fd-find
+
+.emacs.d/spacemacs.mk:
+	git clone https://github.com/syl20bnr/spacemacs .emacs.d
 
 -include work.mk
