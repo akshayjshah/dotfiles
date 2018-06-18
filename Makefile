@@ -71,7 +71,7 @@ setup:: ## Set up a Debian development environment
 
 .PHONY: update
 update:: ## Update all managed packages and tools
-	sudo apt upgrade
+	sudo apt upgrade --assume-yes
 	sudo snap refresh
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
