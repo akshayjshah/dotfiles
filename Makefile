@@ -117,7 +117,7 @@ go-pkg:
 .PHONY: py-pkg
 py-pkg:
 	python -m pip install --user -U neovim virtualenv
-	python3 -m pip install --user -U asciinema git-fame neovim pipenv pyre-check yapf
+	python3 -m pip install --user -U asciinema black flit poetry git-fame neovim pipenv pyre-check yapf
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
