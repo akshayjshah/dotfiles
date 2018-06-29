@@ -5,6 +5,9 @@
 
 !.config/
 !.config/flake8
+!.config/fontconfig/
+!.config/fontconfig/conf.d/
+!.config/fontconfig/conf.d/10-powerline-symbols.conf
 !.config/nvim/
 !.config/nvim/init.vim
 !.en_us.utf-8.add
