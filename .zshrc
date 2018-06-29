@@ -2,15 +2,11 @@
 #######################################
 # vi everywhere
 #######################################
-export EDITOR="emacsclient -t"
-export GIT_EDITOR="vim"
-# Force emacsclient -t to start a server
-export ALTERNATE_EDITOR=""
+export EDITOR="vim"
 if (($+commands[nvim])); then
     alias vim="nvim"
-    export GIT_EDITOR="nvim"
+    export EDITOR="nvim"
 fi
-alias e=$EDITOR
 
 #######################################
 # Plugins and Completion

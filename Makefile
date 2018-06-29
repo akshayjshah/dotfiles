@@ -10,7 +10,6 @@ todo:: ## List tasks not managed by this Makefile
 	@echo "Create an SSH key and upload it to GitHub"
 	@echo "Chrome:\t\thttps://www.google.com/chrome/"
 	@echo "Dropbox:\thttps://www.dropbox.com/install-linux"
-	@echo "Zoom:\t\thttps://zoom.us/download?os=linux"
 
 .PHONY: setup
 setup:: ## Set up a Debian development environment
@@ -31,7 +30,6 @@ setup:: ## Set up a Debian development environment
 		cmake \
 		docker.io \
 		docker-compose \
-		emacs \
 		fonts-powerline \
 		gnome-tweak-tool \
 		graphviz \
@@ -40,6 +38,7 @@ setup:: ## Set up a Debian development environment
 		keychain \
 		neovim \
 		openjdk-8-jdk \
+		ppa-purge \
 		python \
 		python-pip \
 		python3 \
@@ -58,7 +57,6 @@ setup:: ## Set up a Debian development environment
 		zlib1g-dev \
 		zsh
 	sudo snap install --classic slack
-	$(MAKE) .emacs.d/spacemacs.mk
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme
 	$(MAKE) projects/z/z.sh  # z auto-jumper
@@ -131,8 +129,5 @@ rust-pkg: .cargo/bin/cargo
 		ripgrep \
 		exa \
 		fd-find
-
-.emacs.d/spacemacs.mk:
-	git clone https://github.com/syl20bnr/spacemacs .emacs.d
 
 -include work.mk
