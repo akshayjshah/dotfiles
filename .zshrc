@@ -74,7 +74,9 @@ export LC_ALL=en_US.UTF-8
 # Go
 #######################################
 export GOPATH=$HOME
-[[ -d ~/.gimme/envs ]] && source ~/.gimme/envs/latest.env 2> /dev/null
+VERSION=$(grep GO_VERSION ~/Makefile | head -1 | cut -d' ' -f 3)
+GO_ENV=~/.gimme/envs/go"$VERSION".env
+[[ -f "$GO_ENV" ]] && source "$GO_ENV" 2> /dev/null
 if (($+commands[hardhat])); then
     alias hh="hardhat"
     eval "$(hardhat --completion-script-zsh)"
