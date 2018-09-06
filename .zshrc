@@ -111,7 +111,7 @@ fi
 # Job-related
 #######################################
 export GITHUB_USER=akshayjshah
-[[ -f ~/.zsh/work.zsh ]] && source ~/.zsh/work.zsh
+[[ -f ~/Dropbox/work.zsh ]] && source ~/Dropbox/work.zsh
 
 #######################################
 # Aliases and shortcuts
