@@ -57,6 +57,7 @@ setup:: ## Set up a Debian development environment
 		zlib1g-dev \
 		zsh
 	sudo snap install --classic slack
+	$(MAKE) bin/nvim
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme
 	$(MAKE) projects/z/z.sh  # z auto-jumper
@@ -73,6 +74,7 @@ update:: ## Update all managed packages and tools
 	sudo snap refresh
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
+	$(MAKE) bin/nvim
 	$(MAKE) go-pkg
 	$(MAKE) rust-pkg
 	$(MAKE) py-pkg
@@ -100,6 +102,10 @@ bin/nova-gnome-terminal.sh:
 	wget -O bin/nova-gnome-terminal.sh https://raw.githubusercontent.com/agarrharr/nova-gnome-terminal/master/build/install.sh
 	chmod +x bin/nova-gnome-terminal.sh
 
+.PHONY:bin/nvim
+bin/nvim:
+	curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage && mv nvim.appimage $@ && chmod +x $@
+
 .PHONY: go-pkg
 go-pkg:
 	eval `GIMME_GO_VERSION=$(GO_VERSION) bin/gimme` && GOPATH=$(HOME) go get -u \
@@ -115,7 +121,7 @@ go-pkg:
 .PHONY: py-pkg
 py-pkg:
 	python -m pip install --user -U pip neovim virtualenv
-	python3 -m pip install --user -U pip asciinema black flit poetry git-fame neovim pipenv pyre-check yapf
+	python3 -m pip install --user -U pip asciinema black flit neovim poetry git-fame neovim pipenv pyre-check yapf
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
