@@ -44,7 +44,7 @@ Plug 'pangloss/vim-javascript', { 'for': 'js' }
 Plug 'solarnz/thrift.vim', { 'for': 'thrift' }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'zchee/deoplete-go', {'do': 'make'}
 
 
