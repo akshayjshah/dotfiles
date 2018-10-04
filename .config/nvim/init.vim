@@ -177,6 +177,7 @@ let g:grepper =
 """""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrc_ft_hooks
     autocmd!
+    autocmd BufNewFile,BufRead *.bazel set filetype=bzl
     autocmd FileType go call s:SetupGo()
     autocmd FileType html call s:SetupHTML()
     autocmd FileType htmldjango call s:SetupHTML()
