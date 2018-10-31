@@ -36,7 +36,6 @@ setup:: ## Set up a Debian development environment
 		htop \
 		jq \
 		keychain \
-		neovim \
 		openjdk-8-jdk \
 		ppa-purge \
 		python \
@@ -57,6 +56,7 @@ setup:: ## Set up a Debian development environment
 		zlib1g-dev \
 		zsh
 	sudo snap install --classic slack
+	sudo snap install vscode --classic
 	$(MAKE) bin/nvim
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme
@@ -104,15 +104,14 @@ bin/nova-gnome-terminal.sh:
 
 .PHONY:bin/nvim
 bin/nvim:
-	curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage && mv nvim.appimage $@ && chmod +x $@
+	curl -LO https://github.com/neovim/neovim/releases/download/v0.3.1/nvim.appimage && mv nvim.appimage $@ && chmod +x $@
 
 .PHONY: go-pkg
 go-pkg:
 	eval `GIMME_GO_VERSION=$(GO_VERSION) bin/gimme` && GOPATH=$(HOME) go get -u \
-		github.com/golang/lint/golint \
+		golang.org/x/lint/golint \
 		github.com/golang/dep/cmd/dep \
 		golang.org/x/tools/cmd/... \
-		golang.org/x/vgo \
 		github.com/google/godepq \
 		honnef.co/go/tools/cmd/... \
 		github.com/mgechev/revive \
