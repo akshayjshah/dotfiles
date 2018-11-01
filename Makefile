@@ -67,6 +67,7 @@ setup:: ## Set up a Debian development environment
 	$(MAKE) go-pkg
 	$(MAKE) py-pkg
 	$(MAKE) rust-pkg
+	$(MAKE) vscode
 
 .PHONY: update
 update:: ## Update all managed packages and tools
@@ -134,5 +135,13 @@ rust-pkg: .cargo/bin/cargo
 		ripgrep \
 		exa \
 		fd-find
+
+.PHONY: vscode
+vscode:
+	sudo apt install gconf-service
+	curl -L0 https://go.microsoft.com/fwlink/?LinkID=760868 --output vscode.deb
+	sudo dpkg -i vscode.deb
+	sudo apt --fix-broken install # install dependencies
+	rm vscode.deb || true
 
 -include Dropbox/work.mk
