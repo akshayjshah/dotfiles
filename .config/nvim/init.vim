@@ -1,10 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""
-if isdirectory("/usr/share/vim/vimfiles")
-    set rtp+=/usr/share/vim/vimfiles
-endif
-
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
