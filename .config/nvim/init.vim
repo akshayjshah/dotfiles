@@ -15,13 +15,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 " General plugins.
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'google/vim-maktaba' " required for vim-bazel
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-grepper'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'spolu/dwm.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -34,18 +31,14 @@ Plug 'vim-scripts/visualrepeat'
 Plug 'w0rp/ale'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
-Plug 'bazelbuild/vim-bazel'
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'pangloss/vim-javascript', { 'for': 'js' }
 Plug 'solarnz/thrift.vim', { 'for': 'thrift' }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
-Plug 'zchee/deoplete-go', {'do': 'make'}
 
 
 call plug#end()
@@ -239,16 +232,6 @@ function! s:BuildGoFile()
     endif
 endfunction
 
-" Tab-completion.
-function! s:HandleTab()
-    if pumvisible()
-        return "\<c-n>"
-    else
-        return "\<tab>"
-    endif
-endfunction
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -307,10 +290,6 @@ vnoremap <leader>P "+P
 
 " Sudo, then write.
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-
-" Easy align.
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)<Paste>
 
 " Populate Grepper search.
 nmap gs <plug>(GrepperOperator)
@@ -410,7 +389,6 @@ function! s:SetupHTML()
     setlocal tabstop=2
     setlocal softtabstop=2
     setlocal shiftwidth=2
-    " TODO: Sparkup leader bindings
 endfunction
 
 function! s:SetupYAML()
