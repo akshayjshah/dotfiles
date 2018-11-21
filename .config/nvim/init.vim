@@ -23,7 +23,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'trevordmiller/nova-vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-scripts/visualrepeat'
 Plug 'w0rp/ale'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
