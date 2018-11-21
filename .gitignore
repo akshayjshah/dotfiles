@@ -4,10 +4,6 @@
 !Makefile
 
 !.config/
-!.config/Code
-!.config/Code/User
-!.config/Code/User/settings.json
-!.config/Code/User/Snippets
 !.config/flake8
 !.config/fontconfig/
 !.config/fontconfig/conf.d/
