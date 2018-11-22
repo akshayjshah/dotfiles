@@ -10,11 +10,14 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " General plugins.
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'roxma/nvim-yarp' " required by ncm2
 Plug 'spolu/dwm.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -23,9 +26,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'trevordmiller/nova-vim'
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
@@ -44,7 +47,7 @@ call plug#end()
 set autoread                    " auto read when a file is changed from the outside
 set background=dark
 set bs=indent,eol,start         " backspace over everything
-set completeopt=menu,preview,longest
+set completeopt=noinsert,menuone,noselect,preview
 set cursorline
 set expandtab
 set ffs=unix                    " write out everything as a Unix file
@@ -73,11 +76,13 @@ set sb                          " split below
 set scrolloff=3
 set shell=/bin/zsh
 set shiftwidth=4
+set shortmess+=c
 set showbreak=↪
 set showcmd
 set showmatch
 set showmatch                   " highlight search matches
 set showmode
+set signcolumn=yes              " always draw the sign column (recommended by languageclient-neovim)
 set smartcase                   " case-insensitive search unless pattern has capital
 set softtabstop=4
 set spellfile="~/.en_us.utf-8.add"
@@ -119,37 +124,15 @@ colorscheme nova
 " Jump to existing window if possible.
 let g:fzf_buffers_jump = 1
 
-let g:ale_open_list = 1
-let g:ale_sign_error='⊘'
-let g:ale_sign_warning='⚠'
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_emit_conflict_warnings = 0
-let g:ale_linters = {
-            \ 'go': ['go vet', 'golint', 'go build'],
-            \ }
-
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#ale#enabled = 1
 
-let g:deoplete#enable_at_startup = 1
-
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_term_enabled = 1
-
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_chan_whitespace_error = 0
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
+let g:LanguageClient_serverCommands = {
+    \ 'go': ['~/bin/go-langserver', '-diagnostics', '-gocodecompletion', '-lint-tool', 'golint'],
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ }
 
 let g:grepper =
             \ {
@@ -165,6 +148,7 @@ let g:grepper =
 """""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrc_ft_hooks
     autocmd!
+    autocmd BufEnter * call s:AddLanguageClientKeybindings()
     autocmd BufNewFile,BufRead *.bazel set filetype=bzl
     autocmd FileType go call s:SetupGo()
     autocmd FileType html call s:SetupHTML()
@@ -217,15 +201,34 @@ function! s:MkNonExDir(file, buf)
     endif
 endfunction
 
-" Run :GoBuild or :GoTestCompile based on the current file.
-function! s:BuildGoFile()
-    let l:file = expand('%')
-    if l:file =~# '^\f\+_test\.go$'
-        call go#cmd#Test(0, 1)
-    elseif l:file =~# '^\f\+\.go$'
-        call go#cmd#Build(0)
+" FilterQuickfix is a utility function used to define the Cfilter and Lfilter
+" commands to filter the quickfix and location lists. (It's copied from the
+" neovim project's runtime/pack/dist/opt/cfilter directory, which isn't
+" distributed with the AppImage version of the code.)
+func s:FilterQuickfix(qf, pat, bang)
+    if a:qf
+        let Xgetlist = function('getqflist')
+        let Xsetlist = function('setqflist')
+        let cmd = ':Cfilter' . a:bang
+    else
+        let Xgetlist = function('getloclist', [0])
+        let Xsetlist = function('setloclist', [0])
+        let cmd = ':Lfilter' . a:bang
     endif
-endfunction
+
+    if a:bang == '!'
+        let cond = 'v:val.text !~# a:pat && bufname(v:val.bufnr) !~# a:pat'
+    else
+        let cond = 'v:val.text =~# a:pat || bufname(v:val.bufnr) =~# a:pat'
+    endif
+
+    let items = filter(Xgetlist(), cond)
+    let title = cmd . ' ' . a:pat
+    call Xsetlist([], ' ', {'title' : title, 'items' : items})
+endfunc
+
+com! -nargs=+ -bang Cfilter call s:FilterQuickfix(1, <q-args>, <q-bang>)
+com! -nargs=+ -bang Lfilter call s:FilterQuickfix(0, <q-args>, <q-bang>)
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Keybindings
@@ -290,9 +293,50 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Instead, close the menu and also start a new line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" Use <TAB> to select within the popup menu.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Spacemacs-Style Commands
 """""""""""""""""""""""""""""""""""""""""""""""""
+" Language Server: local leader
+function! s:AddLanguageClientKeybindings()
+	if has_key(g:LanguageClient_serverCommands, &filetype)
+        " Use ncm2 for completion.
+        call ncm2#enable_for_buffer()
+
+		" Use the language server for `gq` formatting.
+		set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+
+		" LSP menus.
+		nnoremap <buffer> <silent> <localleader>m :call LanguageClient_contextMenu()<cr>
+		nnoremap <buffer> <silent> <localleader>a :call LanguageClient#textDocument_codeAction()<cr>
+
+		" Hover info, including short documentation.
+		nnoremap <buffer> <silent> <localleader>? :call LanguageClient#textDocument_hover()<cr>
+
+		" Jump to definition.
+		nnoremap <buffer> <silent> <localleader>d :call LanguageClient#textDocument_definition()<cr>
+
+		" Rename.
+		nnoremap <buffer> <silent> <localleader>r :call LanguageClient#textDocument_rename()<cr>
+
+		" Show symbols.
+		nnoremap <buffer> <silent> <localleader>sd :call LanguageClient#textDocument_documentSymbol()<cr>
+		nnoremap <buffer> <silent> <localleader>s :call LanguageClient#workspace_symbol()<cr>
+
+		" Show references.
+		nnoremap <buffer> <silent> <localleader>rf :call LanguageClient#textDocument_references()<cr>
+
+		" Format file.
+		nnoremap <buffer> <silent> <localleader>f :call LanguageClient#textDocument_formatting()<cr>
+	endif
+endfunction
+
 " Buffers: leader-b
 nnoremap <leader>bb :Buffers<cr>
 
@@ -327,7 +371,6 @@ nnoremap <leader>sv V`]
 " Toggles: leader-t
 nnoremap <leader>tn :NumbersToggle<cr>
 nnoremap <leader>ts :setlocal spell!<cr>
-nnoremap <leader>tu :UndotreeToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Language-Specific Setup Functions
@@ -343,41 +386,10 @@ function! s:SetupGo()
     setlocal formatoptions=rq
     setlocal commentstring=//\ %s
     setlocal nolist
-
-    " Build: b
-    nnoremap <localleader>bb :call <SID>BuildGoFile()<cr>
-    nnoremap <localleader>bg :GoGenerate<cr>
-    nnoremap <localleader>bp :GoPlay<cr>
-    nnoremap <localleader>br :GoRun<cr>
-
-    " Files: f
-    nnoremap <localleader>fa :GoAlternate<cr>
-
-    " GoDef: g
-    nnoremap <localleader>gb :GoDefPop<cr>
-    nnoremap <localleader>gc :GoCallers<cr>
-    nnoremap <localleader>gd :GoDef<cr>
-    nnoremap <localleader>gi :GoDescribe<cr>
-    nnoremap <localleader>gr :GoReferrers<cr>
-    nnoremap <localleader>gs :GoDefStack<cr>
-
-    " Refactor: r
-    nnoremap <localleader>ri :GoImpl<cr>
-    nnoremap <localleader>rr :GoRename<cr>
-
-    " Search: s
-    nnoremap <localleader>sd :GoDecls<cr>
-    nnoremap <localleader>sdd :GoDeclsDir<cr>
-
-    " Testing: t
-    nnoremap <localleader>tt :GoTest<cr>
-    nnoremap <localleader>tf :GoTestFunc<cr>
-    nnoremap <localleader>tc :GoCoverageToggle<cr>
-    nnoremap <localleader>tb :GoCoverageBrowser<cr>
-
-    " Linting: l
-    nnoremap <localleader>ll :GoLint<cr>
-    nnoremap <localleader>lv :GoVet<cr>
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+        " Show diagnostics, filtering out vendored code.
+        nnoremap <buffer> <silent> <localleader>e :cw<cr>:Cfilter! vendor<cr>
+    endif
 endfunction
 
 function! s:SetupHTML()
