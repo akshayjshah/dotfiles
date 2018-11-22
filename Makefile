@@ -113,15 +113,24 @@ go-pkg:
 		golang.org/x/lint/golint \
 		github.com/golang/dep/cmd/dep \
 		golang.org/x/tools/cmd/... \
-		github.com/google/godepq \
 		honnef.co/go/tools/cmd/... \
-		github.com/mgechev/revive \
-		github.com/akshayjshah/hardhat
+		github.com/sourcegraph/go-langserver
 
 .PHONY: py-pkg
 py-pkg:
-	python -m pip install --user -U pip neovim virtualenv
-	python3 -m pip install --user -U pip asciinema black flit neovim poetry git-fame neovim pipenv pyre-check yapf
+	python -m pip install -U pip neovim virtualenv
+	python3 -m pip install -U pip \
+		asciinema \
+		black \
+		flit \
+		neovim \
+		poetry \
+		pyls-black \
+		pyls-isort \
+		"python-language-server[pycodestyle, pydocstyle, pyflakes, rope]" \
+		git-fame \
+		pipenv \
+		pyre-check
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
@@ -129,6 +138,7 @@ py-pkg:
 .PHONY: rust-pkg
 rust-pkg: .cargo/bin/cargo
 	PATH=.cargo/bin:$(PATH) rustup update
+	PATH=.cargo/bin:$(PATH) rustup component add rls-preview rust-analysis rust-src
 	PATH=.cargo/bin:$(PATH) cargo install --force \
 		dutree \
 		fastmod \
