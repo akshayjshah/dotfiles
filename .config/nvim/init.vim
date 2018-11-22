@@ -309,9 +309,6 @@ function! s:AddLanguageClientKeybindings()
         " Use ncm2 for completion.
         call ncm2#enable_for_buffer()
 
-		" Use the language server for `gq` formatting.
-		set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-
 		" LSP menus.
 		nnoremap <buffer> <silent> <localleader>m :call LanguageClient_contextMenu()<cr>
 		nnoremap <buffer> <silent> <localleader>a :call LanguageClient#textDocument_codeAction()<cr>
