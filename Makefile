@@ -1,5 +1,6 @@
 .DEFAULT_GOAL := help
 GO_VERSION := 1.11.2
+NEOVIM_VERSION := v0.3.1
 
 .PHONY: help
 help:
@@ -7,9 +8,9 @@ help:
 
 .PHONY: todo
 todo:: ## List tasks not managed by this Makefile
+	@echo "chsh -s /usr/bin/zsh"
 	@echo "Create an SSH key and upload it to GitHub"
-	@echo "Chrome:\t\thttps://www.google.com/chrome/"
-	@echo "Dropbox:\thttps://www.dropbox.com/install-linux"
+	@echo "Set Terminal font to Hack: https://github.com/wernight/powerline-web-fonts"
 
 .PHONY: setup
 setup:: ## Set up a Debian development environment
@@ -22,32 +23,25 @@ setup:: ## Set up a Debian development environment
 		software-properties-common
 	echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 	curl -fsSL https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
-	sudo add-apt-repository ppa:plt/racket
 	sudo apt update
 	sudo apt install --assume-yes \
 		aspell \
 		bazel \
 		cmake \
-		docker.io \
-		docker-compose \
-		fonts-powerline \
-		gnome-tweak-tool \
 		graphviz \
 		htop \
 		jq \
 		keychain \
 		openjdk-8-jdk \
-		ppa-purge \
 		python \
 		python-pip \
 		python3 \
 		python3-pip \
 		racket \
 		ranger \
-		redis \
+		redis-server \
 		ruby \
 		shellcheck \
-		snapd \
 		sqlite3 \
 		tig \
 		tmux \
@@ -55,8 +49,6 @@ setup:: ## Set up a Debian development environment
 		xclip \
 		zlib1g-dev \
 		zsh
-	sudo snap install --classic slack
-	sudo snap install vscode --classic
 	$(MAKE) bin/nvim
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme
@@ -67,12 +59,10 @@ setup:: ## Set up a Debian development environment
 	$(MAKE) go-pkg
 	$(MAKE) py-pkg
 	$(MAKE) rust-pkg
-	$(MAKE) vscode
 
 .PHONY: update
 update:: ## Update all managed packages and tools
 	sudo apt upgrade --assume-yes
-	sudo snap refresh
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
 	$(MAKE) bin/nvim
@@ -105,7 +95,14 @@ bin/nova-gnome-terminal.sh:
 
 .PHONY:bin/nvim
 bin/nvim:
-	curl -LO https://github.com/neovim/neovim/releases/download/v0.3.1/nvim.appimage && mv nvim.appimage $@ && chmod +x $@
+	@# https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
+	sudo apt install --assume-yes ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+	if [ ! -d projects/neovim ]; \
+		then mkdir -p projects && git clone https://github.com/neovim/neovim.git projects/neovim; \
+		fi
+	cd projects/neovim && git fetch --tags origin && git checkout $(NEOVIM_VERSION)
+	cd projects/neovim && make
+	cd projects/neovim && sudo make install
 
 .PHONY: go-pkg
 go-pkg:
@@ -119,18 +116,20 @@ go-pkg:
 .PHONY: py-pkg
 py-pkg:
 	python -m pip install -U pip neovim virtualenv
-	python3 -m pip install -U pip \
-		asciinema \
-		black \
-		flit \
-		neovim \
-		poetry \
-		pyls-black \
-		pyls-isort \
-		"python-language-server[pycodestyle, pydocstyle, pyflakes, rope]" \
-		git-fame \
-		pipenv \
-		pyre-check
+	python3 -m pip install -U pip neovim
+	# Need to build Python 3 from source.
+	# python3 -m pip install -U pip \
+	#	asciinema \
+	#	black \
+	#	flit \
+	#	neovim \
+	#	poetry \
+	#	pyls-black \
+	#	pyls-isort \
+	#	"python-language-server[pycodestyle, pydocstyle, pyflakes, rope]" \
+	#	git-fame \
+	#	pipenv \
+	#	pyre-check
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
@@ -146,12 +145,4 @@ rust-pkg: .cargo/bin/cargo
 		exa \
 		fd-find
 
-.PHONY: vscode
-vscode:
-	sudo apt install gconf-service
-	curl -L0 https://go.microsoft.com/fwlink/?LinkID=760868 --output vscode.deb
-	sudo dpkg -i vscode.deb
-	sudo apt --fix-broken install # install dependencies
-	rm vscode.deb || true
-
--include Dropbox/work.mk
+-include workdots/work.mk
