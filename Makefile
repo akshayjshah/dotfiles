@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := help
 GO_VERSION := 1.11.2
 NEOVIM_VERSION := v0.3.1
+RELEASE = $(shell lsb_release -c -s)
 
 .PHONY: help
 help:
@@ -23,15 +24,19 @@ setup:: ## Set up a Debian development environment
 		software-properties-common
 	echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 	curl -fsSL https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+	echo "deb https://packages.cloud.google.com/apt cloud-sdk-$(RELEASE) main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 	sudo apt update
 	sudo apt install --assume-yes \
 		aspell \
 		bazel \
 		cmake \
+		google-cloud-sdk \
 		graphviz \
 		htop \
 		jq \
 		keychain \
+		lsof \
 		openjdk-8-jdk \
 		python \
 		python-pip \
