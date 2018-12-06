@@ -116,6 +116,7 @@ go-pkg:
 		github.com/golang/dep/cmd/dep \
 		golang.org/x/tools/cmd/... \
 		honnef.co/go/tools/cmd/... \
+		github.com/bazelbuild/buildtools/buildozer \
 		github.com/sourcegraph/go-langserver
 
 .PHONY: py-pkg
