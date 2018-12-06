@@ -35,6 +35,6 @@ function _user_host() {
 local _return_status="%(?. .!)"
 
 ZSH_THEME_GIT_PROMPT_DIRTY="! "
-ZSH_THEME_GIT_PROMPT_CLEAN="  "
+ZSH_THEME_GIT_PROMPT_CLEAN="- "
 
 PROMPT='${_return_status} $(_user_host)%c $(git_prompt_info) > '

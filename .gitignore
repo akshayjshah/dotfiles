@@ -10,10 +10,6 @@
 !.config/fontconfig/conf.d/10-powerline-symbols.conf
 !.config/nvim/
 !.config/nvim/init.vim
-!.config/systemd
-!.config/systemd/user
-!.config/systemd/user/sommelier-x@0.service.d
-!.config/systemd/user/sommelier-x@0.service.d/override.conf
 !.en_us.utf-8.add
 !.gitconfig
 !.gitignore
