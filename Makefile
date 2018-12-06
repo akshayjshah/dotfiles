@@ -35,6 +35,7 @@ setup:: ## Set up a Debian development environment
 		google-cloud-sdk \
 		graphviz \
 		htop \
+		iputils-ping \
 		jq \
 		keychain \
 		lsof \
