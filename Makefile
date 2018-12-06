@@ -11,6 +11,7 @@ help:
 todo:: ## List tasks not managed by this Makefile
 	@echo "chsh -s /usr/bin/zsh"
 	@echo "Create an SSH key and upload it to GitHub"
+	@echo "Set Terminal font to Hack: https://github.com/wernight/powerline-web-fonts"
 
 .PHONY: setup
 setup:: ## Set up a Debian development environment
@@ -30,8 +31,6 @@ setup:: ## Set up a Debian development environment
 		aspell \
 		bazel \
 		cmake \
-		fonts-powerline \
-		gnome-terminal \
 		google-cloud-sdk \
 		graphviz \
 		htop \
@@ -56,9 +55,6 @@ setup:: ## Set up a Debian development environment
 		xclip \
 		zlib1g-dev \
 		zsh
-	sudo cp .config/gnome-terminal-crostini.desktop /usr/share/applications/gnome-terminal-crostini.desktop
-	sudo chown root:root /usr/share/applications/gnome-terminal-crostini.desktop
-	sudo chmod 644 /usr/share/applications/gnome-terminal-crostini.desktop
 	$(MAKE) bin/nvim
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme

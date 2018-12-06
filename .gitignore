@@ -8,7 +8,6 @@
 !.config/fontconfig/
 !.config/fontconfig/conf.d/
 !.config/fontconfig/conf.d/10-powerline-symbols.conf
-!.config/gnome-terminal-crostini.desktop
 !.config/nvim/
 !.config/nvim/init.vim
 !.config/systemd
