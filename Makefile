@@ -31,6 +31,9 @@ setup:: ## Set up a Debian development environment
 		aspell \
 		bazel \
 		cmake \
+		direnv \
+		fonts-powerline \
+		gnome-terminal \
 		google-cloud-sdk \
 		graphviz \
 		htop \
