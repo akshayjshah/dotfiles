@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-GO_VERSION := 1.11.2
+GO_VERSION := 1.11.4
 NEOVIM_VERSION := v0.3.1
 RELEASE = $(shell lsb_release -c -s)
 
