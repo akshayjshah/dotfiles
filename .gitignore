@@ -4,6 +4,8 @@
 !Makefile
 
 !.config/
+!.config/alacritty
+!.config/alacritty/alacritty.yml
 !.config/flake8
 !.config/fontconfig/
 !.config/fontconfig/conf.d/
