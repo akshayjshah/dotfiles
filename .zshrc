@@ -68,7 +68,6 @@ export LC_ALL=en_US.UTF-8
 #######################################
 [[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-[[ -d $HOME/projects/buck/bin ]] && export PATH=$HOME/projects/buck/bin:$PATH
 
 #######################################
 # Go
@@ -77,22 +76,11 @@ export GOPATH=$HOME
 VERSION=$(grep GO_VERSION ~/Makefile | head -1 | cut -d' ' -f 3)
 GO_ENV=~/.gimme/envs/go"$VERSION".env
 [[ -f "$GO_ENV" ]] && source "$GO_ENV" 2> /dev/null
-if (($+commands[hardhat])); then
-    alias hh="hardhat"
-    eval "$(hardhat --completion-script-zsh)"
-fi
-alias gotree="tree -I 'vendor|go-build|glide|Makefile'"
 
 #######################################
 # Rust
 #######################################
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
-
-#######################################
-# Python
-#######################################
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
 #######################################
 # node.js
