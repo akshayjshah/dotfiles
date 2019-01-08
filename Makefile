@@ -1,7 +1,5 @@
 .DEFAULT_GOAL := help
 GO_VERSION := 1.11.4
-NEOVIM_VERSION := v0.3.1
-RELEASE = $(shell lsb_release -cs)
 
 .PHONY: help
 help:
@@ -9,78 +7,74 @@ help:
 
 .PHONY: todo
 todo:: ## List tasks not managed by this Makefile
-	@echo "chsh -s /usr/bin/zsh"
 	@echo "Create an SSH key and upload it to GitHub"
-	@echo "Set Terminal font to Hack: https://github.com/wernight/powerline-web-fonts"
 
 .PHONY: setup
-setup:: ## Set up a Debian development environment
-	@# Required for further apt operations.
-	sudo apt install --assume-yes \
-		apt-transport-https \
-		build-essential \
-		ca-certificates \
-		curl \
-		software-properties-common
-	# Bazel
-	echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-	curl -fsSL https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
-	# Google Cloud CLI
-	echo "deb https://packages.cloud.google.com/apt cloud-sdk-$(RELEASE) main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-	curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-	sudo apt update
-	sudo apt install --assume-yes \
+setup:: /usr/local/bin/brew  ## Set up a development environment
+	brew tap homebrew/cask
+	brew tap homebrew/cask-fonts
+	brew tap homebrew/cask-versions
+	brew tap bazelbuild/tap
+	brew tap-pin bazelbuild/tap
+	brew tap facebook/fb
+	brew install \
 		aspell \
-		bazel \
+		bazelbuild/tap/bazel \
 		cmake \
 		direnv \
-		fonts-powerline \
-		gnome-terminal \
-		google-cloud-sdk \
+		exa \
+		facebook/fb/buck \
+		fd \
 		graphviz \
+		homebrew/cask/alacritty \
+		homebrew/cask/google-cloud-sdk \
+		homebrew/cask/racket \
+		homebrew/cask-fonts/font-powerline-symbols \
+		homebrew/cask-fonts/font-fira-mono-for-powerline \
+		homebrew/cask-versions/java8 \
 		htop \
-		iputils-ping \
 		jq \
 		keychain \
+		libgit2 \
 		lsof \
-		openjdk-8-jdk \
 		python \
-		python-pip \
-		python3 \
-		python3-pip \
-		racket \
+		python@2 \
+		neovim \
 		ranger \
-		redis-server \
+		redis \
+		ripgrep \
 		ruby \
 		shellcheck \
 		sqlite3 \
 		tig \
 		tmux \
+		tree \
+		watchman \
 		wget \
-		xclip \
-		zlib1g-dev \
 		zsh
-	$(MAKE) bin/nvim
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
-	$(MAKE) bin/nova-gnome-terminal.sh  # script to install terminal color theme
 	$(MAKE) projects/z/z.sh  # z auto-jumper
 	$(MAKE) bin/gimme  # manage Go compiler
-	$(MAKE) n/bin/n  # manage Node.js runtimes
 	~/bin/gimme $(GO_VERSION)
+	$(MAKE) n/bin/n  # manage Node.js runtimes
 	$(MAKE) go-pkg
 	$(MAKE) py-pkg
 	$(MAKE) rust-pkg
 
 .PHONY: update
 update:: ## Update all managed packages and tools
-	sudo apt upgrade --assume-yes
+	brew update
+	brew upgrade
+	n-update -y
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	$(MAKE) bin/nvim
-	$(MAKE) go-pkg
-	$(MAKE) rust-pkg
-	$(MAKE) py-pkg
+	rm -rf bin/gimme projects/z bin/diff-so-fancy
+	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy
+	$(MAKE) go-pkg rust-pkg py-pkg
 	nvim +PlugUpgrade +PlugUpdate +qa
+
+/usr/local/bin/brew:
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 bin/gimme:
 	mkdir -p ~/bin
@@ -99,21 +93,8 @@ bin/diff-so-fancy:
 n/bin/n:
 	curl -L https://git.io/n-install | bash
 
-bin/nova-gnome-terminal.sh:
-	mkdir -p ~/bin
-	wget -O bin/nova-gnome-terminal.sh https://raw.githubusercontent.com/agarrharr/nova-gnome-terminal/master/build/install.sh
-	chmod +x bin/nova-gnome-terminal.sh
-
-.PHONY:bin/nvim
-bin/nvim:
-	@# https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
-	sudo apt install --assume-yes ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
-	if [ ! -d projects/neovim ]; \
-		then mkdir -p projects && git clone https://github.com/neovim/neovim.git projects/neovim; \
-		fi
-	cd projects/neovim && git fetch --tags origin && git checkout $(NEOVIM_VERSION)
-	cd projects/neovim && make
-	cd projects/neovim && sudo make install
+.cargo/bin/cargo:
+	curl https://sh.rustup.rs -sSf | sh
 
 .PHONY: go-pkg
 go-pkg:
@@ -128,32 +109,19 @@ go-pkg:
 py-pkg:
 	python -m pip install -U pip neovim virtualenv
 	python3 -m pip install -U pip neovim
-	# Need to build Python 3 from source.
-	# python3 -m pip install -U pip \
-	#	asciinema \
-	#	black \
-	#	flit \
-	#	neovim \
-	#	poetry \
-	#	pyls-black \
-	#	pyls-isort \
-	#	"python-language-server[pycodestyle, pydocstyle, pyflakes, rope]" \
-	#	git-fame \
-	#	pipenv \
-	#	pyre-check
-
-.cargo/bin/cargo:
-	curl https://sh.rustup.rs -sSf | sh
+	python3 -m pip install -U pip \
+		asciinema \
+		black \
+		flit \
+		neovim \
+		poetry \
+		git-fame \
+		pipenv \
+		pyre-check
 
 .PHONY: rust-pkg
 rust-pkg: .cargo/bin/cargo
 	PATH=.cargo/bin:$(PATH) rustup update
 	PATH=.cargo/bin:$(PATH) rustup component add rls-preview rust-analysis rust-src
-	PATH=.cargo/bin:$(PATH) cargo install --force \
-		dutree \
-		fastmod \
-		ripgrep \
-		exa \
-		fd-find
 
--include workdots/work.mk
+-include Dropbox/work.mk

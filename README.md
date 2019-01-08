@@ -1,16 +1,15 @@
 # dotfiles
 
-Configuration for a terminal-centric ChromeOS development environment (using
-the default Debian Linux container).
+Configuration for a terminal-centric development environment.
 
 Dotfile management is kept deliberately simple: make `$HOME` a git repository,
 ignore everything except dotfiles, and manage install scripts with a simple
 Makefile.
 
-## Installation
-
 ```
 cd ~
-git clone https://github.com/akshayjshah/dotfiles.git .
+git init .
+git remote add -t \* -f origin git@github.com:akshayjshah/dotfiles.git
+git checkout master
 make setup
 ```
