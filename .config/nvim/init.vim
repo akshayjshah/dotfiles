@@ -45,7 +45,6 @@ set autoread                    " auto read when a file is changed from the outs
 set background=dark
 set bs=indent,eol,start         " backspace over everything
 set completeopt=menu,preview,longest
-set cursorline
 set expandtab
 set ffs=unix                    " write out everything as a Unix file
 set formatoptions=tcqjn         " see :help fo-table for details
@@ -173,15 +172,6 @@ augroup vimrc_ft_hooks
     autocmd FileType markdown call s:SetupHTML()
     autocmd FileType yaml call s:SetupYAML()
 augroup end
-
-" Highlight the current line, but only in the focused split.
-augroup vimrc_cursor_hooks
-    autocmd!
-    autocmd WinEnter * setlocal cul
-    autocmd BufEnter * setlocal cul
-    autocmd WinLeave * setlocal nocul
-augroup end
-setlocal cul
 
 augroup BWCCreateDir
     autocmd!
