@@ -30,6 +30,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		graphviz \
 		homebrew/cask/alacritty \
 		homebrew/cask/google-cloud-sdk \
+		homebrew/cask/google-drive-file-stream \
 		homebrew/cask/racket \
 		homebrew/cask-fonts/font-powerline-symbols \
 		homebrew/cask-fonts/font-fira-mono-for-powerline \
