@@ -89,15 +89,5 @@
     selected = normal
     separator = red bold
     linenumber = normal
-[url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
-[url "ssh://gitolite@code.uber.internal:2222/"]
-    insteadOf = https://code.uber.internal/
-[url "ssh://code.uber.internal/"]
-    insteadOf = https://code.uber.internal/
-[url "ssh://config.uber.internal/"]
-    insteadOf = https://config.uber.internal/
-[http "https://gopkg.uberinternal.com"]
-    followRedirects = true
-[http "https://gopkg.in"]
-    followRedirects = true
+[include]
+    path = Dropbox/gitconfig
