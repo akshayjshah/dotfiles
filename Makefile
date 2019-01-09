@@ -7,7 +7,7 @@ help:
 
 .PHONY: todo
 todo:: ## List tasks not managed by this Makefile
-	@echo "Create an SSH key and upload it to GitHub"
+	$(info Create an SSH key and upload it to GitHub)
 
 .PHONY: setup
 setup:: /usr/local/bin/brew  ## Set up a development environment
