@@ -25,6 +25,8 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		exa \
 		facebook/fb/buck \
 		fd \
+		git \
+		git-lfs \
 		graphviz \
 		homebrew/cask/alacritty \
 		homebrew/cask/google-cloud-sdk \
