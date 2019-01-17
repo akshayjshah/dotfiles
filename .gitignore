@@ -10,6 +10,8 @@
 !.config/fontconfig/
 !.config/fontconfig/conf.d/
 !.config/fontconfig/conf.d/10-powerline-symbols.conf
+!.hammerspoon/
+!.hammerspoon/*.lua
 !.config/nvim/
 !.config/nvim/init.vim
 !.en_us.utf-8.add
