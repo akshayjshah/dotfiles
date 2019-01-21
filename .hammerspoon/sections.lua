@@ -8,36 +8,6 @@ end
 
 -- Different sections of the screen that a window can take.
 local SECTIONS = {
-    topLeft = {
-        x = 0,
-        y = 0,
-        w = round(GRIDWIDTH / 2),
-        h = round(GRIDHEIGHT / 2)
-    },
-    top = {
-        x = 0,
-        y = 0,
-        w = GRIDWIDTH,
-        h = round(GRIDHEIGHT / 2)
-    },
-    topThird = {
-        x = 0,
-        y = 0,
-        w = round(GRIDWIDTH),
-        h = round(GRIDWIDTH / 3),
-    },
-    topTwoThird = {
-        x = 0,
-        y = 0,
-        w = round(GRIDWIDTH),
-        h = round(GRIDWIDTH / 3) * 2,
-    },
-    topRight = {
-        x = round(GRIDWIDTH / 2),
-        y = 0,
-        w = round(GRIDWIDTH / 2),
-        h = round(GRIDHEIGHT / 2)
-    },
     rightTwoThird = {
         x = GRIDWIDTH - round(GRIDWIDTH / 3) * 2,
         y = 0,
@@ -55,36 +25,6 @@ local SECTIONS = {
         y = 0,
         w = round(GRIDWIDTH / 3),
         h = GRIDHEIGHT
-    },
-    bottomRight = {
-        x = round(GRIDWIDTH / 2),
-        y = round(GRIDHEIGHT / 2),
-        w = round(GRIDWIDTH / 2),
-        h = round(GRIDHEIGHT / 2)
-    },
-    bottom = {
-        x = 0,
-        y = round(GRIDHEIGHT / 2),
-        w = GRIDWIDTH,
-        h = round(GRIDHEIGHT / 2)
-    },
-    bottomThird = {
-        x = 0,
-        y = round(GRIDHEIGHT / 3) * 2,
-        w = round(GRIDWIDTH),
-        h = round(GRIDWIDTH / 3),
-    },
-    bottomTwoThird = {
-        x = 0,
-        y = round(GRIDHEIGHT / 3),
-        w = round(GRIDWIDTH),
-        h = round(GRIDWIDTH / 3) * 2,
-    },
-    bottomLeft = {
-        x = 0,
-        y = round(GRIDHEIGHT / 2),
-        w = round(GRIDWIDTH / 2),
-        h = round(GRIDHEIGHT / 2)
     },
     leftTwoThird = {
         x = 0,
@@ -116,53 +56,22 @@ local SECTIONS = {
         w = round(GRIDWIDTH / 3),
         h = GRIDHEIGHT
     },
-    middleThird = {
-        x = 0,
-        y = round(GRIDHEIGHT / 3),
-        w = GRIDWIDTH,
-        h = round(GRIDHEIGHT / 3)
-    },
 }
 
 local section = {
     -- default sections to which the given keys map
     defaults = {
-        up    = 'top',
+        up    = 'full',
         right = 'right',
-        down  = 'bottom',
+        down  = 'centerThird',
         left  = 'left',
-        f     = 'full'
     },
     -- transitions between sections based on the key that was pressed.
     transitions = {
-        top = {
-            up    = 'topThird',
-            left  = 'topLeft',
-            right = 'topRight'
-        },
-        right = {
-            up    = 'topRight',
-            down  = 'bottomRight',
-            right = 'rightThird'
-        },
-        bottom = {
-            left  = 'bottomLeft',
-            down  = 'bottomThird',
-            right = 'bottomRight'
-        },
-        left = {
-            up   = 'topLeft',
-            down = 'bottomLeft',
-            left = 'leftThird'
-        },
-        topThird      = { up    =   'topTwoThird' },
-        rightThird    = { right = 'rightTwoThird' },
-        rightTwoThird = { right =         'right' },
-        bottomThird   = { down  ='bottomTwoThird' },
+        right = { right = 'rightThird' },
+        rightThird = { right = 'rightTwoThird' },
+        left = { left = 'leftThird' },
         leftThird     = { left  =  'leftTwoThird' },
-        leftTwoThird  = { left  =          'left' },
-        full          = { f     =   'centerThird' },
-        centerThird   = { f     =   'middleThird' },
     }
 }
 
@@ -221,5 +130,5 @@ end
 
 for direction, default in pairs(section.defaults) do
     hs.hotkey.bind(
-        {'cmd', 'alt'}, direction, sectionResizer(direction, default))
+        {'ctrl', 'cmd'}, direction, sectionResizer(direction, default))
 end

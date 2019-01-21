@@ -10,26 +10,14 @@
 --      Resize the window in the specified direction while keeping the
 --      top-left anchored.
 --
--- ctrl-alt-shift + left/right
---      Move the window to the next/previous screen while maintaining its size
---      relative to that screen's grid.
+-- ctrl-cmd + up/down/left/right
+--      Smart resize. By default, left/right resize to take half the screen.
+--      When already taking half the screen, cycle through taking a third and
+--      two-thirds. Up takes the whole screen and down takes the center
+--      third.
 --
--- cmd-shift + h/l
---      Move the mouse to the screen in the given direction placing it in the
---      same section of the new screen as the original.
---
--- cmd-alt + up/down/left/right
---      Resize the current window to take the given half of the screen. For
---      left/right, if the window was already in that half, take that third of
---      the screen.
---
--- cmd-alt + f
---      Resize the window to take the full screen. If the window was already
---      taking the full screen, resize it to take a third of center third of
---      the screen horizontally while remaining vertically full sized.
---
--- alt-shift-enter
---      Create a new iTerm window.
+-- ctrl-cmd + Enter:
+--      Launch or focus Alacritty.
 
 -----------------------------------------------------------------------------
 -- Reload automatically when this file changes
@@ -54,8 +42,8 @@ hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/', reload):start()
 -----------------------------------------------------------------------------
 
 -- Set up grid
-local GRIDWIDTH = 12
-local GRIDHEIGHT = 12
+local GRIDWIDTH = 6
+local GRIDHEIGHT = 1
 hs.grid.setGrid(GRIDWIDTH .. 'x' .. GRIDHEIGHT)
 hs.grid.setMargins({w = 0, h = 0})
 hs.grid.ui.textSize = 16
@@ -64,7 +52,6 @@ hs.grid.ui.textSize = 16
 hs.window.animationDuration = 0
 
 require('win')
-require('focus')
 require('term')
 require('lock')
 require('sections')
