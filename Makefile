@@ -29,6 +29,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		git-lfs \
 		graphviz \
 		homebrew/cask/alacritty \
+		homebrew/cask/hammerspoon \
 		homebrew/cask/google-cloud-sdk \
 		homebrew/cask/google-drive-file-stream \
 		homebrew/cask/racket \
