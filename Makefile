@@ -19,7 +19,8 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	brew tap facebook/fb
 	brew install \
 		aspell \
-		bazelbuild/tap/bazel \
+		bazelbuild/tap/bazelisk \
+		buildifier \
 		cmake \
 		direnv \
 		exa \
