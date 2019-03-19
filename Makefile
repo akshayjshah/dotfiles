@@ -34,6 +34,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		homebrew/cask/google-cloud-sdk \
 		homebrew/cask/google-drive-file-stream \
 		homebrew/cask/racket \
+		homebrew/cask/visual-studio-code \
 		homebrew/cask-fonts/font-powerline-symbols \
 		homebrew/cask-fonts/font-fira-mono-for-powerline \
 		homebrew/cask-versions/java8 \
@@ -57,6 +58,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		watchman \
 		wget \
 		zsh
+	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
 	$(MAKE) bin/gimme  # manage Go compiler
