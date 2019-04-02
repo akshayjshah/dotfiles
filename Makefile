@@ -21,10 +21,8 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		aspell \
 		bazelbuild/tap/bazelisk \
 		buildifier \
-		cmake \
 		direnv \
 		exa \
-		facebook/fb/buck \
 		fd \
 		git \
 		git-lfs \
@@ -34,14 +32,11 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		homebrew/cask/google-cloud-sdk \
 		homebrew/cask/google-drive-file-stream \
 		homebrew/cask/racket \
-		homebrew/cask/visual-studio-code \
 		homebrew/cask-fonts/font-powerline-symbols \
 		homebrew/cask-fonts/font-fira-mono-for-powerline \
-		homebrew/cask-versions/java8 \
 		htop \
 		jq \
 		keychain \
-		libgit2 \
 		lsof \
 		python \
 		python@2 \
@@ -49,13 +44,11 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		ranger \
 		redis \
 		ripgrep \
-		ruby \
 		shellcheck \
 		sqlite3 \
 		tig \
 		tmux \
 		tree \
-		watchman \
 		wget \
 		zsh
 	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
