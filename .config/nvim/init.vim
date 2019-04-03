@@ -10,7 +10,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " General plugins.
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
@@ -23,7 +22,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'trevordmiller/nova-vim'
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
 Plug 'cespare/vim-toml', { 'for': 'toml' }
@@ -31,7 +29,6 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'solarnz/thrift.vim', { 'for': 'thrift' }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'tpope/vim-git', { 'for': 'git' }
 
@@ -44,8 +41,7 @@ call plug#end()
 set autoread                    " auto read when a file is changed from the outside
 set background=dark
 set bs=indent,eol,start         " backspace over everything
-set completeopt=menu,preview,longest
-set expandtab
+set expandtab                   " in insert mode, insert spaces instead of tabs
 set ffs=unix                    " write out everything as a Unix file
 set formatoptions=tcqjn         " see :help fo-table for details
 set gdefault                    " default to global substitutions
@@ -57,7 +53,6 @@ set lazyredraw                  " don't redraw so often, especially mid-macro
 set linebreak                   " soft-wrap only at reasonable points
 set magic                       " handle common programming characters better in search expressions
 set mat=2                       " how many tenths of a second to blink
-set mouse=a                     " mouse support
 set nobackup                    " no backups
 set noerrorbells                " don't harass me about errors
 set nojoinspaces                " only barbarians double-space between sentences
@@ -68,22 +63,20 @@ set number                      " always show line numbers
 set rnu                         " relative line numbering
 set ru                          " always show cursor position
 set ruler                       " show current position
-set sb                          " split below
 set scrolloff=3
 set shell=/bin/zsh
 set shiftwidth=4
 set showbreak=↪
 set showcmd
-set showmatch
 set showmatch                   " highlight search matches
-set showmode
+set showmode                    " show the current mode
 set smartcase                   " case-insensitive search unless pattern has capital
 set softtabstop=4
 set spellfile="~/.en_us.utf-8.add"
 set spelllang="en_us"
 set spr                         " split right
 set tabstop=4
-set textwidth=78                " default to wrapping for plain text
+set textwidth=79                " default to wrapping for plain text
 set undofile                    " persistent undo
 set ve=all                      " virtualedit
 set whichwrap=b,s,<,>,~,h,l,[,] " which keys should wrap onto the next line?
@@ -118,22 +111,9 @@ colorscheme nova
 " Jump to existing window if possible.
 let g:fzf_buffers_jump = 1
 
-let g:ale_open_list = 1
-let g:ale_sign_error='⊘'
-let g:ale_sign_warning='⚠'
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_emit_conflict_warnings = 0
-let g:ale_linters = {
-            \ 'go': ['go vet', 'golint', 'go build'],
-            \ }
-
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#ale#enabled = 1
-
-let g:deoplete#enable_at_startup = 1
 
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
@@ -315,9 +295,7 @@ nnoremap <leader>sw :StripWhitespace<cr>
 nnoremap <leader>sv V`]
 
 " Toggles: leader-t
-nnoremap <leader>tn :NumbersToggle<cr>
 nnoremap <leader>ts :setlocal spell!<cr>
-nnoremap <leader>tu :UndotreeToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Language-Specific Setup Functions
