@@ -28,9 +28,10 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		git-lfs \
 		graphviz \
 		homebrew/cask/alacritty \
-		homebrew/cask/hammerspoon \
 		homebrew/cask/google-cloud-sdk \
 		homebrew/cask/google-drive-file-stream \
+		homebrew/cask/hammerspoon \
+		homebrew/cask/oni \
 		homebrew/cask/racket \
 		homebrew/cask-fonts/font-powerline-symbols \
 		homebrew/cask-fonts/font-fira-mono-for-powerline \
@@ -51,7 +52,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		tree \
 		wget \
 		zsh
-	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+	defaults write com.extropy.oni ApplePressAndHoldEnabled -bool false
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
 	$(MAKE) bin/gimme  # manage Go compiler

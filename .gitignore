@@ -10,6 +10,8 @@
 !.config/fontconfig/
 !.config/fontconfig/conf.d/
 !.config/fontconfig/conf.d/10-powerline-symbols.conf
+!.config/oni
+!.config/oni/config.tsx
 !.hammerspoon/
 !.hammerspoon/*.lua
 !.config/nvim/
