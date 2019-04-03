@@ -5,6 +5,7 @@
 export EDITOR="vim"
 if (($+commands[nvim])); then
     alias vim="nvim"
+    alias vimdiff="nvim -d"
     export EDITOR="nvim"
 fi
 
