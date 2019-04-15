@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-GO_VERSION := 1.12.1
+GO_VERSION := 1.12.4
 
 .PHONY: help
 help:
