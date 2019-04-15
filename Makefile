@@ -39,6 +39,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		jq \
 		keychain \
 		lsof \
+		protobuf \
 		python \
 		python@2 \
 		neovim \
