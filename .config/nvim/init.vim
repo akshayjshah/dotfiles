@@ -53,6 +53,7 @@ set lazyredraw                  " don't redraw so often, especially mid-macro
 set linebreak                   " soft-wrap only at reasonable points
 set magic                       " handle common programming characters better in search expressions
 set mat=2                       " how many tenths of a second to blink
+set mouse=a                     " enable mouse support
 set nobackup                    " no backups
 set noerrorbells                " don't harass me about errors
 set nojoinspaces                " only barbarians double-space between sentences
@@ -145,6 +146,7 @@ let g:grepper =
 augroup vimrc_ft_hooks
     autocmd!
     autocmd BufNewFile,BufRead *.bazel set filetype=bzl
+    autocmd BufNewFile,BufRead *.mod set filetype=go
     autocmd FileType go call s:SetupGo()
     autocmd FileType html call s:SetupHTML()
     autocmd FileType htmldjango call s:SetupHTML()
