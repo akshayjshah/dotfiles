@@ -102,10 +102,8 @@ n/bin/n:
 go-pkg:
 	eval `GIMME_GO_VERSION=$(GO_VERSION) bin/gimme` && GOPATH=$(HOME) go get -u \
 		golang.org/x/lint/golint \
-		github.com/golang/dep/cmd/dep \
 		github.com/boyter/scc/ \
 		golang.org/x/tools/cmd/... \
-		honnef.co/go/tools/cmd/... \
 		github.com/bazelbuild/buildtools/buildozer
 
 .PHONY: py-pkg
