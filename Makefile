@@ -51,6 +51,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		tig \
 		tmux \
 		tree \
+		watchman \
 		wget \
 		zsh
 	defaults write com.extropy.oni ApplePressAndHoldEnabled -bool false
