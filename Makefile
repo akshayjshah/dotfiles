@@ -29,18 +29,19 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		fd \
 		git \
 		git-lfs \
+		gnu-sed \
 		graphviz \
-		homebrew/cask/alacritty \
+		homebrew/cask/google-chrome \
 		homebrew/cask/google-cloud-sdk \
 		homebrew/cask/google-drive-file-stream \
 		homebrew/cask/hammerspoon \
-		homebrew/cask/oni \
-		homebrew/cask/racket \
+		homebrew/cask/slack \
+		homebrew/cask/spotify \
+		homebrew/cask/visual-studio-code \
 		homebrew/cask-fonts/font-powerline-symbols \
 		homebrew/cask-fonts/font-fira-mono-for-powerline \
 		htop \
 		jq \
-		keychain \
 		lsof \
 		protobuf \
 		python \
@@ -57,8 +58,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		tree \
 		watchman \
 		wget \
-		zsh
-	defaults write com.extropy.oni ApplePressAndHoldEnabled -bool false
+		zsh || true
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
 	$(MAKE) projects/nord/Nord.terminal
