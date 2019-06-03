@@ -31,6 +31,7 @@ Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 
 
 call plug#end()
@@ -139,6 +140,9 @@ let g:grepper =
             \ 'jump': 0,
             \ 'dir': 'file',
             \ }
+
+let g:shfmt_extra_args = '-i 2 -s'
+let g:shfmt_fmt_on_save = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Global Autocommands and Functions

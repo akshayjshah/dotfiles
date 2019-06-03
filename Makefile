@@ -119,7 +119,8 @@ go-pkg:
 		golang.org/x/lint/golint \
 		github.com/boyter/scc/ \
 		golang.org/x/tools/cmd/... \
-		github.com/bazelbuild/buildtools/buildozer
+		github.com/bazelbuild/buildtools/buildozer \
+		mvdan.cc/sh/cmd/shfmt
 
 .PHONY: py-pkg
 py-pkg:
