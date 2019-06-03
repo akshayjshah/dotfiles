@@ -47,6 +47,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		python@2 \
 		neovim \
 		ranger \
+		reattach-to-user-namespace \
 		redis \
 		ripgrep \
 		shellcheck \
@@ -61,6 +62,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
 	$(MAKE) projects/nord/Nord.terminal
+	$(MAKE) .tmux/plugins/tpm/tpm
 	$(MAKE) bin/gimme  # manage Go compiler
 	~/bin/gimme $(GO_VERSION)
 	$(MAKE) n/bin/n  # manage Node.js runtimes
@@ -75,8 +77,8 @@ update:: ## Update all managed packages and tools
 	n-update -y
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	rm -rf bin/gimme projects/z bin/diff-so-fancy projects/nord/Nord.terminal
-	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal
+	rm -rf bin/gimme projects/z bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins
+	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins/tpm/tpm
 	$(MAKE) go-pkg rust-pkg py-pkg
 	nvim +PlugUpgrade +PlugUpdate +qa
 
@@ -106,6 +108,10 @@ n/bin/n:
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
+
+.tmux/plugins/tpm/tpm:
+	mkdir -p .tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 .PHONY: go-pkg
 go-pkg:
