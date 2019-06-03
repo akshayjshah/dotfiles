@@ -3,6 +3,8 @@
 !README.md
 !Makefile
 
+!.bash_profile
+!.bashrc
 !.config/
 !.config/alacritty
 !.config/alacritty/alacritty.yml
@@ -21,6 +23,3 @@
 !.gitignore
 !.gitignore_global
 !.tmux.conf
-!.zsh/
-!.zshrc
-!.zsh/theme.zsh

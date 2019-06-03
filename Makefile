@@ -21,6 +21,8 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	brew tap-pin bazelbuild/tap/ibazel || true
 	brew install \
 		aspell \
+		bash \
+		autojump \
 		bazelbuild/tap/bazelisk \
 		bazelbuild/tap/ibazel \
 		buildifier \
@@ -57,8 +59,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		tmux \
 		tree \
 		watchman \
-		wget \
-		zsh || true
+		wget || true
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
 	$(MAKE) projects/nord/Nord.terminal
