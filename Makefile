@@ -8,6 +8,7 @@ help:
 .PHONY: todo
 todo:: ## List tasks not managed by this Makefile
 	$(info Create an SSH key and upload it to GitHub)
+	$(info Nord Slack theme: https://github.com/arcticicestudio/nord-slack)
 
 .PHONY: setup
 setup:: /usr/local/bin/brew  ## Set up a development environment
@@ -57,6 +58,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	defaults write com.extropy.oni ApplePressAndHoldEnabled -bool false
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
+	$(MAKE) projects/nord/Nord.terminal
 	$(MAKE) bin/gimme  # manage Go compiler
 	~/bin/gimme $(GO_VERSION)
 	$(MAKE) n/bin/n  # manage Node.js runtimes
@@ -71,8 +73,8 @@ update:: ## Update all managed packages and tools
 	n-update -y
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	rm -rf bin/gimme projects/z bin/diff-so-fancy
-	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy
+	rm -rf bin/gimme projects/z bin/diff-so-fancy projects/nord/Nord.terminal
+	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal
 	$(MAKE) go-pkg rust-pkg py-pkg
 	nvim +PlugUpgrade +PlugUpdate +qa
 
@@ -87,6 +89,10 @@ bin/gimme:
 projects/z/z.sh:
 	mkdir -p ~/projects/z
 	git clone https://github.com/rupa/z ~/projects/z
+
+projects/nord/Nord.terminal:
+	mkdir -p ~/projects/nord
+	wget -O ~/projects/nord/Nord.terminal https://raw.githubusercontent.com/arcticicestudio/nord-terminal-app/develop/src/xml/Nord.terminal
 
 bin/diff-so-fancy:
 	mkdir -p ~/bin

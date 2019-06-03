@@ -20,7 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'trevordmiller/nova-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
@@ -104,7 +104,7 @@ try
 catch
 endtry
 
-colorscheme nova
+colorscheme nord
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Configuration
