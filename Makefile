@@ -12,15 +12,17 @@ todo:: ## List tasks not managed by this Makefile
 
 .PHONY: setup
 setup:: /usr/local/bin/brew  ## Set up a development environment
-	brew tap homebrew/cask
-	brew tap homebrew/cask-fonts
-	brew tap homebrew/cask-versions
-	brew tap bazelbuild/tap
-	brew tap-pin bazelbuild/tap
-	brew tap facebook/fb
+	brew tap homebrew/cask || true
+	brew tap homebrew/cask-fonts || true
+	brew tap homebrew/cask-versions || true
+	brew tap bazelbuild/tap || true
+	brew tap-pin bazelbuild/tap/bazelisk || true
+	brew tap-pin bazelbuild/tap/bazel || true
+	brew tap-pin bazelbuild/tap/ibazel || true
 	brew install \
 		aspell \
 		bazelbuild/tap/bazelisk \
+		bazelbuild/tap/ibazel \
 		buildifier \
 		direnv \
 		exa \
