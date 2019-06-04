@@ -18,6 +18,7 @@ fi
 # Plugins and Completion
 #######################################
 [[ -f /usr/local/etc/profile.d/autojump.sh ]] && . /usr/local/etc/profile.d/autojump.sh
+[[ -f ~/.bazel-complete.bash ]] && source ~/.bazel-complete.bash
 
 [[ -d ~/.fzf/bin ]] && export PATH=$HOME/.fzf/bin:$PATH
 [[ -f ~/.fzf/shell/completion.bash ]] && source ~/.fzf/shell/completion.bash
