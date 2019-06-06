@@ -78,8 +78,8 @@ update:: ## Update all managed packages and tools
 	n-update -y
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	rm -rf bin/gimme projects/z bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins
-	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins/tpm/tpm
+	rm -rf bin/gimme projects/z bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins .bash/git-completion.bash
+	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins/tpm/tpm .bash/git-completion.bash
 	$(MAKE) go-pkg rust-pkg py-pkg
 	nvim +PlugUpgrade +PlugUpdate +qa
 
@@ -106,6 +106,10 @@ bin/diff-so-fancy:
 
 n/bin/n:
 	curl -L https://git.io/n-install | bash
+
+.bash/git-completion.bash:
+	mkdir -p .bash
+	wget -O .bash/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh

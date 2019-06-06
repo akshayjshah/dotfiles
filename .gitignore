@@ -5,7 +5,8 @@
 
 !.bash_profile
 !.bashrc
-!.bazel-complete.bash
+!.bash/
+!.bash/bazel-completion.bash
 !.config/
 !.config/alacritty
 !.config/alacritty/alacritty.yml

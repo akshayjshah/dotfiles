@@ -18,7 +18,8 @@ fi
 # Plugins and Completion
 #######################################
 [[ -f /usr/local/etc/profile.d/autojump.sh ]] && . /usr/local/etc/profile.d/autojump.sh
-[[ -f ~/.bazel-complete.bash ]] && source ~/.bazel-complete.bash
+[[ -f ~/.bash/bazel-completion.bash ]] && source ~/.bash/bazel-completion.bash
+[[ -f ~/.bash/git-completion.bash ]] && source ~/.bash/git-completion.bash
 
 [[ -d ~/.fzf/bin ]] && export PATH=$HOME/.fzf/bin:$PATH
 [[ -f ~/.fzf/shell/completion.bash ]] && source ~/.fzf/shell/completion.bash
@@ -38,17 +39,13 @@ if [ -z "$HISTFILE" ]; then
   HISTFILE=$HOME/.bash_history
 fi
 
-export HISTCONTROL=ignoredups:erasedups
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+HISTSIZE=100000
+HISTFILESIZE=100000
 shopt -s histappend
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 #######################################
 # Prompt
 #######################################
-export PROMPT_COMMAND="_prompt_command; $PROMPT_COMMAND"
-
 # Get the status of the working tree
 function _git_prompt_status() {
   if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
@@ -65,16 +62,12 @@ function _git_prompt_info() {
 }
 
 function _prompt_command() {
-  local _return_status="$?"
-  PS1=""
-  if [ $_return_status != 0 ]; then
-    PS1+="! "
-  else
-    PS1+="  "
-  fi
+  PS1=" "
   PS1+="\w $(_git_prompt_info)"
   PS1+=" > "
 }
+
+PROMPT_COMMAND="_prompt_command; $PROMPT_COMMAND"
 
 #######################################
 # Languages and Terminfo
