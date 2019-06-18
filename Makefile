@@ -33,6 +33,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		git-lfs \
 		gnu-sed \
 		graphviz \
+		homebrew/cask/alfred \
 		homebrew/cask/google-chrome \
 		homebrew/cask/google-cloud-sdk \
 		homebrew/cask/google-drive-file-stream \
@@ -40,6 +41,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		homebrew/cask/slack \
 		homebrew/cask/spotify \
 		homebrew/cask/visual-studio-code \
+		homebrew/cask/zoomus \
 		homebrew/cask-fonts/font-powerline-symbols \
 		homebrew/cask-fonts/font-fira-mono-for-powerline \
 		htop \
