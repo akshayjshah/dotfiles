@@ -62,6 +62,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		tree \
 		watchman \
 		wget || true
+	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
 	$(MAKE) projects/nord/Nord.terminal
