@@ -89,8 +89,6 @@
     selected = normal
     separator = red bold
     linenumber = normal
-[include]
-    path = Dropbox/gitconfig
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
