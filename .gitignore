@@ -4,9 +4,6 @@
 !Makefile
 
 !.bash_profile
-!.bashrc
-!.bash/
-!.bash/bazel-completion.bash
 !.config/
 !.config/alacritty
 !.config/alacritty/alacritty.yml
@@ -25,3 +22,4 @@
 !.gitignore
 !.gitignore_global
 !.tmux.conf
+!.zshrc

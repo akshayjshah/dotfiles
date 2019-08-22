@@ -15,19 +15,11 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	brew tap homebrew/cask || true
 	brew tap homebrew/cask-fonts || true
 	brew tap homebrew/cask-versions || true
-	brew tap bazelbuild/tap || true
-	brew tap-pin bazelbuild/tap/bazelisk || true
-	brew tap-pin bazelbuild/tap/bazel || true
-	brew tap-pin bazelbuild/tap/ibazel || true
 	brew install \
 		aspell \
 		bash \
-		autojump \
-		bazelbuild/tap/bazelisk \
-		bazelbuild/tap/ibazel \
 		buildifier \
 		direnv \
-		exa \
 		fd \
 		git \
 		git-lfs \
@@ -61,7 +53,8 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		tmux \
 		tree \
 		watchman \
-		wget || true
+		wget \
+		zsh || true
 	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 	$(MAKE) bin/diff-so-fancy  # nicer git diffs
 	$(MAKE) projects/z/z.sh  # z auto-jumper
@@ -81,8 +74,8 @@ update:: ## Update all managed packages and tools
 	n-update -y
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	rm -rf bin/gimme projects/z bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins .bash/git-completion.bash
-	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins/tpm/tpm .bash/git-completion.bash
+	rm -rf bin/gimme projects/z bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins
+	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins/tpm/tpm
 	$(MAKE) go-pkg rust-pkg py-pkg
 	nvim +PlugUpgrade +PlugUpdate +qa
 
@@ -109,10 +102,6 @@ bin/diff-so-fancy:
 
 n/bin/n:
 	curl -L https://git.io/n-install | bash
-
-.bash/git-completion.bash:
-	mkdir -p .bash
-	wget -O .bash/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh

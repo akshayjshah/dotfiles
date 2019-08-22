@@ -17,57 +17,51 @@ fi
 #######################################
 # Plugins and Completion
 #######################################
-[[ -f /usr/local/etc/profile.d/autojump.sh ]] && . /usr/local/etc/profile.d/autojump.sh
-[[ -f ~/.bash/bazel-completion.bash ]] && source ~/.bash/bazel-completion.bash
-[[ -f ~/.bash/git-completion.bash ]] && source ~/.bash/git-completion.bash
+autoload -u compinit
+compinit -i
 
+[[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
 [[ -d ~/.fzf/bin ]] && export PATH=$HOME/.fzf/bin:$PATH
-[[ -f ~/.fzf/shell/completion.bash ]] && source ~/.fzf/shell/completion.bash
-[[ -f ~/.fzf/shell/key-bindings.bash ]] && source ~/.fzf/shell/key-bindings.bash
+[[ -f ~/.fzf/shell/completion.zsh ]] && source ~/.fzf/shell/completion.zsh
+[[ -f ~/.fzf/shell/key-bindings.zsh ]] && source ~/.fzf/shell/key-bindings.zsh
 export FZF_DEFAULT_COMMAND='fd --hidden --type f --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #######################################
 # Options
 #######################################
-shopt -s autocd
+unsetopt correct_all
+setopt auto_cd
+setopt no_beep
+setopt prompt_subst
 
 #######################################
 # History
 #######################################
 if [ -z "$HISTFILE" ]; then
-  HISTFILE=$HOME/.bash_history
+  HISTFILE=$HOME/.zsh_history
 fi
 
 HISTSIZE=100000
 HISTFILESIZE=100000
-shopt -s histappend
+HIST_STAMPS="yyyy-mm-dd"
 
-#######################################
-# Prompt
-#######################################
-# Get the status of the working tree
-function _git_prompt_status() {
-  if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
-    echo " !"
-  fi
-}
+# Show history.
+case $HIST_STAMPS in
+     "mm/dd/yyyy") alias history='fc -fl 1' ;;
+    "dd.mm.yyyy") alias history='fc -El 1' ;;
+    "yyyy-mm-dd") alias history='fc -il 1' ;;
+    *) alias history='fc -l 1' ;;
+esac
 
-# Output current branch info in prompt format
-function _git_prompt_info() {
-  local ref
-  ref=$(command git symbolic-ref HEAD 2>/dev/null) ||
-    ref=$(command git rev-parse --short HEAD 2>/dev/null) || return 0
-  echo "[${ref#refs/heads/}$(_git_prompt_status)]"
-}
-
-function _prompt_command() {
-  PS1=" "
-  PS1+="\w $(_git_prompt_info)"
-  PS1+=" > "
-}
-
-PROMPT_COMMAND="_prompt_command; $PROMPT_COMMAND"
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
 
 #######################################
 # Languages and Terminfo
@@ -120,7 +114,54 @@ alias ts="tmux new-session -s"
 alias ta="tmux attach -t"
 alias tls="tmux ls"
 
+autoload -u zmv
+alias mmv="noglob zmv -W"
+
+# pbcopy-like alias for xclip on Linux
+if has xclip; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
+# open Nautilus from terminals
+if has nautilus; then
+    open() {
+        nautilus "$1" &
+    }
+fi
+
+#######################################
+# Prompt
+#######################################
+# Get the status of the working tree
+function git_prompt_status() {
+    local STATUS
+    STATUS="]"
+    if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
+        STATUS="$ZSH_THEME_GIT_PROMPT_DIRTY$STATUS"
+    else
+        STATUS="$ZSH_THEME_GIT_PROMPT_CLEAN$STATUS"
+    fi
+
+     echo $STATUS
+}
+
+ # Outputs current branch info in prompt format
+function git_prompt_info() {
+    local ref
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+        ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+    echo "[${ref#refs/heads/} $(git_prompt_status)"
+}
+
+local _return_status="%(?. .!)"
+
+ZSH_THEME_GIT_PROMPT_DIRTY="! "
+ZSH_THEME_GIT_PROMPT_CLEAN="- "
+
+PROMPT='${_return_status} %c $(git_prompt_info) > '
+
 #######################################
 # direnv (must be last!)
 #######################################
-eval "$(direnv hook bash)"
+eval "$(direnv hook zsh)"
