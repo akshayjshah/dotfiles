@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function has() {
-  hash "$1" 2>/dev/null
+	hash "$1" 2>/dev/null
 }
 
 #######################################
@@ -9,9 +9,9 @@ function has() {
 #######################################
 export EDITOR="vim"
 if has nvim; then
-  alias vim="nvim"
-  alias vimdiff="nvim -d"
-  export EDITOR="nvim"
+	alias vim="nvim"
+	alias vimdiff="nvim -d"
+	export EDITOR="nvim"
 fi
 
 #######################################
@@ -39,7 +39,7 @@ setopt prompt_subst
 # History
 #######################################
 if [ -z "$HISTFILE" ]; then
-  HISTFILE=$HOME/.zsh_history
+	HISTFILE=$HOME/.zsh_history
 fi
 
 HISTSIZE=100000
@@ -48,10 +48,10 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Show history.
 case $HIST_STAMPS in
-     "mm/dd/yyyy") alias history='fc -fl 1' ;;
-    "dd.mm.yyyy") alias history='fc -El 1' ;;
-    "yyyy-mm-dd") alias history='fc -il 1' ;;
-    *) alias history='fc -l 1' ;;
+"mm/dd/yyyy") alias history='fc -fl 1' ;;
+"dd.mm.yyyy") alias history='fc -El 1' ;;
+"yyyy-mm-dd") alias history='fc -il 1' ;;
+*) alias history='fc -l 1' ;;
 esac
 
 setopt append_history
@@ -101,13 +101,13 @@ alias :q="exit"
 alias :e=\$EDITOR
 
 if has exa; then
-  alias ls="exa"
-  alias ll="exa -al"
-  alias la="exa -a"
+	alias ls="exa"
+	alias ll="exa -al"
+	alias la="exa -a"
 else
-  alias ls="ls -CF"
-  alias ll="ls -ahlF"
-  alias la="ls -A"
+	alias ls="ls -CF"
+	alias ll="ls -ahlF"
+	alias la="ls -A"
 fi
 
 alias ts="tmux new-session -s"
@@ -119,15 +119,15 @@ alias mmv="noglob zmv -W"
 
 # pbcopy-like alias for xclip on Linux
 if has xclip; then
-    alias pbcopy='xclip -selection clipboard'
-    alias pbpaste='xclip -selection clipboard -o'
+	alias pbcopy='xclip -selection clipboard'
+	alias pbpaste='xclip -selection clipboard -o'
 fi
 
 # open Nautilus from terminals
 if has nautilus; then
-    open() {
-        nautilus "$1" &
-    }
+	open() {
+		nautilus "$1" &
+	}
 fi
 
 #######################################
@@ -135,23 +135,23 @@ fi
 #######################################
 # Get the status of the working tree
 function git_prompt_status() {
-    local STATUS
-    STATUS="]"
-    if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
-        STATUS="$ZSH_THEME_GIT_PROMPT_DIRTY$STATUS"
-    else
-        STATUS="$ZSH_THEME_GIT_PROMPT_CLEAN$STATUS"
-    fi
+	local STATUS
+	STATUS="]"
+	if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+		STATUS="$ZSH_THEME_GIT_PROMPT_DIRTY$STATUS"
+	else
+		STATUS="$ZSH_THEME_GIT_PROMPT_CLEAN$STATUS"
+	fi
 
-     echo $STATUS
+	echo $STATUS
 }
 
- # Outputs current branch info in prompt format
+# Outputs current branch info in prompt format
 function git_prompt_info() {
-    local ref
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-        ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo "[${ref#refs/heads/} $(git_prompt_status)"
+	local ref
+	ref=$(command git symbolic-ref HEAD 2>/dev/null) ||
+		ref=$(command git rev-parse --short HEAD 2>/dev/null) || return 0
+	echo "[${ref#refs/heads/} $(git_prompt_status)"
 }
 
 local _return_status="%(?. .!)"
