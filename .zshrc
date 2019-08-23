@@ -17,7 +17,7 @@ fi
 #######################################
 # Plugins and Completion
 #######################################
-autoload -u compinit
+autoload -U compinit
 compinit -i
 
 [[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
@@ -114,7 +114,7 @@ alias ts="tmux new-session -s"
 alias ta="tmux attach -t"
 alias tls="tmux ls"
 
-autoload -u zmv
+autoload -U zmv
 alias mmv="noglob zmv -W"
 
 # pbcopy-like alias for xclip on Linux
