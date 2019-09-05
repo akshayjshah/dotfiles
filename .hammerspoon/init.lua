@@ -11,6 +11,7 @@
 --      top-left anchored.
 --
 -- ctrl-cmd + up/down/left/right
+-- ctrl-shift-option-cmd (hyper) + up/down/left/right
 --      Smart resize. By default, left/right resize to take half the screen.
 --      When already taking half the screen, cycle through taking a third and
 --      two-thirds. Up takes the whole screen and down takes the center
