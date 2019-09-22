@@ -18,7 +18,8 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	brew install \
 		aspell \
 		bash \
-		buildifier \
+		cocoapods \
+		curl \
 		direnv \
 		fd \
 		git \
@@ -31,7 +32,6 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		homebrew/cask/google-drive-file-stream \
 		homebrew/cask/hammerspoon \
 		homebrew/cask/slack \
-		homebrew/cask/spotify \
 		homebrew/cask/visual-studio-code \
 		homebrew/cask/zoomus \
 		homebrew/cask-fonts/font-powerline-symbols \
