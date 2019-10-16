@@ -116,7 +116,6 @@ go-pkg:
 		golang.org/x/lint/golint \
 		github.com/boyter/scc/ \
 		golang.org/x/tools/cmd/... \
-		github.com/bazelbuild/buildtools/buildozer \
 		mvdan.cc/sh/cmd/shfmt
 
 .PHONY: py-pkg
@@ -126,12 +125,11 @@ py-pkg:
 	python3 -m pip install -U pip \
 		asciinema \
 		black \
-		flit \
 		neovim \
-		poetry \
 		git-fame \
 		pipenv \
-		pyre-check
+		pyre-check \
+		tqdm
 
 .PHONY: rust-pkg
 rust-pkg: .cargo/bin/cargo
