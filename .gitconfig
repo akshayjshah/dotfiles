@@ -29,11 +29,14 @@
     graph = log --graph
     l = log origin/master..
     ls = branch -v
+    popf = checkout "stash@{0}" --
+    pr = !hub pull-request -r stgarrity
+    review = diff --staged
     s = status
-    save = !git add -A && git commit -m 'Savepoint'
+    smarten = rebase -i origin/master
     stashall = stash --include-untracked
     undo = reset --mixed HEAD^
-    wip = !git add -u && git commit -m 'WIP'
+    wip = !git add -u . && git commit -m 'WIP'
     wipe = !git add -A && git commit -qm 'Wipe savepoint' && git reset --hard HEAD^
     wtf = log --follow --stat -p
 [github]
@@ -94,3 +97,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[sequence]
+	editor = ~/.restack/edit.sh
