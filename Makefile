@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-GO_VERSION := 1.13.1
+GO_VERSION := 1.13.5
 
 .PHONY: help
 help:
@@ -116,7 +116,8 @@ go-pkg:
 		golang.org/x/lint/golint \
 		github.com/boyter/scc/ \
 		golang.org/x/tools/cmd/... \
-		mvdan.cc/sh/cmd/shfmt
+		mvdan.cc/sh/cmd/shfmt \
+		github.com/abhinav/restack/cmd/restack
 
 .PHONY: py-pkg
 py-pkg:
