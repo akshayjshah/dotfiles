@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-GO_VERSION := 1.13.5
+GO_VERSION := 1.13.8
 
 .PHONY: help
 help:
@@ -39,6 +39,8 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		htop \
 		jq \
 		lsof \
+		mint \
+		nushell \
 		protobuf \
 		python \
 		python@2 \
