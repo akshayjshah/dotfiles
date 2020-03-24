@@ -34,6 +34,8 @@ unsetopt correct_all
 setopt auto_cd
 setopt no_beep
 setopt prompt_subst
+# Unit tests for many projects need more-generous soft limits on FDs.
+ulimit -S -n 4096
 
 #######################################
 # History
