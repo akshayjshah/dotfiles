@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-GO_VERSION := 1.14.1
+GO_VERSION := 1.14.4
 
 .PHONY: help
 help:
@@ -23,6 +23,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		direnv \
 		fd \
 		git \
+		github/gh/gh \
 		git-lfs \
 		gnu-sed \
 		graphviz \
@@ -37,6 +38,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 		homebrew/cask-fonts/font-powerline-symbols \
 		homebrew/cask-fonts/font-fira-mono-for-powerline \
 		htop \
+		jsonnet \
 		jq \
 		lsof \
 		mint \
@@ -119,7 +121,8 @@ go-pkg:
 		github.com/boyter/scc/ \
 		golang.org/x/tools/cmd/... \
 		mvdan.cc/sh/cmd/shfmt \
-		github.com/abhinav/restack/cmd/restack
+		github.com/abhinav/restack/cmd/restack \
+		github.com/mbrt/gmailctl/cmd/gmailctl
 
 .PHONY: py-pkg
 py-pkg:

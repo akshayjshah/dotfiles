@@ -26,6 +26,7 @@ Plug 'vim-airline/vim-airline'
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'othree/html5.vim', { 'for': 'html' }
