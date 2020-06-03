@@ -133,6 +133,13 @@ if has nautilus; then
 	}
 fi
 
+# Set the GCP account to use.
+if has gcloud; then
+    function gwork() {
+        gcloud config set account $1
+    }
+fi
+
 #######################################
 # Prompt
 #######################################
