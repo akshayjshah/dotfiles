@@ -142,21 +142,6 @@ local rules = [
   {
     filter: {
       and: [
-        { from: 'noreply@royalroad.com' },
-        { subject: 'New Chapter of' },
-      ],
-    },
-    actions: {
-      markSpam: false,
-      labels: [
-        'royalroad',
-        'underwater',
-      ],
-    },
-  },
-  {
-    filter: {
-      and: [
         { from: 'whyblu.com' },
         { not: { list: 'aeedd0ef0b39f157ce1f1e58b.435885.list-id.mcsv.net' } },
       ],
@@ -414,7 +399,6 @@ local rules = [
     { name: 'networks/urbansitter' },
     { name: 'networks/wordpress' },
     { name: 'networks/yale' },
-    { name: 'royalroad' },
     { name: 'schools' },
     { name: 'schools/pacific-primary' },
     { name: 'tax' },
