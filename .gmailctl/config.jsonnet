@@ -228,6 +228,19 @@ local rules = [
 
   // Newsletters.
   {
+    filter: {
+      and: [
+        { from: 'dailydigest@ifttt.com' },
+        { subject: 'RSS Feed via IFTTT' },
+      ],
+    },
+    actions: {  // misc RSS feeds
+      markSpam: false,
+      category: 'updates',
+      labels: ['underwater'],
+    },
+  },
+  {
     filter: { list: 'aeedd0ef0b39f157ce1f1e58b.435885.list-id.mcsv.net' },
     actions: {  // Why Blu Book Club
       markSpam: false,
