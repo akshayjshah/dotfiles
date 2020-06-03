@@ -14,7 +14,7 @@ local code = {
     category: 'updates',
     labels: [
       'code',
-      'optional',
+      'underwater',
     ],
   },
   newsgroup: {
@@ -22,7 +22,7 @@ local code = {
     category: 'forums',
     labels: [
       'code',
-      'optional',
+      'underwater',
     ],
   },
   marketing: {
@@ -30,7 +30,7 @@ local code = {
     category: 'promotions',
     labels: [
       'code',
-      'optional',
+      'underwater',
     ],
   },
 };
@@ -39,7 +39,7 @@ local founders = {
   category: 'updates',
   labels: [
     'founders',
-    'optional',
+    'underwater',
   ],
 };
 local social = {
@@ -113,7 +113,7 @@ local rules = [
       markSpam: false,
       labels: [
         'royalroad',
-        'optional',
+        'underwater',
       ],
     },
   },
@@ -232,7 +232,7 @@ local rules = [
     actions: {  // Why Blu Book Club
       markSpam: false,
       category: 'updates',
-      labels: ['optional'],
+      labels: ['underwater'],
     },
   },
   {
@@ -352,22 +352,21 @@ local rules = [
     { name: 'exhaust/twitter-favorites' },
     { name: 'expenses' },
     { name: 'founders' },
-    { name: 'go' },
     { name: 'networks' },
     { name: 'networks/facebook' },
     { name: 'networks/linkedin' },
+    { name: 'networks/urbansitter' },
     { name: 'networks/wordpress' },
     { name: 'networks/yale' },
-    { name: 'networks/urbansitter' },
-    { name: 'optional' },
     { name: 'royalroad' },
     { name: 'schools' },
     { name: 'schools/pacific-primary' },
     { name: 'tax' },
+    { name: 'underwater' },
     { name: 'work' },
     { name: 'work/hearsay' },
-    { name: 'work/uber' },
     { name: 'work/loom' },
+    { name: 'work/uber' },
   ],
   rules: rules,
 }
