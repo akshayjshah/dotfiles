@@ -13,6 +13,9 @@
 !.config/fontconfig/conf.d/10-powerline-symbols.conf
 !.config/oni
 !.config/oni/config.tsx
+!.gmailctl/
+!.gmailctl/config.jsonnet
+!.gmailctl/gmailctl.libsonnet
 !.hammerspoon/
 !.hammerspoon/*.lua
 !.config/nvim/

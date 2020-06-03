@@ -82,6 +82,7 @@ update:: ## Update all managed packages and tools
 	$(MAKE) bin/gimme projects/z/z.sh bin/diff-so-fancy projects/nord/Nord.terminal .tmux/plugins/tpm/tpm
 	$(MAKE) go-pkg rust-pkg py-pkg
 	nvim +PlugUpgrade +PlugUpdate +qa
+	gmailctl apply
 
 /usr/local/bin/brew:
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
