@@ -25,6 +25,7 @@
     amend = commit -a --amend
     c = commit
     co = checkout
+    recent = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
     rmbranch = branch -D
     graph = log --graph
     l = log origin/master..
