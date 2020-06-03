@@ -52,6 +52,12 @@ local social = {
       'networks/%s' % name,
     ],
   },
+  tag(name): {
+    category: 'social',
+    labels: [
+      'networks/%s' % name,
+    ],
+  },
 };
 local exhaust = {
   archive(name): {
@@ -104,6 +110,37 @@ local rules = [
   },
   {
     filter: {
+      or: [
+        { from: 'connections@linkedin.com' },
+        { from: 'groups-noreply@linkedin.com' },
+        { from: 'hit-reply-premium-inmail@linkedin.com' },
+        { from: 'hit-reply@linkedin.com' },
+        { from: 'inmail-hit-reply@linkedin.com' },
+        { from: 'invitations-noreply@linkedin.com' },
+        { from: 'jobs-listings@linkedin.com' },
+        { from: 'jobs-noreply@linkedin.com' },
+        { from: 'legalnotice@linkedin.com' },
+        { from: 'member@linkedin.com' },
+        { from: 'messages-noreply@linkedin.com' },
+        { from: 'messaging-digest-noreply@linkedin.com' },
+        { from: 'news-noreply@linkedin.com' },
+        { from: 'news@linkedin.com' },
+        { from: 'notifications-noreply@linkedin.com' },
+        { from: 'security-noreply@linkedin.com' },
+      ],
+    },
+    actions: social.tag('linkedin'),
+  },
+  {
+    filter: {
+      or: [
+        { from: 'noreply@developers.facebook.com' },
+      ],
+    },
+    actions: social.tag('facebook'),
+  },
+  {
+    filter: {
       and: [
         { from: 'noreply@royalroad.com' },
         { subject: 'New Chapter of' },
@@ -140,7 +177,7 @@ local rules = [
     filter: {
       and: [
         { from: 'DONOTREPLY@myhealth.stanfordhealthcare.org' },
-        { has: "Jagdish Shah's MyHealth account" },
+        { has: 'Jagdish Shah' },
       ],
     },
     actions: exhaust.archive('myhealth'),
@@ -231,7 +268,7 @@ local rules = [
     filter: {
       and: [
         { from: 'dailydigest@ifttt.com' },
-        { subject: 'RSS Feed via IFTTT' },
+        { has: 'via RSS Feed' },
       ],
     },
     actions: {  // misc RSS feeds
@@ -309,15 +346,21 @@ local rules = [
 
   // Newsgroups.
   {
-    filter: { list: 'golang-nuts.googlegroups.com' },
-    actions: code.newsgroup,
-  },
-  {
     filter: { list: 'golang-announce.googlegroups.com' },
-    actions: code.newsgroup,
+    actions: {
+      category: 'forums',
+      markSpam: false,
+      markImportant: true,
+      labels: ['code'],
+    },
   },
   {
-    filter: { list: 'golang-dev.googlegroups.com' },
+    filter: {
+      or: [
+        { list: 'golang-nuts.googlegroups.com' },
+        { list: 'golang-dev.googlegroups.com' },
+      ],
+    },
     actions: code.newsgroup,
   },
   {
