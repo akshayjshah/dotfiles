@@ -4,8 +4,10 @@ local me = {
   or: [
     { to: 'akshay@akshayshah.org' },
     { to: 'amazon@akshayshah.org' },
-    { to: 'ashah@loom.fyi' },
+    { to: 'ashah@hearsaycorp.com' },
+    { to: 'akshay@hearsaycorp.com' },
     { to: 'shah@uber.com' },
+    { to: 'ashah@loom.fyi' },
   ],
 };
 local code = {
@@ -48,15 +50,23 @@ local social = {
     markRead: true,
     markSpam: false,
     category: 'social',
-    labels: [
-      'networks/%s' % name,
-    ],
+    labels: ['networks/%s' % name],
   },
   tag(name): {
     category: 'social',
-    labels: [
-      'networks/%s' % name,
-    ],
+    labels: ['networks/%s' % name],
+  },
+};
+local school = {
+  archive(name): {
+    archive: true,
+    markRead: true,
+    markSpam: false,
+    labels: ['schools/%s' % name],
+  },
+  tag(name): {
+    markSpam: false,
+    labels: ['schools/%s' % name],
   },
 };
 local exhaust = {
@@ -80,13 +90,7 @@ local rules = [
         { and: [{ from: 'parentsquare.com' }, { has: 'Pacific Primary' }] },
       ],
     },
-    actions: {
-      markSpam: false,
-      category: 'forums',
-      labels: [
-        'schools/pacific-primary',
-      ],
-    },
+    actions: school.tag('pacific-primary'),
   },
   {
     filter: {
@@ -98,6 +102,19 @@ local rules = [
     actions: {
       markImportant: true,
     },
+  },
+  {
+    filter: { from: 'choate.edu' },
+    actions: school.tag('choate'),
+  },
+  {
+    filter: {
+      and: [
+        { from: 'choate.edu' },
+        { or: [{ subject: 'webinar' }, { subject: 'ConnectsUs Newsletter' }] },
+      ],
+    },
+    actions: school.archive('choate'),
   },
   {
     filter: { from: 'notifications@github.com' },
@@ -191,7 +208,7 @@ local rules = [
   // Social networks, archive automatically.
   {
     filter: { list: '100002289.xt.local' },
-    actions: social.archive('yale'),  // Yale Today
+    actions: school.archive('yale'),  // Yale Today
   },
   {
     filter: { from: 'facebookmail.com' },
@@ -398,9 +415,10 @@ local rules = [
     { name: 'networks/linkedin' },
     { name: 'networks/urbansitter' },
     { name: 'networks/wordpress' },
-    { name: 'networks/yale' },
     { name: 'schools' },
+    { name: 'schools/choate' },
     { name: 'schools/pacific-primary' },
+    { name: 'schools/yale' },
     { name: 'tax' },
     { name: 'underwater' },
     { name: 'underwater/bailed' },
