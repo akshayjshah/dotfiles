@@ -260,7 +260,6 @@ local rules = [
       archive: true,
       markRead: true,
       markSpam: false,
-      markImportant: false,
       category: 'promotions',
     },
   },
