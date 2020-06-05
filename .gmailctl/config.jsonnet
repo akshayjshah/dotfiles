@@ -178,7 +178,12 @@ local rules = [
   {
     filter: {
       and: [
-        { from: 'DONOTREPLY@myhealth.stanfordhealthcare.org' },
+        {
+          or: [
+            { from: 'DONOTREPLY@myhealth.stanfordhealthcare.org' },
+            { from: 'donotreply.myhealth@stanfordhealthcare.org' },
+          ],
+        },
         { has: 'Jagdish Shah' },
       ],
     },
