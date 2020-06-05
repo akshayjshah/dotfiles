@@ -244,6 +244,22 @@ local rules = [
 
   // Marketing, archive automatically.
   {
+    filter: {
+      and: [
+        { from: 'email.gap.com' },
+        { not: { from: 'orders@email.gap.com' } },
+        { not: { from: 'GapCash' } },
+      ],
+    },
+    actions: {
+      archive: true,
+      markRead: true,
+      markSpam: false,
+      markImportant: false,
+      category: 'promotions',
+    },
+  },
+  {
     filter: { list: 'GoSF-list.meetup.com' },
     actions: code.marketing,
   },
@@ -286,6 +302,10 @@ local rules = [
       category: 'updates',
       labels: ['underwater'],
     },
+  },
+  {
+    filter: { list: 'f77362877d5d4b37b4acda931.211553.list-id.mcsv.net' },
+    actions: code.newsletter,  // objc.io
   },
   {
     filter: { list: '4188b6afbe9e5d43111fef4d4.597133.list-id.mcsv.net' },
