@@ -440,6 +440,7 @@ local rules = [
     { name: 'networks/linkedin' },
     { name: 'networks/urbansitter' },
     { name: 'networks/wordpress' },
+    { name: 'reference' },
     { name: 'schools' },
     { name: 'schools/choate' },
     { name: 'schools/pacific-primary' },
