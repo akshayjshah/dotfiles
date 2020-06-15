@@ -16,7 +16,7 @@ local code = {
     category: 'updates',
     labels: [
       'code',
-      'underwater',
+      'optional',
     ],
   },
   newsgroup: {
@@ -24,7 +24,7 @@ local code = {
     category: 'forums',
     labels: [
       'code',
-      'underwater',
+      'optional',
     ],
   },
   marketing: {
@@ -32,7 +32,7 @@ local code = {
     category: 'promotions',
     labels: [
       'code',
-      'underwater',
+      'optional',
     ],
   },
 };
@@ -41,7 +41,7 @@ local founders = {
   category: 'updates',
   labels: [
     'founders',
-    'underwater',
+    'optional',
   ],
 };
 local social = {
@@ -216,6 +216,10 @@ local rules = [
     actions: school.archive('yale'),  // Yale Today
   },
   {
+    filter: { from: 'yaawebtech@yale.edu' },
+    actions: school.archive('yale'),  // Yale Alumni Digital Events
+  },
+  {
     filter: { from: 'facebookmail.com' },
     actions: social.archive('facebook'),
   },
@@ -296,7 +300,7 @@ local rules = [
     actions: {  // misc RSS feeds
       markSpam: false,
       category: 'updates',
-      labels: ['underwater'],
+      labels: ['optional'],
     },
   },
   {
@@ -304,7 +308,7 @@ local rules = [
     actions: {  // Why Blu Book Club
       markSpam: false,
       category: 'updates',
-      labels: ['underwater'],
+      labels: ['optional'],
     },
   },
   {
@@ -439,14 +443,14 @@ local rules = [
     { name: 'networks/linkedin' },
     { name: 'networks/urbansitter' },
     { name: 'networks/wordpress' },
+    { name: 'optional' },
+    { name: 'optional/purged' },
     { name: 'reference' },
     { name: 'schools' },
     { name: 'schools/choate' },
     { name: 'schools/pacific-primary' },
     { name: 'schools/yale' },
     { name: 'tax' },
-    { name: 'underwater' },
-    { name: 'underwater/bailed' },
     { name: 'work' },
     { name: 'work/hearsay' },
     { name: 'work/loom' },
