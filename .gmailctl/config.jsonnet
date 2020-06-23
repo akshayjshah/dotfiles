@@ -212,12 +212,15 @@ local rules = [
 
   // Social networks, archive automatically.
   {
-    filter: { list: '100002289.xt.local' },
+    filter: {
+      or: [
+        { list: '100002289.xt.local' },  // Yale Today
+        { from: 'yaawebtech@yale.edu' },  // Yale Alumni Digital Events
+        { from: 'weilitheyalie@yale.edu' },  // YAA News
+        { from: 'alumniacademy@yale.edu' },  // Yale Alumni Academy
+      ],
+    },
     actions: school.archive('yale'),  // Yale Today
-  },
-  {
-    filter: { from: 'yaawebtech@yale.edu' },
-    actions: school.archive('yale'),  // Yale Alumni Digital Events
   },
   {
     filter: { from: 'facebookmail.com' },
