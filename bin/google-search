@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+function uriencode() {
+  jq --null-input --raw-output --arg v "$1" '$v|@uri'
+}
+
+term=${1:-}
+open http://www.google.com/search?q="$(uriencode "$term")"

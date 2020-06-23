@@ -50,6 +50,7 @@ set gdefault                    " default to global substitutions
 set hidden                      " allow buffer switching without saving
 set ignorecase                  " clear default
 set inccommand=nosplit          " enable incremental commands
+set keywordprg=google-search    " K to Google word under cursor
 set laststatus=2                " always show status line
 set lazyredraw                  " don't redraw so often, especially mid-macro
 set linebreak                   " soft-wrap only at reasonable points
