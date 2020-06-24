@@ -10,6 +10,7 @@ local me = {
     { to: 'ashah@loom.fyi' },
   ],
 };
+local ham = { markSpam: false };
 local code = {
   newsletter: {
     markSpam: false,
@@ -168,6 +169,10 @@ local rules = [
       markImportant: true,
       labels: ['tax'],
     },
+  },
+  {
+    filter: { from: 'refills@getquip.com' },
+    actions: ham,
   },
 
   // Chatty or self-produced email, archive automatically.
