@@ -183,6 +183,18 @@ local rules = [
   {
     filter: {
       and: [
+        { from: 'proxyvote.com' },
+        { has: 'new shareholder communication available for you to review online' },
+      ],
+    },
+    actions: {
+      markRead: true,
+      archive: true,
+    },
+  },
+  {
+    filter: {
+      and: [
         {
           or: [
             { from: 'DONOTREPLY@myhealth.stanfordhealthcare.org' },
