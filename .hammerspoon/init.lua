@@ -52,7 +52,6 @@ hs.grid.ui.textSize = 16
 -- No animations
 hs.window.animationDuration = 0
 
-require('win')
 require('term')
 require('lock')
 require('sections')
