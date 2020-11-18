@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-GO_VERSION := 1.14.4
+GO_VERSION := 1.14.5
 
 .PHONY: help
 help:
@@ -18,7 +18,6 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	brew install \
 		aspell \
 		bash \
-		cocoapods \
 		curl \
 		direnv \
 		fd \
