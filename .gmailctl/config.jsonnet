@@ -37,6 +37,14 @@ local code = {
     ],
   },
 };
+local merchants = {
+  marketing: {
+    archive: true,
+    markRead: true,
+    markSpam: false,
+    category: 'promotions',
+  },
+};
 local founders = {
   markSpam: false,
   category: 'updates',
@@ -280,14 +288,18 @@ local rules = [
         { not: { from: 'GapCash' } },
       ],
     },
-    actions: {
-      archive: true,
-      markRead: true,
-      markSpam: false,
-      category: 'promotions',
-    },
+    actions: merchants.marketing,
   },
   {
+    filter: { from: 'hello@kickeepants.com' },
+    actions: merchants.marketing,
+  },
+  {
+    filter: { from: 'hello@e.lululemon.com' },
+    actions: merchants.marketing,
+  },
+  {
+
     filter: { list: 'GoSF-list.meetup.com' },
     actions: code.marketing,
   },
