@@ -299,6 +299,10 @@ local rules = [
     actions: merchants.marketing,
   },
   {
+    filter: { from: 'hello@send.vuoriclothing.com' },
+    actions: merchants.marketing,
+  },
+  {
 
     filter: { list: 'GoSF-list.meetup.com' },
     actions: code.marketing,
