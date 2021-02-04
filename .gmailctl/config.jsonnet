@@ -113,6 +113,10 @@ local rules = [
     },
   },
   {
+    filter: { from: 'pacheightskidz@gmail.com' },
+    actions: school.tag('pac-heights-kidz'),
+  },
+  {
     filter: { from: 'choate.edu' },
     actions: school.tag('choate'),
   },
@@ -484,6 +488,7 @@ local rules = [
     { name: 'reference' },
     { name: 'schools' },
     { name: 'schools/choate' },
+    { name: 'schools/pac-heights-kidz' },
     { name: 'schools/pacific-primary' },
     { name: 'schools/yale' },
     { name: 'tax' },
