@@ -16,6 +16,7 @@ setup:: /usr/local/bin/brew  ## Set up a development environment
 	brew tap homebrew/cask-fonts || true
 	brew tap homebrew/cask-versions || true
 	brew install \
+		asdf \
 		aspell \
 		bash \
 		curl \
