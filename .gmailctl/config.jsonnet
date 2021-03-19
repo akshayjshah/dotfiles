@@ -10,6 +10,16 @@ local me = {
     { to: 'ashah@loom.fyi' },
   ],
 };
+local fromMe = {
+  or: [
+    { from: 'akshay@akshayshah.org' },
+    { from: 'amazon@akshayshah.org' },
+    { from: 'ashah@hearsaycorp.com' },
+    { from: 'akshay@hearsaycorp.com' },
+    { from: 'shah@uber.com' },
+    { from: 'ashah@loom.fyi' },
+  ],
+};
 local ham = { markSpam: false };
 local code = {
   newsletter: {
@@ -91,6 +101,20 @@ local exhaust = {
 };
 
 local rules = [
+  // From me, for post-processing later.
+  {
+    filter: {
+      and: [fromMe, { to: 'akshay+star@akshayshah.org' }],
+    },
+    actions: {
+      markSpam: false,
+      markRead: false,
+      archive: true,
+      markImportant: false,
+      star: true,
+      category: 'personal',
+    },
+  },
   // Keep in inbox, but tag automatically.
   {
     filter: {
