@@ -101,20 +101,6 @@ local exhaust = {
 };
 
 local rules = [
-  // From me, for post-processing later.
-  {
-    filter: {
-      and: [fromMe, { to: 'akshay+star@akshayshah.org' }],
-    },
-    actions: {
-      markSpam: false,
-      markRead: false,
-      archive: true,
-      markImportant: false,
-      star: true,
-      category: 'personal',
-    },
-  },
   // Keep in inbox, but tag automatically.
   {
     filter: {
