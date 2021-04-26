@@ -199,6 +199,19 @@ local rules = [
 
   // Chatty or self-produced email, archive automatically.
   {
+    filter: {
+      and: [
+        { subject: '[engineering] Loom daily activity' },
+        { from: 'no-reply@loom.fyi' },
+      ],
+    },
+    actions: {
+      archive: true,
+      markRead: true,
+      markSpam: false,
+    },
+  },
+  {
     filter: { to: 'later@akshayshah.org' },
     actions: exhaust.archive('delayed'),
   },
