@@ -212,6 +212,14 @@ local rules = [
     },
   },
   {
+    filter: { from: 'ama-assn.org' },
+    actions: {
+      archive: true,
+      markRead: true,
+      markSpam: false,
+    },
+  },
+  {
     filter: { to: 'later@akshayshah.org' },
     actions: exhaust.archive('delayed'),
   },
