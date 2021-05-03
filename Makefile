@@ -46,6 +46,7 @@ setup:: ## Set up a development environment
 		htop \
 		jq \
 		lsof \
+		protobuf-compiler \
 		python2 \
 		python3 \
 		python3-pip \
@@ -137,7 +138,9 @@ go-pkg:
 		mvdan.cc/sh/cmd/shfmt \
 		github.com/abhinav/restack/cmd/restack \
 		github.com/mbrt/gmailctl/cmd/gmailctl \
-		github.com/google/go-jsonnet/cmd/...
+		github.com/google/go-jsonnet/cmd/... \
+		google.golang.org/protobuf/cmd/protoc-gen-go \
+		google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 .PHONY: py-pkg
 py-pkg:
