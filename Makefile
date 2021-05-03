@@ -18,8 +18,7 @@ todo:: ## List tasks not managed by this Makefile
 	$(info Create an SSH key and upload it to GitHub.)
 	$(info Change Windows Terminal starting dir: https://docs.microsoft.com/en-us/windows/terminal/troubleshooting#set-your-wsl-distribution-to-start-in-the-home--directory-when-launched.)
 	$(info Initialize gmailctl.)
-	$(info Install Nu?)
-	$(info Nord color theme? Slack theme: https://github.com/arcticicestudio/nord-slack)
+	$(info Install Nu shell?)
 	$(info On Ubuntu 20.10 and later, install exa from apt.)
 
 .PHONY: setup
