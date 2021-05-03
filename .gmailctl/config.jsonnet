@@ -224,13 +224,15 @@ local rules = [
     filter: {
       and: [
         { from: 'proxyvote.com' },
-        { has: 'new shareholder communication available for you to review online' },
+        {
+          or: [
+            { has: 'new shareholder communication available for you to review online' },
+            { has: 'new available shareholders documents'},
+          ],
+        },
       ],
     },
-    actions: {
-      markRead: true,
-      archive: true,
-    },
+    actions: archive,
   },
   {
     filter: {
