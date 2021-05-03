@@ -63,6 +63,11 @@ local founders = {
     'optional',
   ],
 };
+local archive = {
+  archive: true,
+  markRead: true,
+  markSpam: false,
+};
 local social = {
   archive(name): {
     archive: true,
@@ -205,19 +210,11 @@ local rules = [
         { from: 'no-reply@loom.fyi' },
       ],
     },
-    actions: {
-      archive: true,
-      markRead: true,
-      markSpam: false,
-    },
+    actions: archive,
   },
   {
     filter: { from: 'ama-assn.org' },
-    actions: {
-      archive: true,
-      markRead: true,
-      markSpam: false,
-    },
+    actions: archive,
   },
   {
     filter: { to: 'later@akshayshah.org' },
