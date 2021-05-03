@@ -176,6 +176,14 @@ ZSH_THEME_GIT_PROMPT_CLEAN="- "
 PROMPT='${_return_status} %c $(git_prompt_info) > '
 
 #######################################
+# SSH
+#######################################
+if has keychain; then
+	keychain --lockwait 0 --clear ~/.ssh/id_ed25519
+	source ~/.keychain/"$HOST"-sh
+fi
+
+#######################################
 # direnv (must be last!)
 #######################################
 eval "$(direnv hook zsh)"

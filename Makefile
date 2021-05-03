@@ -44,6 +44,7 @@ setup:: ## Set up a development environment
 		graphviz \
 		htop \
 		jq \
+		keychain \
 		lsof \
 		protobuf-compiler \
 		python2 \
