@@ -8,4 +8,4 @@ function uriencode() {
 }
 
 term=${1:-}
-open http://www.google.com/search?q="$(uriencode "$term")"
+browse http://www.google.com/search?q="$(uriencode "$term")"

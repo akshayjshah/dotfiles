@@ -113,6 +113,10 @@ else
 	alias la="ls -A"
 fi
 
+if has fdfind; then
+	alias fd="fdfind"
+fi
+
 alias ts="tmux new-session -s"
 alias ta="tmux attach -t"
 alias tls="tmux ls"

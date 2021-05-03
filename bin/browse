@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+uri=${1:-}
+/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application/msedge.exe "$uri"

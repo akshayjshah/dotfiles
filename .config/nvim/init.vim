@@ -13,6 +13,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
+Plug 'overcache/NeoSolarized'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'spolu/dwm.vim'
 Plug 'tpope/vim-commentary'
@@ -20,7 +21,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
@@ -107,7 +107,7 @@ try
 catch
 endtry
 
-colorscheme nord
+colorscheme NeoSolarized
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Configuration
