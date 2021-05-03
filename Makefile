@@ -90,13 +90,13 @@ update:: ## Update all managed packages and tools
 bin/gimme:
 	mkdir -p $(@D)
 	rm -f $@
-	wget -O $@ https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
+	wget -q -O $@ https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
 	chmod +x $@
 
 bin/dotnet-install.sh:
 	mkdir -p $(@D)
 	rm -f $@
-	wget -O $@ https://dot.net/v1/dotnet-install.sh
+	wget -q -O $@ https://dot.net/v1/dotnet-install.sh
 	chmod +x $@
 
 .dotnet/dotnet: bin/dotnet-install.sh
@@ -105,7 +105,7 @@ bin/dotnet-install.sh:
 bin/nvim:
 	mkdir -p $(@D)
 	rm -f $@
-	wget -O $@ https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+	wget -q -O $@ https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 	chmod u+x $@
 
 projects/z/z.sh:
@@ -115,7 +115,7 @@ projects/z/z.sh:
 bin/diff-so-fancy:
 	mkdir -p $(@D)
 	rm -f $@
-	wget -O $@ https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+	wget -q -O $@ https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
 	chmod +x $@
 
 n/bin/n:
