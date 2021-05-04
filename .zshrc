@@ -5,16 +5,6 @@ function has() {
 }
 
 #######################################
-# vi everywhere
-#######################################
-export EDITOR="vim"
-if has nvim; then
-	alias vim="nvim"
-	alias vimdiff="nvim -d"
-	export EDITOR="nvim"
-fi
-
-#######################################
 # Plugins and Completion
 #######################################
 autoload -U compinit
@@ -77,6 +67,17 @@ export LC_ALL=en_US.UTF-8
 [[ -d /usr/local/opt/make/libexec/gnubin ]] && export PATH=/usr/local/opt/make/libexec/gnubin:$PATH
 [[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+
+#######################################
+# vi everywhere
+#######################################
+# NB, this must come *after* path additions above.
+export EDITOR="vim"
+if has nvim; then
+	alias vim="nvim"
+	alias vimdiff="nvim -d"
+	export EDITOR="nvim"
+fi
 
 #######################################
 # Go
