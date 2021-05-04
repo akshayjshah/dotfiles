@@ -33,7 +33,7 @@
     l = log origin/master..
     ls = branch -v
     popf = checkout "stash@{0}" --
-    pr = !hub pull-request -r stgarrity
+    pr = !hub pull-request
     review = diff --staged
     s = status
     smarten = rebase -i origin/master
