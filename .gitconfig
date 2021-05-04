@@ -5,6 +5,8 @@
     pager = "diff-so-fancy | less --tabs=4 -RFX"
     excludesfile = ~/.gitignore_global
     autocrlf = input
+[init]
+	defaultBranch = main
 [branch]
     autosetupmerge = always
     autosetuprebase = always
