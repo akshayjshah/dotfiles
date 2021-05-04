@@ -128,6 +128,15 @@ local rules = [
     },
   },
   {
+    filter: {
+      or: [
+        { from: 'sfday.org' },
+        { from: 'smarttuition.com' },
+      ],
+    },
+    actions: school.tag('sfday'),
+  },
+  {
     filter: { from: 'pacheightskidz@gmail.com' },
     actions: school.tag('pac-heights-kidz'),
   },
@@ -520,6 +529,7 @@ local rules = [
     { name: 'schools/choate' },
     { name: 'schools/pac-heights-kidz' },
     { name: 'schools/pacific-primary' },
+    { name: 'schools/sfday' },
     { name: 'schools/yale' },
     { name: 'tax' },
     { name: 'work' },
