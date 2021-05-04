@@ -6,7 +6,7 @@
     excludesfile = ~/.gitignore_global
     autocrlf = input
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [branch]
     autosetupmerge = always
     autosetuprebase = always
