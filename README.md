@@ -11,6 +11,6 @@ cd ~
 git init .
 git remote add origin https://github.com/akshayjshah/dotfiles.git
 git fetch
-git reset --mixed origin/master
+git reset --mixed origin/main
 make setup
 ```
