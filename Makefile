@@ -23,20 +23,29 @@ todo:: ## List tasks not managed by this Makefile
 
 .PHONY: setup
 setup:: ## Set up a development environment
+	# Prerequisites for other tools
+	sudo apt install -y \
+		apt-transport-https \
+		build-essential \
+		ca-certificates \
+		curl \
+		git \
+		gnupg \
+		lsb-release \
+		software-properties-common
 	# For Github CLI
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 	sudo apt-add-repository https://cli.github.com/packages
+	# For Azure CLI
+	AZ_REPO=$$(lsb_release -cs) echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $$AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+	# Pull in packages from new repositories.
 	sudo apt update -y
-	# Prerequisites for other tools
-	sudo apt install -y \
-		build-essential \
-		git \
-		software-properties-common
+	sudo apt upgrade -y
 	# Development tools
 	sudo apt install -y \
 		aspell \
+		azure-cli \
 		bash \
-		curl \
 		direnv \
 		fd-find \
 		gh \
