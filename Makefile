@@ -47,6 +47,7 @@ setup:: ## Set up a development environment
 		azure-cli \
 		bash \
 		direnv \
+		dos2unix \
 		fd-find \
 		gh \
 		git-lfs \

@@ -126,7 +126,10 @@ autoload -U zmv
 alias mmv="noglob zmv -W"
 
 # pbcopy-like alias for xclip on Linux
-if has xclip; then
+if has clip.exe; then
+	alias pbcopy='clip.exe'
+	alias pbpaste='powershell.exe -command Get-Clipboard 2> /dev/null | dos2unix | head -c -1'
+elif has xclip; then
 	alias pbcopy='xclip -selection clipboard'
 	alias pbpaste='xclip -selection clipboard -o'
 fi
