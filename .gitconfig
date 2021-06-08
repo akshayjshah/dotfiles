@@ -30,13 +30,13 @@
     recent = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
     rmbranch = branch -D
     graph = log --graph
-    l = log origin/master..
+    l = log origin/main..
     ls = branch -v
     popf = checkout "stash@{0}" --
     pr = !hub pull-request
     review = diff --staged
     s = status
-    smarten = rebase -i origin/master
+    smarten = rebase -i origin/main
     stashall = stash --include-untracked
     undo = reset --mixed HEAD^
     wip = !git add -u . && git commit -m 'WIP'
