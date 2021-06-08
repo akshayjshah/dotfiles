@@ -67,6 +67,7 @@ export LC_ALL=en_US.UTF-8
 [[ -d /usr/local/opt/make/libexec/gnubin ]] && export PATH=/usr/local/opt/make/libexec/gnubin:$PATH
 [[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
 #######################################
 # vi everywhere
