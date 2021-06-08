@@ -53,6 +53,7 @@ setup:: ## Set up a development environment
 		git-lfs \
 		graphviz \
 		htop \
+		imagemagick \
 		jq \
 		keychain \
 		lsof \
