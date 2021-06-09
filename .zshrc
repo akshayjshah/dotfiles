@@ -184,8 +184,7 @@ PROMPT='${_return_status} %c $(git_prompt_info) > '
 # SSH
 #######################################
 if has keychain; then
-	keychain --lockwait 0 --clear ~/.ssh/id_ed25519
-	source ~/.keychain/"$HOST"-sh
+    eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
 fi
 
 #######################################
