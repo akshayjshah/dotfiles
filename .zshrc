@@ -135,8 +135,12 @@ elif has xclip; then
 	alias pbpaste='xclip -selection clipboard -o'
 fi
 
-# open Nautilus from terminals
-if has nautilus; then
+# open GUI file manager from terminals
+if has explorer.exe; then
+    open() {
+        explorer.exe "$1"
+    }
+elif has nautilus; then
 	open() {
 		nautilus "$1" &
 	}
