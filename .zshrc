@@ -14,7 +14,7 @@ compinit -i
 [[ -d ~/.fzf/bin ]] && export PATH=$HOME/.fzf/bin:$PATH
 [[ -f ~/.fzf/shell/completion.zsh ]] && source ~/.fzf/shell/completion.zsh
 [[ -f ~/.fzf/shell/key-bindings.zsh ]] && source ~/.fzf/shell/key-bindings.zsh
-export FZF_DEFAULT_COMMAND='fd --hidden --type f --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fdfind --hidden --type f --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #######################################
