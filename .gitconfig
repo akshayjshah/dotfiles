@@ -25,22 +25,21 @@
 [alias]
     a = add
     amend = commit -a --amend
+    blmain = config branchless.mainBranch main
     c = commit
     co = checkout
-    recent = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
-    rmbranch = branch -D
-    graph = log --graph
     l = log origin/main..
     ls = branch -v
     popf = checkout "stash@{0}" --
     pr = !hub pull-request
+    recent = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
     review = diff --staged
-    s = status
+    rmbranch = branch -D
     smarten = rebase -i origin/main
+    s = status
     stashall = stash --include-untracked
-    undo = reset --mixed HEAD^
-    wip = !git add -u . && git commit -m 'WIP'
     wipe = !git add -A && git commit -qm 'Wipe savepoint' && git reset --hard HEAD^
+    wip = !git add -u . && git commit -m 'WIP'
     wtf = log --follow --stat -p
 [github]
     user = akshayjshah

@@ -36,6 +36,8 @@ setup:: ## Set up a development environment
 	# For Github CLI
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 	sudo apt-add-repository https://cli.github.com/packages
+	# For latest git
+	sudo add-apt-repository ppa:git-core/ppa
 	# For Azure CLI
 	AZ_REPO=$$(lsb_release -cs) echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $$AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
 	# Pull in packages from new repositories.
@@ -50,12 +52,15 @@ setup:: ## Set up a development environment
 		dos2unix \
 		fd-find \
 		gh \
+		git \
 		git-lfs \
 		graphviz \
 		htop \
 		imagemagick \
 		jq \
 		keychain \
+		libncurses-dev \
+		libsqlite3-dev \
 		lsof \
 		protobuf-compiler \
 		python2 \
@@ -147,7 +152,6 @@ go-pkg:
 		github.com/boyter/scc/ \
 		golang.org/x/tools/cmd/... \
 		mvdan.cc/sh/cmd/shfmt \
-		github.com/abhinav/restack/cmd/restack \
 		github.com/mbrt/gmailctl/cmd/gmailctl \
 		github.com/google/go-jsonnet/cmd/... \
 		google.golang.org/protobuf/cmd/protoc-gen-go \
@@ -167,7 +171,7 @@ py-pkg:
 rust-pkg: .cargo/bin/cargo
 	PATH=".cargo/bin:$(PATH)" rustup update
 	PATH=".cargo/bin:$(PATH)" rustup component add rls-preview rust-analysis rust-src
-	~/.cargo/bin/cargo install exa
+	~/.cargo/bin/cargo install exa git-absorb git-branchless
 
 # Add to double-colon rules above in a private, work-specific Makefile.
 -include /mnt/c/Users/aksha/Dropbox/work.mk
