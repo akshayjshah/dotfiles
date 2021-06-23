@@ -145,15 +145,6 @@ local rules = [
     actions: school.tag('choate'),
   },
   {
-    filter: {
-      and: [
-        { from: 'choate.edu' },
-        { or: [{ subject: 'webinar' }, { subject: 'ConnectsUs Newsletter' }] },
-      ],
-    },
-    actions: school.archive('choate'),
-  },
-  {
     filter: { from: 'notifications@github.com' },
     actions: {
       markSpam: false,
@@ -236,7 +227,7 @@ local rules = [
         {
           or: [
             { has: 'new shareholder communication available for you to review online' },
-            { has: 'new available shareholders documents'},
+            { has: 'new available shareholders documents' },
           ],
         },
       ],
@@ -281,6 +272,15 @@ local rules = [
   // Social networks, archive automatically.
   {
     filter: {
+      and: [
+        { from: 'choate.edu' },
+        { or: [{ subject: 'webinar' }, { subject: 'ConnectsUs Newsletter' }] },
+      ],
+    },
+    actions: school.archive('choate'),
+  },
+  {
+    filter: {
       or: [
         { list: '100002289.xt.local' },  // Yale Today
         { from: 'yaawebtech@yale.edu' },  // Yale Alumni Digital Events
@@ -288,7 +288,7 @@ local rules = [
         { from: 'alumniacademy@yale.edu' },  // Yale Alumni Academy
       ],
     },
-    actions: school.archive('yale'),  // Yale Today
+    actions: school.archive('yale'),
   },
   {
     filter: { from: 'facebookmail.com' },
@@ -316,6 +316,10 @@ local rules = [
   {
     filter: { list: 'dbca87c0c0a96a01ae10f5a13.88785.list-id.mcsv.net' },
     actions: founders,  // First Round Review
+  },
+  {
+    filter: { from: 'newsletter@sequoiacap.com' },
+    actions: founders,  // Sequoia's 7 Questions
   },
   {
     filter: { from: 'newsletter@sequoiacap.com' },
@@ -452,6 +456,27 @@ local rules = [
     filter: { list: 'c8d8d18b6e2c6316ddc1d48a0.37209.list-id.mcsv.net' },
     actions: code.newsletter,  // Flutter Weekly
   },
+  {
+    filter: { list: 'matthewyglesias@substack.com' },
+    actions: code.newsletter,  // Matt Yglesias: Slow Boring
+  },
+  {
+    filter: { from: 'newsletter@roamresearch.com' },
+    actions: code.newsletter,  // Roaman Times
+  },
+  {
+    filter: { from: 'nytdirect@nytimes.com' },
+    actions: code.newsletter,  // NY Times
+  },
+  {
+    filter: { from: 'info@highergroundlabs.com' },
+    actions: code.newsletter,  // Higher Ground
+  },
+  {
+    filter: { from: 'team@theprepared.org' },
+    actions: code.newsletter,  // The Prepared
+  },
+
 
   // Newsgroups.
   {
