@@ -10,7 +10,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " General plugins.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'overcache/NeoSolarized'
