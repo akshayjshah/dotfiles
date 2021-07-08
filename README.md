@@ -8,7 +8,7 @@ Makefile.
 
 ```
 cd ~
-git init .
+git init -b main .
 git remote add origin git@github.com:akshayjshah/dotfiles.git
 git fetch
 git reset --mixed origin/main
