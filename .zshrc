@@ -4,6 +4,10 @@ function has() {
 	hash "$1" 2>/dev/null
 }
 
+function addpath() {
+    path=("$1" $path)
+}
+
 #######################################
 # Plugins and Completion
 #######################################
@@ -11,10 +15,8 @@ autoload -U compinit
 compinit -i
 
 [[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
-[[ -d ~/.fzf/bin ]] && export PATH=$HOME/.fzf/bin:$PATH
-[[ -f ~/.fzf/shell/completion.zsh ]] && source ~/.fzf/shell/completion.zsh
-[[ -f ~/.fzf/shell/key-bindings.zsh ]] && source ~/.fzf/shell/key-bindings.zsh
-export FZF_DEFAULT_COMMAND='fdfind --hidden --type f --follow --exclude .git'
+[[ -d /usr/share/fzf ]] && source /usr/share/fzf/{key-bindings,completion}.zsh
+export FZF_DEFAULT_COMMAND='fd --hidden --type f --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #######################################
@@ -64,10 +66,15 @@ export LC_ALL=en_US.UTF-8
 #######################################
 # Path additions
 #######################################
-[[ -d /usr/local/opt/make/libexec/gnubin ]] && export PATH=/usr/local/opt/make/libexec/gnubin:$PATH
-[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
-[[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+# Keep entries unique
+typeset -U path
+# Homebrew-installed GNU coreutils
+[[ -d /usr/local/opt/make/libexec/gnubin ]] && addpath '/usr/local/opt/make/libexec/gnubin'
+[[ -d /usr/local/sbin ]] && addpath '/usr/local/sbin'
+[[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
+[[ -d $HOME/bin ]] && addpath "$HOME/bin"
+[[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
+export PATH
 
 #######################################
 # vi everywhere
@@ -84,20 +91,9 @@ fi
 # Go
 #######################################
 export GOPATH=$HOME
-VERSION=$(grep GO_VERSION ~/Makefile | head -1 | cut -d' ' -f 3)
-GO_ENV=~/.gimme/envs/go"$VERSION".env
-[[ -f $GO_ENV ]] && source "$GO_ENV" 2>/dev/null
-
-#######################################
-# Rust
-#######################################
-[[ -f $HOME/.cargo/env ]] && source "$HOME/.cargo/env"
-
-#######################################
-# node.js
-#######################################
-export N_PREFIX="$HOME/n"
-[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+_GOVERSION=$(grep GO_VERSION ~/Makefile | head -1 | cut -d' ' -f 3)
+_GOBIN="$GOPATH"/bin/go"$_GOVERSION"
+[[ -f "$_GOBIN" ]] && alias go="$_GOBIN"
 
 #######################################
 # Aliases and shortcuts
@@ -116,6 +112,7 @@ else
 fi
 
 if has fdfind; then
+    # Homebrew installs fd as fdfind.
 	alias fd="fdfind"
 fi
 
@@ -149,13 +146,6 @@ elif has nautilus; then
 	}
 fi
 
-# Set the GCP account to use.
-if has gcloud; then
-    function gwork() {
-        gcloud config set account $1
-    }
-fi
-
 #######################################
 # Prompt
 #######################################
@@ -169,7 +159,7 @@ function git_prompt_status() {
 		STATUS="$ZSH_THEME_GIT_PROMPT_CLEAN$STATUS"
 	fi
 
-	echo $STATUS
+	echo "$STATUS"
 }
 
 # Outputs current branch info in prompt format
@@ -185,13 +175,13 @@ local _return_status="%(?. .!)"
 ZSH_THEME_GIT_PROMPT_DIRTY="! "
 ZSH_THEME_GIT_PROMPT_CLEAN="- "
 
-PROMPT='${_return_status} %c $(git_prompt_info) > '
+export PROMPT='${_return_status} %c $(git_prompt_info) > '
 
 #######################################
 # Auto-start graphical session
 #######################################
 if ! grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null; then
-    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
         exec sway
     fi
 fi
@@ -200,7 +190,7 @@ fi
 # SSH
 #######################################
 if has keychain; then
-    eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
+    eval "$(keychain --eval --quiet ~/.ssh/id_ed25519)"
 fi
 
 #######################################
