@@ -133,6 +133,9 @@ if has clip.exe; then
 elif has xclip; then
 	alias pbcopy='xclip -selection clipboard'
 	alias pbpaste='xclip -selection clipboard -o'
+elif has wl-copy; then
+    alias pbcopy='wl-copy --type text'
+    alias pbpaste='wl-paste --type text'
 fi
 
 # open GUI file manager from terminals
