@@ -1,0 +1,4 @@
+black
+neovim
+git-fame
+pipenv

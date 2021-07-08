@@ -1,0 +1,8 @@
+1password
+azure-cli
+clipman
+direnv
+gimme-git
+google-chrome
+google-cloud-sdk
+tmux-plugin-manager
