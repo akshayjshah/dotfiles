@@ -185,6 +185,15 @@ ZSH_THEME_GIT_PROMPT_CLEAN="- "
 PROMPT='${_return_status} %c $(git_prompt_info) > '
 
 #######################################
+# Auto-start graphical session
+#######################################
+if ! grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null; then
+    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+        exec sway
+    fi
+fi
+
+#######################################
 # SSH
 #######################################
 if has keychain; then
@@ -195,3 +204,4 @@ fi
 # direnv (must be last!)
 #######################################
 eval "$(direnv hook zsh)"
+
