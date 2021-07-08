@@ -14,6 +14,8 @@
 !.config/fontconfig/conf.d/10-powerline-symbols.conf
 !.config/oni
 !.config/oni/config.tsx
+!.config/sway
+!.config/sway/config
 !.gmailctl/
 !.gmailctl/config.jsonnet
 !.gmailctl/gmailctl.libsonnet
