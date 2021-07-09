@@ -7,6 +7,7 @@ set $right l
 set $term alacritty
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+# Background color matches Nord.
 output * bg #2E3440 solid_color
 
 exec swayidle -w \
@@ -14,7 +15,14 @@ exec swayidle -w \
     timeout 2100 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
     before-sleep '~/bin/lock.sh'
 exec wl-paste -t text --watch clipman store
+# Notifications
 exec mako
+# Make screen sharing work (see https://wiki.archlinux.org/title/PipeWire)
+# NB, WAYLAND_DISPLAY is already passed through by including the system-wide
+# Sway configs.
+exec dbus-update-activation-environment --systemd \
+    XDG_CURRENT_DESKTOP=sway \
+    XDG_SESSION_TYPE=sway
 
 input "type:keyboard" {
     xkb_options caps:swapescape
