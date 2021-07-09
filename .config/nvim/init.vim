@@ -12,8 +12,8 @@ call plug#begin('~/.config/nvim/plugged')
 " General plugins.
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
-Plug 'overcache/NeoSolarized'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'shaunsingh/nord.nvim'
 Plug 'spolu/dwm.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -106,7 +106,7 @@ try
 catch
 endtry
 
-colorscheme NeoSolarized
+colorscheme nord
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Configuration
