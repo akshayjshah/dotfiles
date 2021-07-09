@@ -98,8 +98,8 @@ set list lcs=tab:»\ ,trail:·
 set wig+=*/dist,*.o,*.class,*.pyc,*.pyo
 
 " Use global Python, so plugins work in virtualenvs.
-let g:python_host_prog = '/usr/local/bin/python2'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python'
 
 try
     lang en_US
