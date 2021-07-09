@@ -38,6 +38,7 @@ python
 python-pip
 ranger
 ripgrep
+rofimoji
 ruby
 rustup
 shellcheck
@@ -55,6 +56,9 @@ tree
 vim
 wget
 which
+wofi
 wl-clipboard
+wtype
 xdg-user-dirs
+xdotool
 zsh
