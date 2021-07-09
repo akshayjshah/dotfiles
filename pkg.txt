@@ -29,6 +29,7 @@ man-db
 man-pages
 neovim
 noto-fonts
+noto-fonts-emoji
 openssh
 pacman-contrib
 pkgstats
