@@ -16,6 +16,8 @@
 !.config/flake8
 !.config/fontconfig/
 !.config/fontconfig/fonts.conf
+!.config/i3status
+!.config/i3status/config
 !.config/nvim/
 !.config/nvim/init.vim
 !.config/oni

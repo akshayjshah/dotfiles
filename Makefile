@@ -35,6 +35,7 @@ sys-pkg:
 aur-pkg: sys-pkg rust-pkg
 	@# https://support.1password.com/install-linux/#arch-linux
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+	curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
 	for pkg in `cat aurpkg.txt`; do \
 		pacman -Qi "$$pkg" >/dev/null 2>&1 || rua install "$$pkg" ; \
 		done
