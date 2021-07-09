@@ -6,5 +6,6 @@ fontpreview
 gimme-git
 google-chrome
 google-cloud-sdk
+informant
 nerd-fonts-source-code-pro
 tmux-plugin-manager

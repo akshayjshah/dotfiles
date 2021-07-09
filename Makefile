@@ -37,11 +37,13 @@ aur-pkg: sys-pkg rust-pkg
 	for pkg in `cat aurpkg.txt`; do \
 		pacman -Qi "$$pkg" >/dev/null 2>&1 || rua install "$$pkg" ; \
 		done
+	sudo usermod -a -G informant $(USER)
 
 .PHONY: update
 update:: ## Update all managed packages and tools
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
+	informant read
 	sudo pacman -Syu
 	$(MAKE) rust-pkg go-pkg py-pkg
 	rua upgrade
