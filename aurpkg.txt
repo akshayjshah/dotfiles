@@ -2,7 +2,9 @@
 azure-cli
 clipman
 direnv
+fontpreview
 gimme-git
 google-chrome
 google-cloud-sdk
+nerd-fonts-source-code-pro
 tmux-plugin-manager

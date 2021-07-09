@@ -32,7 +32,6 @@ noto-fonts
 openssh
 pacman-contrib
 pkgstats
-powerline-fonts
 protobuf
 python
 python-pip
