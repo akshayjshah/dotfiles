@@ -14,8 +14,7 @@
 !.config/chrome-flags.conf
 !.config/flake8
 !.config/fontconfig/
-!.config/fontconfig/conf.d/
-!.config/fontconfig/conf.d/10-powerline-symbols.conf
+!.config/fontconfig/fonts.conf
 !.config/nvim/
 !.config/nvim/init.vim
 !.config/oni
