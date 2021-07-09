@@ -1,0 +1,26 @@
+import:
+  - ~/.config/alacritty/nord.yml
+
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: alacritty
+
+font:
+  size: 12.0
+  normal:
+    family: SauceCodePro Nerd Font Mono
+    style: Regular
+  bold:
+    style: Bold
+  italic:
+    style: Italic
+  bold_italic:
+    style: Bold Italic
+
+background_opacity: 1.0
+
