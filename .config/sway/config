@@ -12,8 +12,7 @@ output * bg #2E3440 solid_color
 exec swayidle -w \
     timeout 1800 'swaylock' \
     timeout 2100 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock'
-
+    before-sleep '~/bin/lock.sh'
 exec wl-paste -t text --watch clipman store
 exec mako
 
@@ -28,8 +27,8 @@ bindsym $mod+Shift+q kill
 # Start your launcher
 bindsym $mod+Space exec $menu
 # Lock screen
-bindsym $mod+Mod1+L exec swaylock
-bindsym Pause exec swaylock
+bindsym $mod+Mod1+L exec ~/bin/lock.sh
+bindsym Pause exec ~/bin/lock.sh
 # Insert emoji
 bindsym $mod+Insert exec rofimoji
 # Screenshot
@@ -152,6 +151,15 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# Sound
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 bar {
     position top
