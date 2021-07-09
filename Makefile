@@ -19,6 +19,7 @@ todo:: ## List tasks not managed by this Makefile
 	$(info Create an SSH key and upload it to GitHub.)
 	$(info Change Windows Terminal starting dir: https://docs.microsoft.com/en-us/windows/terminal/troubleshooting#set-your-wsl-distribution-to-start-in-the-home--directory-when-launched.)
 	$(info Initialize gmailctl.)
+	$(info Enable native notifications in Chrome: chrome://flags)
 
 .PHONY: setup
 setup:: sys-pkg aur-pkg rust-pkg go-pkg py-pkg ## Set up a development environment
@@ -38,6 +39,7 @@ aur-pkg: sys-pkg rust-pkg
 		pacman -Qi "$$pkg" >/dev/null 2>&1 || rua install "$$pkg" ; \
 		done
 	sudo usermod -a -G informant $(USER)
+	xdg-settings set default-web-browser google-chrome.desktop
 
 .PHONY: update
 update:: ## Update all managed packages and tools
