@@ -28,6 +28,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Space exec $menu
 # Lock screen
 bindsym $mod+Mod1+L exec swaylock -f -c 222222
+bindsym Pause exec swaylock -f -c 222222
 # Insert emoji
 bindsym $mod+Insert exec rofimoji
 
