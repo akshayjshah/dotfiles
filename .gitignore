@@ -21,6 +21,8 @@
 !.config/oni/config.tsx
 !.config/sway
 !.config/sway/config
+!.config/swaylock
+!.config/swaylock/config
 !deps.txt
 !.en_us.utf-8.add
 !.gitconfig

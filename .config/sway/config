@@ -10,9 +10,9 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 output * bg #2E3440 solid_color
 
 exec swayidle -w \
-    timeout 1800 'swaylock -f -c 2E3440' \
+    timeout 1800 'swaylock' \
     timeout 2100 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -c 000000'
+    before-sleep 'swaylock'
 
 exec wl-paste -t text --watch clipman store
 exec mako
@@ -28,8 +28,8 @@ bindsym $mod+Shift+q kill
 # Start your launcher
 bindsym $mod+Space exec $menu
 # Lock screen
-bindsym $mod+Mod1+L exec swaylock -f -c 2E3440
-bindsym Pause exec swaylock -f -c 2E3440
+bindsym $mod+Mod1+L exec swaylock
+bindsym Pause exec swaylock
 # Insert emoji
 bindsym $mod+Insert exec rofimoji
 # Screenshot

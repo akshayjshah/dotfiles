@@ -1,4 +1,5 @@
 alacritty
+adobe-source-sans-fonts
 aspell
 aspell-en
 base
