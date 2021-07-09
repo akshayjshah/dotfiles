@@ -8,12 +8,14 @@ dmenu
 dotnet-sdk
 exa
 fd
+feh
 fzf
 git
 github-cli
 git-lfs
 go
 graphviz
+grim
 htop
 i3status
 imagemagick
@@ -21,10 +23,12 @@ imagemagick-doc
 intel-ucode
 jq
 keychain
+libnotify
 lsb-release
 lsof
 lua
 make
+mako
 man-db
 man-pages
 neovim
@@ -43,6 +47,7 @@ ruby
 rustup
 shellcheck
 shfmt
+slurp
 sqlite
 sudo
 sway

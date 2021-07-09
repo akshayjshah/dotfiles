@@ -15,6 +15,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f -c 000000'
 
 exec wl-paste -t text --watch clipman store
+exec mako
 
 input "type:keyboard" {
     xkb_options caps:swapescape
@@ -31,6 +32,8 @@ bindsym $mod+Mod1+L exec swaylock -f -c 222222
 bindsym Pause exec swaylock -f -c 222222
 # Insert emoji
 bindsym $mod+Insert exec rofimoji
+# Screenshot
+bindsym Print exec ~/bin/screenshot.sh
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
