@@ -9,6 +9,7 @@ google-chrome
 google-cloud-sdk
 informant
 nerd-fonts-source-code-pro
+roam-research
 tmux-plugin-manager
 thunar-dropbox
 zoom
