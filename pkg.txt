@@ -64,6 +64,9 @@ swaybg
 swayidle
 swaylock
 texinfo
+thunar
+thunar-archive-plugin
+thunar-volman
 tig
 tmux
 tree

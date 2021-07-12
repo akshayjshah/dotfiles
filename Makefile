@@ -36,6 +36,9 @@ aur-pkg: sys-pkg rust-pkg
 	@# https://support.1password.com/install-linux/#arch-linux
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 	curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
+	curl -sS https://linux.dropbox.com/fedora/rpm-public-key.asc | gpg --import -
+	@# Prevent Dropbox from auto-updating and putting systemd in a restart loop.
+	rm -rf ~/.dropbox-dist && mkdir ~/.dropbox-dist && chmod 0400 ~/.dropbox-dist
 	for pkg in `cat aurpkg.txt`; do \
 		pacman -Qi "$$pkg" >/dev/null 2>&1 || rua install "$$pkg" ; \
 		done

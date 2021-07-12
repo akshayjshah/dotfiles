@@ -1,3 +1,4 @@
 base-devel
 bubblewrap
+python-gpgme
 xz

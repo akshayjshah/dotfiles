@@ -2,6 +2,7 @@
 azure-cli
 clipman
 direnv
+dropbox
 fontpreview
 gimme-git
 google-chrome
@@ -9,4 +10,5 @@ google-cloud-sdk
 informant
 nerd-fonts-source-code-pro
 tmux-plugin-manager
+thunar-dropbox
 zoom
