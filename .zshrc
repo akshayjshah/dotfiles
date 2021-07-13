@@ -84,7 +84,6 @@ typeset -U path
 [[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
 [[ -d $HOME/bin ]] && addpath "$HOME/bin"
 [[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
-[[ -x /opt/roam-research/roam-research ]] && addpath "/opt/roam-research"
 export PATH
 
 #######################################
