@@ -106,6 +106,11 @@ _GOBIN="$GOPATH"/bin/go"$_GOVERSION"
 [[ -f "$_GOBIN" ]] && alias go="$_GOBIN"
 
 #######################################
+# Node.js (reluctantly)
+#######################################
+[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+
+#######################################
 # Aliases and shortcuts
 #######################################
 alias :q="exit"
