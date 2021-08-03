@@ -37,6 +37,7 @@ neovim
 noto-fonts
 noto-fonts-emoji
 openssh
+p7zip
 pacman-contrib
 pavucontrol
 pipewire
@@ -69,6 +70,7 @@ thunar-archive-plugin
 thunar-volman
 tig
 tmux
+unzip
 tree
 vim
 wget
@@ -76,8 +78,10 @@ which
 wofi
 wl-clipboard
 wtype
+xarchiver
 xdg-desktop-portal
 xdg-desktop-portal-wlr
 xdg-user-dirs
 xdotool
+zip
 zsh
