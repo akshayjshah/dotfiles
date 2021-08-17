@@ -6,7 +6,7 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-GO_VERSION := 1.16.5
+GO_VERSION := 1.17
 PACMAN_NOWARN := grep -v 'warning: .* is up to date -- skipping$$'
 
 .PHONY: help
@@ -73,7 +73,7 @@ projects/z/z.sh:
 
 .PHONY: go-pkg
 go-pkg: sys-pkg
-	GOPATH=$(HOME) go get golang.org/dl/go$(GO_VERSION)
+	GOPATH=$(HOME) go install golang.org/dl/go$(GO_VERSION)@latest
 	[[ -d $(HOME)/sdk/go$(GO_VERSION) ]] || bin/go$(GO_VERSION) download
 	GOPATH=$(HOME) bin/go$(GO_VERSION) get -u `paste -sd ' ' gopkg.txt`
 
