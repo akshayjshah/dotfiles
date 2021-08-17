@@ -1,5 +1,6 @@
 1password
 azure-cli
+brother-hl2270dw
 clipman
 direnv
 dropbox

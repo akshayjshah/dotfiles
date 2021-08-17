@@ -5,9 +5,12 @@ aspell
 aspell-en
 base
 bash
+cups
+cups-pdf
 diff-so-fancy
 dmenu
 dotnet-sdk
+evince
 exa
 fd
 feh
@@ -64,6 +67,7 @@ sway
 swaybg
 swayidle
 swaylock
+system-config-printer
 texinfo
 thunar
 thunar-archive-plugin
