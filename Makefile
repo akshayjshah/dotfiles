@@ -44,6 +44,7 @@ aur-pkg: sys-pkg rust-pkg
 		done
 	sudo usermod -a -G informant $(USER)
 	xdg-settings set default-web-browser google-chrome.desktop
+	xdg-mime default google-chrome.desktop image/svg+xml
 
 .PHONY: update
 update:: ## Update all managed packages and tools
