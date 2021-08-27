@@ -28,6 +28,7 @@ setup:: sys-pkg aur-pkg rust-pkg go-pkg py-pkg ## Set up a development environme
 .PHONY: sys-pkg
 sys-pkg:
 	sudo pacman -Syu --needed < pkg.txt 2>&1 | $(PACMAN_NOWARN)
+	sudo usermod -a -G docker $(USER)
 	sudo pacman -S --asdeps < deps.txt 2>&1 | $(PACMAN_NOWARN) || true
 	rustup default stable
 	flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo

@@ -9,6 +9,7 @@ cups
 cups-pdf
 diff-so-fancy
 dmenu
+docker
 dotnet-sdk
 evince
 exa
