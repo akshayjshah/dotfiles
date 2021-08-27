@@ -46,11 +46,11 @@ ulimit -S -n 4096
 # History
 #######################################
 if [ -z "$HISTFILE" ]; then
-	HISTFILE=$HOME/.zsh_history
+	export HISTFILE=$HOME/.zsh_history
 fi
 
-HISTSIZE=100000
-HISTFILESIZE=100000
+export SAVEHIST=1000000 # entries to save
+export HISTSIZE=1000000 # entries to load
 HIST_STAMPS="yyyy-mm-dd"
 
 # Show history.
@@ -61,13 +61,10 @@ case $HIST_STAMPS in
 *) alias history='fc -l 1' ;;
 esac
 
-setopt append_history
-setopt extended_history
 setopt hist_expire_dups_first
-setopt hist_ignore_dups
+setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_verify
-setopt inc_append_history
 setopt share_history
 
 #######################################
