@@ -30,6 +30,7 @@ sys-pkg:
 	sudo pacman -Syu --needed < pkg.txt 2>&1 | $(PACMAN_NOWARN)
 	sudo pacman -S --asdeps < deps.txt 2>&1 | $(PACMAN_NOWARN) || true
 	rustup default stable
+	flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 .PHONY: aur-pkg
 aur-pkg: sys-pkg rust-pkg
@@ -45,6 +46,7 @@ aur-pkg: sys-pkg rust-pkg
 	sudo usermod -a -G informant $(USER)
 	xdg-settings set default-web-browser google-chrome.desktop
 	xdg-mime default google-chrome.desktop image/svg+xml
+	flatpak install --user -y us.zoom.Zoom
 
 .PHONY: update
 update:: ## Update all managed packages and tools
@@ -54,6 +56,7 @@ update:: ## Update all managed packages and tools
 	sudo pacman -Syu
 	$(MAKE) rust-pkg go-pkg py-pkg
 	rua upgrade
+	flatpak upgrade
 	rm -rf projects/z .tmux/plugins
 	$(MAKE) projects/z/z.sh
 	nvim +PlugUpgrade +PlugUpdate +qa

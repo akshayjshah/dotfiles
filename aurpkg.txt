@@ -14,4 +14,3 @@ nvm
 roam-research
 tmux-plugin-manager
 thunar-dropbox
-zoom

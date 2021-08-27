@@ -16,6 +16,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+if [[ -d ~/.local/share/flatpak/exports/share/applications ]]; then
+    export XDG_DATA_DIRS="~/.local/share/flatpak/exports/share/applications:$XDG_DATA_DIRS"
+fi
 export XDG_CONFIG_DIRS="/etc/xdg"
 
 #######################################
@@ -84,6 +87,7 @@ typeset -U path
 [[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
 [[ -d $HOME/bin ]] && addpath "$HOME/bin"
 [[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
+[[ -d $HOME/.local/share/flatpak/exports/bin ]] && addpath "$HOME/.local/share/flatpak/exports/bin"
 export PATH
 
 #######################################
