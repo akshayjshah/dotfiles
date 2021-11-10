@@ -31,7 +31,7 @@ sys-pkg:
 	sudo usermod -a -G docker $(USER)
 	sudo pacman -S --asdeps < deps.txt 2>&1 | $(PACMAN_NOWARN) || true
 	rustup default stable
-	flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+	flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
 
 .PHONY: aur-pkg
 aur-pkg: sys-pkg rust-pkg
