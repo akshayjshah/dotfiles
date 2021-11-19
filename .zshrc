@@ -15,11 +15,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_DATA_DIRS="/usr/local/share:/usr/share"
-if [[ -d ~/.local/share/flatpak/exports/share/applications ]]; then
-    export XDG_DATA_DIRS="~/.local/share/flatpak/exports/share/applications:$XDG_DATA_DIRS"
-fi
-export XDG_CONFIG_DIRS="/etc/xdg"
 
 #######################################
 # Plugins and Completion
@@ -28,7 +23,7 @@ autoload -U compinit
 compinit -i
 
 [[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
-[[ -d /usr/share/fzf ]] && source /usr/share/fzf/{key-bindings,completion}.zsh
+[[ -f "$XDG_CONFIG_HOME"/fzf/fzf.zsh ]] && source "$XDG_CONFIG_HOME"/fzf/fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --hidden --type f --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -51,9 +46,9 @@ fi
 
 export SAVEHIST=1000000 # entries to save
 export HISTSIZE=1000000 # entries to load
-HIST_STAMPS="yyyy-mm-dd"
 
 # Show history.
+HIST_STAMPS="yyyy-mm-dd"
 case $HIST_STAMPS in
 "mm/dd/yyyy") alias history='fc -fl 1' ;;
 "dd.mm.yyyy") alias history='fc -El 1' ;;
@@ -65,7 +60,11 @@ setopt hist_expire_dups_first
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_verify
-setopt share_history
+
+# ...but we'd prefer to use McFly instead
+if has mcfly; then
+    eval "$(mcfly init zsh)"
+fi
 
 #######################################
 # Languages and Terminfo
@@ -79,12 +78,16 @@ export LC_ALL=en_US.UTF-8
 # Keep entries unique
 typeset -U path
 # Homebrew-installed GNU coreutils
-[[ -d /usr/local/opt/make/libexec/gnubin ]] && addpath '/usr/local/opt/make/libexec/gnubin'
+BREW_PREFIX=$HOME
+if has brew; then
+    BREW_PREFIX=$(brew --prefix)
+fi
+[[ -d "$BREW_PREFIX"/opt/coreutils/libexec/gnubin ]] && addpath "$BREW_PREFIX/opt/make/libexec/gnubin"
 [[ -d /usr/local/sbin ]] && addpath '/usr/local/sbin'
 [[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
 [[ -d $HOME/bin ]] && addpath "$HOME/bin"
 [[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
-[[ -d $HOME/.local/share/flatpak/exports/bin ]] && addpath "$HOME/.local/share/flatpak/exports/bin"
+[[ -d "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]] && source "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/{completion,path}.zsh.inc
 export PATH
 
 #######################################
@@ -109,7 +112,9 @@ _GOBIN="$GOPATH"/bin/go"$_GOVERSION"
 #######################################
 # Node.js (reluctantly)
 #######################################
-[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+export NVM_DIR=$HOME/.nvm
+[[ -d "$NVM_DIR" ]] || mkdir "$NVM_DIR"
+[[ -f "$BREW_PREFIX"/opt/nvm/nvm.sh ]] && source "$BREW_PREFIX"/opt/nvm/nvm.sh
 
 #######################################
 # Aliases and shortcuts
@@ -125,11 +130,6 @@ else
 	alias ls="ls -CF"
 	alias ll="ls -ahlF"
 	alias la="ls -A"
-fi
-
-if has fdfind; then
-    # Homebrew installs fd as fdfind.
-	alias fd="fdfind"
 fi
 
 alias ts="tmux new-session -s"
@@ -192,15 +192,6 @@ ZSH_THEME_GIT_PROMPT_DIRTY="! "
 ZSH_THEME_GIT_PROMPT_CLEAN="- "
 
 export PROMPT='${_return_status} %c $(git_prompt_info) > '
-
-#######################################
-# Auto-start graphical session
-#######################################
-if ! grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null; then
-    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec sway
-    fi
-fi
 
 #######################################
 # SSH

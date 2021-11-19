@@ -6,8 +6,7 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-GO_VERSION := 1.17
-PACMAN_NOWARN := grep -v 'warning: .* is up to date -- skipping$$'
+GO_VERSION := 1.17.2
 
 .PHONY: help
 help:
@@ -17,80 +16,75 @@ help:
 .PHONY: todo
 todo:: ## List tasks not managed by this Makefile
 	$(info Create an SSH key and upload it to GitHub.)
-	$(info Change Windows Terminal starting dir: https://docs.microsoft.com/en-us/windows/terminal/troubleshooting#set-your-wsl-distribution-to-start-in-the-home--directory-when-launched.)
+	$(info Install Roam Research.)
 	$(info Initialize gmailctl.)
-	$(info Enable native notifications in Chrome: chrome://flags)
 
 .PHONY: setup
-setup:: sys-pkg aur-pkg rust-pkg go-pkg py-pkg ## Set up a development environment
-	$(MAKE) projects/z/z.sh  # z auto-jumper
+setup:: sys-pkg rust-pkg ## Set up a development environment
+	$(MAKE) go-pkg py-pkg
+	$(MAKE) projects/z/z.sh
+	$(MAKE) .tmux/plugins/tpm/tpm
 
 .PHONY: sys-pkg
-sys-pkg:
-	sudo pacman -Syu --needed < pkg.txt 2>&1 | $(PACMAN_NOWARN)
-	sudo usermod -a -G docker $(USER)
-	sudo pacman -S --asdeps < deps.txt 2>&1 | $(PACMAN_NOWARN) || true
-	rustup default stable
-	flatpak remote-add --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
-
-.PHONY: aur-pkg
-aur-pkg: sys-pkg rust-pkg
-	@# https://support.1password.com/install-linux/#arch-linux
-	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-	curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
-	curl -sS https://linux.dropbox.com/fedora/rpm-public-key.asc | gpg --import -
-	@# Prevent Dropbox from auto-updating and putting systemd in a restart loop.
-	rm -rf ~/.dropbox-dist && mkdir ~/.dropbox-dist && chmod 0400 ~/.dropbox-dist
-	for pkg in `cat aurpkg.txt`; do \
-		pacman -Qi "$$pkg" >/dev/null 2>&1 || rua install "$$pkg" ; \
-		done
-	sudo usermod -a -G informant $(USER)
-	xdg-settings set default-web-browser google-chrome.desktop
-	xdg-mime default google-chrome.desktop image/svg+xml
-	flatpak install --user -y us.zoom.Zoom
+sys-pkg:: /usr/local/bin/brew .cargo/bin/cargo
+	brew tap cantino/mcfly
+	brew tap homebrew/cask
+	brew tap homebrew/cask-fonts
+	brew install $$(cat brewpkg.txt)
+	$$(brew --prefix)/opt/fzf/install --no-fish --no-update-rc --xdg --key-bindings --completion
+	brew install --cask $$(cat caskpkg.txt)
+	.cargo/bin/rustup default stable
 
 .PHONY: update
-update:: ## Update all managed packages and tools
+update:: /usr/local/bin/brew ## Update all managed packages and tools
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	informant read
-	sudo pacman -Syu
+	brew update
+	brew upgrade
 	$(MAKE) rust-pkg go-pkg py-pkg
-	rua upgrade
-	flatpak upgrade
 	rm -rf projects/z .tmux/plugins
 	$(MAKE) projects/z/z.sh
+	$(MAKE) .tmux/plugins/tpm/tpm
 	nvim +PlugUpgrade +PlugUpdate +qa
 	gmailctl apply
 
 .PHONY: clean
 clean:: ## Partially clean up installed resources
-	sudo pacman -Sc
-	paccache -r
+	brew cleanup
 	rm -f $(GOPATH)/bin/go1.*
 	rm -rf projects/z
 	rm -rf .tmux/plugins
 	nvim +PlugClean +qa
 
+.PHONY: go-pkg
+go-pkg:
+	GOPATH=$(HOME) go install golang.org/dl/go$(GO_VERSION)@latest
+	[[ -d $(HOME)/sdk/go$(GO_VERSION) ]] || bin/go$(GO_VERSION) download
+	GOPATH=$(HOME) bin/go$(GO_VERSION) get -u $$(cat gopkg.txt)
+
+.PHONY: py-pkg
+py-pkg:
+	python3 -m pip install -U $$(cat pypkg.txt)
+
+.PHONY: rust-pkg
+rust-pkg: .cargo/bin/cargo
+	.cargo/bin/rustup update
+	.cargo/bin/rustup component add rls-preview rust-analysis rust-src
+	.cargo/bin/cargo install $$(cat rustpkg.txt)
+
+/usr/local/bin/brew:
+	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+.cargo/bin/cargo:
+	curl https://sh.rustup.rs -sSf | sh
+
 projects/z/z.sh:
 	rm -rf $(@D)
 	git clone https://github.com/rupa/z ~/projects/z
 
-.PHONY: go-pkg
-go-pkg: sys-pkg
-	GOPATH=$(HOME) go install golang.org/dl/go$(GO_VERSION)@latest
-	[[ -d $(HOME)/sdk/go$(GO_VERSION) ]] || bin/go$(GO_VERSION) download
-	GOPATH=$(HOME) bin/go$(GO_VERSION) get -u `paste -sd ' ' gopkg.txt`
-
-.PHONY: py-pkg
-py-pkg: sys-pkg
-	python -m pip install -U `paste -sd ' ' pypkg.txt`
-
-.PHONY: rust-pkg
-rust-pkg: sys-pkg
-	rustup update
-	rustup component add rls-preview rust-analysis rust-src
-	cargo install `paste -sd ' ' rustpkg.txt`
+.tmux/plugins/tpm/tpm:
+	mkdir -p .tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Add to double-colon rules above in a private, work-specific Makefile.
--include /mnt/c/Users/aksha/Dropbox/work.mk
+-include Dropbox/work.mk

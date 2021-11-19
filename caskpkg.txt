@@ -1,0 +1,15 @@
+1password
+1password-cli
+alfred
+docker
+dropbox
+font-fira-code-nerd-font
+font-fira-sans
+font-powerline-symbols
+google-chrome
+google-cloud-sdk
+kitty
+slack
+spotify
+visual-studio-code
+zoom
