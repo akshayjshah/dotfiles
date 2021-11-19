@@ -5,14 +5,7 @@
 
 !.bash_profile
 !.config/
-!.config/alacritty
-!.config/alacritty/alacritty.yml
-!.config/chrome-flags.conf
 !.config/flake8
-!.config/fontconfig/
-!.config/fontconfig/fonts.conf
-!.config/i3status
-!.config/i3status/config
 !.config/kitty/
 !.config/kitty/kitty.conf
 !.config/kitty/nord.conf
@@ -20,10 +13,6 @@
 !.config/nvim/init.vim
 !.config/oni
 !.config/oni/config.tsx
-!.config/sway
-!.config/sway/config
-!.config/swaylock
-!.config/swaylock/config
 !.en_us.utf-8.add
 !.gitconfig
 !.gitignore
@@ -31,14 +20,10 @@
 !.gmailctl/
 !.gmailctl/config.jsonnet
 !.gmailctl/gmailctl.libsonnet
-!.hammerspoon/
-!.hammerspoon/*.lua
 !.tmux.conf
 !.zshrc
 !bin
 !bin/google-search
-!bin/lock.sh
-!bin/screenshot.sh
 !brewpkg.txt
 !caskpkg.txt
 !deps.txt
