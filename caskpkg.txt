@@ -9,6 +9,7 @@ font-powerline-symbols
 google-chrome
 google-cloud-sdk
 kitty
+signal
 slack
 spotify
 visual-studio-code
