@@ -36,4 +36,5 @@ tree
 unzip
 vim
 wget
+xsv
 zsh
