@@ -6,7 +6,7 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-GO_VERSION := 1.17.2
+GO_VERSION := 1.17.5
 
 .PHONY: help
 help:
