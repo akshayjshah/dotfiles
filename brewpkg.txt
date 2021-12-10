@@ -9,6 +9,7 @@ fd
 fzf
 gh
 git
+git-absorb
 git-lfs
 go
 graphviz

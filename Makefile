@@ -70,7 +70,7 @@ py-pkg:
 rust-pkg: .cargo/bin/cargo
 	.cargo/bin/rustup update
 	.cargo/bin/rustup component add rls-preview rust-analysis rust-src
-	.cargo/bin/cargo install $$(cat rustpkg.txt)
+	.cargo/bin/cargo install --locked $$(cat rustpkg.txt)
 
 /usr/local/bin/brew:
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
