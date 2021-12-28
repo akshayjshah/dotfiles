@@ -13,4 +13,3 @@ signal
 slack
 spotify
 visual-studio-code
-zoom

@@ -17,6 +17,7 @@ help:
 todo:: ## List tasks not managed by this Makefile
 	$(info Create an SSH key and upload it to GitHub.)
 	$(info Install Roam Research.)
+	$(info Install Zoom.)
 	$(info Initialize gmailctl.)
 
 .PHONY: setup
