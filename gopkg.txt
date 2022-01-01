@@ -1,8 +1,0 @@
-github.com/boyter/scc/
-github.com/google/go-jsonnet/cmd/...
-github.com/mbrt/gmailctl/cmd/gmailctl
-golang.org/x/lint/golint
-golang.org/x/tools/cmd/...
-golang.org/x/perf/cmd/benchstat
-google.golang.org/grpc/cmd/protoc-gen-go-grpc
-google.golang.org/protobuf/cmd/protoc-gen-go
