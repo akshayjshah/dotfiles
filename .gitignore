@@ -26,7 +26,6 @@
 !bin/google-search
 !brewpkg.txt
 !caskpkg.txt
-!deps.txt
 !gopkg.txt
 !pypkg.txt
 !rustpkg.txt
