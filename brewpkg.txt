@@ -11,6 +11,7 @@ gh
 git
 git-absorb
 git-lfs
+gnu-sed
 go
 graphviz
 htop
