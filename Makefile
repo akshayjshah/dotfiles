@@ -62,10 +62,6 @@ go-pkg:
 	GOPATH=$(HOME) go install golang.org/dl/go$(GO_VERSION)@latest
 	[[ -d $(HOME)/sdk/go$(GO_VERSION) ]] || bin/go$(GO_VERSION) download
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/boyter/scc@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install \
-		github.com/google/go-jsonnet/cmd/jsonnet-lint@latest \
-		github.com/google/go-jsonnet/cmd/jsonnet@latest \
-		github.com/google/go-jsonnet/cmd/jsonnetfmt@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/mbrt/gmailctl/cmd/gmailctl@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/lint/golint@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/perf/cmd/benchstat@latest
@@ -77,6 +73,7 @@ go-pkg:
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/tools/gopls@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/orlangure/gocovsh@latest
 
 .PHONY: bin/gotip
 bin/gotip:
