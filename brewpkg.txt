@@ -16,6 +16,7 @@ go
 graphviz
 htop
 imagemagick
+jo
 jq
 keychain
 lsof
