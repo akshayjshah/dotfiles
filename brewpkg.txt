@@ -41,3 +41,5 @@ vim
 wget
 xsv
 zsh
+
+earthly/earthly/earthly
