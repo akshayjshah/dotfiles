@@ -5,18 +5,23 @@ SHELL := bash
 .DEFAULT_GOAL := help
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
+MAKEFLAGS += --no-print-directory
 
 GO_VERSION := 1.18rc1
+
+ifeq ($(shell uname -m), arm64)
+	HOMEBREW=/opt/homebrew/bin/brew
+else
+	HOMEBREW=/usr/local/bin/brew
+endif
 
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
-
 .PHONY: todo
 todo:: ## List tasks not managed by this Makefile
 	$(info Create an SSH key and upload it to GitHub.)
-	$(info Install Roam Research.)
 	$(info Install Zoom.)
 	$(info Initialize gmailctl.)
 
@@ -27,7 +32,7 @@ setup:: sys-pkg rust-pkg ## Set up a development environment
 	$(MAKE) .tmux/plugins/tpm/tpm
 
 .PHONY: sys-pkg
-sys-pkg:: /usr/local/bin/brew .cargo/bin/cargo
+sys-pkg:: $(HOMEBREW) .cargo/bin/cargo
 	brew tap cantino/mcfly
 	brew tap homebrew/cask
 	brew tap homebrew/cask-fonts
@@ -37,7 +42,7 @@ sys-pkg:: /usr/local/bin/brew .cargo/bin/cargo
 	.cargo/bin/rustup default stable
 
 .PHONY: update
-update:: /usr/local/bin/brew ## Update all managed packages and tools
+update:: $(HOMEBREW) ## Update all managed packages and tools
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
 	brew update
@@ -46,6 +51,7 @@ update:: /usr/local/bin/brew ## Update all managed packages and tools
 	rm -rf projects/z .tmux/plugins
 	$(MAKE) projects/z/z.sh
 	$(MAKE) .tmux/plugins/tpm/tpm
+	gcloud components update
 	nvim +PlugUpgrade +PlugUpdate +qa
 	gmailctl apply
 
@@ -90,7 +96,7 @@ rust-pkg: .cargo/bin/cargo
 	.cargo/bin/rustup component add rls-preview rust-analysis rust-src
 	.cargo/bin/cargo install --locked $$(cat rustpkg.txt)
 
-/usr/local/bin/brew:
+$(HOMEBREW):
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 .cargo/bin/cargo:

@@ -84,6 +84,7 @@ if has brew; then
 fi
 [[ -d "$BREW_PREFIX"/opt/coreutils/libexec/gnubin ]] && addpath "$BREW_PREFIX/opt/make/libexec/gnubin"
 [[ -d /usr/local/sbin ]] && addpath '/usr/local/sbin'
+[[ -d /opt/homebrew ]] && addpath '/opt/homebrew/bin' && addpath '/opt/homebrew/sbin'
 [[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
 [[ -d $HOME/bin ]] && addpath "$HOME/bin"
 [[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
@@ -203,5 +204,7 @@ fi
 #######################################
 # direnv (must be last!)
 #######################################
-eval "$(direnv hook zsh)"
+if has direnv; then
+    eval "$(direnv hook zsh)"
+fi
 
