@@ -67,6 +67,7 @@ clean:: ## Partially clean up installed resources
 go-pkg:
 	GOPATH=$(HOME) go install golang.org/dl/go$(GO_VERSION)@latest
 	[[ -d $(HOME)/sdk/go$(GO_VERSION) ]] || bin/go$(GO_VERSION) download
+	ln -s ~/bin/go$(GO_VERSION) ~/bin/go
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/boyter/scc@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/mbrt/gmailctl/cmd/gmailctl@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/lint/golint@latest

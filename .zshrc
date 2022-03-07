@@ -106,9 +106,6 @@ fi
 # Go
 #######################################
 export GOPATH=$HOME
-_GOVERSION=$(grep GO_VERSION ~/Makefile | head -1 | cut -d' ' -f 3)
-_GOBIN="$GOPATH"/bin/go"$_GOVERSION"
-[[ -f "$_GOBIN" ]] && alias go="$_GOBIN"
 
 #######################################
 # Node.js (reluctantly)
