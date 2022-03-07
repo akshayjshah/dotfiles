@@ -43,3 +43,4 @@ xsv
 zsh
 
 earthly/earthly/earthly
+bufbuild/buf/buf

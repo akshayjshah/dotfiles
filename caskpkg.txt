@@ -6,6 +6,7 @@ dropbox
 font-fira-code-nerd-font
 font-fira-sans
 font-powerline-symbols
+obsidian
 google-chrome
 google-cloud-sdk
 kitty
