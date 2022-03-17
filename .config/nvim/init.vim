@@ -10,6 +10,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " General plugins.
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'ntpeters/vim-better-whitespace'
@@ -24,6 +25,7 @@ Plug 'vim-airline/vim-airline'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'earthly/earthly.vim', { 'branch': 'main' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
@@ -150,7 +152,8 @@ let g:shfmt_fmt_on_save = 1
 """""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrc_ft_hooks
     autocmd!
-    autocmd BufNewFile,BufRead *.mod set filetype=go
+    autocmd BufNewFile,BufRead Earthfile set filetype=Earthfile
+    autocmd BufNewFile,BufRead *.earth set filetype=Earthfile
     autocmd FileType go call s:SetupGo()
     autocmd FileType html call s:SetupHTML()
     autocmd FileType htmldjango call s:SetupHTML()

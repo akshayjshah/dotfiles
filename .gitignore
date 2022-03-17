@@ -10,6 +10,8 @@
 !.config/kitty/kitty.conf
 !.config/kitty/nord.conf
 !.config/nvim/
+!.config/nvim/ftdetect
+!.config/nvim/ftdetect/*
 !.config/nvim/init.vim
 !.en_us.utf-8.add
 !.gitconfig
