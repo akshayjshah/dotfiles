@@ -7,7 +7,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-print-directory
 
-GO_VERSION := 1.18rc1
+GO_VERSION := 1.18
 
 ifeq ($(shell uname -m), arm64)
 	HOMEBREW=/opt/homebrew/bin/brew
@@ -58,16 +58,18 @@ update:: $(HOMEBREW) ## Update all managed packages and tools
 .PHONY: clean
 clean:: ## Partially clean up installed resources
 	brew cleanup
-	rm -f $(GOPATH)/bin/go1.*
+	rm -f $(GOPATH)/bin/go1.* $(GOPATH)/bin/go{,fmt}
 	rm -rf projects/z
 	rm -rf .tmux/plugins
 	nvim +PlugClean +qa
 
 .PHONY: go-pkg
 go-pkg:
+	rm -f bin/go{,$(GO_VERSION)}
 	GOPATH=$(HOME) go install golang.org/dl/go$(GO_VERSION)@latest
 	[[ -d $(HOME)/sdk/go$(GO_VERSION) ]] || bin/go$(GO_VERSION) download
 	ln -s ~/bin/go$(GO_VERSION) ~/bin/go
+	GOPATH=$(HOME) bin/go$(GO_VERSION) build -o bin/gofmt cmd/gofmt
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/boyter/scc@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/mbrt/gmailctl/cmd/gmailctl@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/lint/golint@latest
