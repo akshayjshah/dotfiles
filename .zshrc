@@ -82,13 +82,15 @@ BREW_PREFIX=$HOME
 if has brew; then
     BREW_PREFIX=$(brew --prefix)
 fi
-[[ -d "$BREW_PREFIX"/opt/coreutils/libexec/gnubin ]] && addpath "$BREW_PREFIX/opt/make/libexec/gnubin"
 [[ -d /usr/local/sbin ]] && addpath '/usr/local/sbin'
-[[ -d /opt/homebrew ]] && addpath '/opt/homebrew/bin' && addpath '/opt/homebrew/sbin'
-[[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
-[[ -d $HOME/bin ]] && addpath "$HOME/bin"
-[[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
+[[ -d "$BREW_PREFIX"/opt/coreutils/libexec/gnubin ]] && addpath "$BREW_PREFIX/opt/make/libexec/gnubin"
 [[ -d "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]] && source "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/{completion,path}.zsh.inc
+[[ -d /opt/homebrew ]] && addpath '/opt/homebrew/bin' \
+    && addpath '/opt/homebrew/sbin' \
+    && addpath '/opt/homebrew/opt/make/libexec/gnubin'
+[[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
+[[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
+[[ -d $HOME/bin ]] && addpath "$HOME/bin"
 export PATH
 
 #######################################
