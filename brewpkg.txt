@@ -2,7 +2,6 @@ aspell
 bash
 ca-certificates
 coreutils
-diff-so-fancy
 direnv
 exa
 fd
@@ -10,6 +9,7 @@ fzf
 gh
 git
 git-absorb
+git-delta
 git-lfs
 gnu-sed
 go

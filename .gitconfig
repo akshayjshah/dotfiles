@@ -2,9 +2,11 @@
     name = Akshay Shah
     email = akshay@akshayshah.org
 [core]
-    pager = "diff-so-fancy | less --tabs=4 -RFX"
+    pager = delta
     excludesfile = ~/.gitignore_global
     autocrlf = input
+[interactive]
+    diffFilter = delta --color-only
 [init]
     defaultBranch = main
 [branch]
@@ -16,8 +18,11 @@
     default = simple
 [rerere]
     enabled = true
+[merge]
+    conflictstyle = diff3
 [diff]
     algorithm = patience
+    colorMoved = default
 [format]
     pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
     abbrev-commit = true
@@ -50,3 +55,5 @@
     required = true
 [advice]
 	skippedCherryPicks = false
+[delta]
+    navigate = true
