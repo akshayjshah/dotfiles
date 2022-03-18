@@ -14,3 +14,4 @@ signal
 slack
 spotify
 visual-studio-code
+wireshark

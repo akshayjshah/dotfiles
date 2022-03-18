@@ -14,6 +14,7 @@ git-lfs
 gnu-sed
 go
 graphviz
+grpcurl
 htop
 imagemagick
 jo
