@@ -27,6 +27,8 @@
     pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
     abbrev-commit = true
     date = relative
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 [alias]
     a = add
     amend = commit -a --amend
