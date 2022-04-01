@@ -83,6 +83,7 @@ go-pkg:
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/orlangure/gocovsh@latest
+	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/maaslalani/slides@latest
 
 .PHONY: bin/gotip
 bin/gotip:
