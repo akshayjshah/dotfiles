@@ -6,6 +6,8 @@
 !.bash_profile
 !.config/
 !.config/flake8
+!.config/gh-dash/
+!.config/gh-dash/config.yaml
 !.config/kitty/
 !.config/kitty/kitty.conf
 !.config/kitty/nord.conf

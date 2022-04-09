@@ -30,6 +30,7 @@ setup:: sys-pkg rust-pkg ## Set up a development environment
 	$(MAKE) go-pkg py-pkg
 	$(MAKE) projects/z/z.sh
 	$(MAKE) .tmux/plugins/tpm/tpm
+	gh extension install dlvhdr/gh-dash
 
 .PHONY: sys-pkg
 sys-pkg:: $(HOMEBREW) .cargo/bin/cargo
@@ -53,6 +54,7 @@ update:: $(HOMEBREW) ## Update all managed packages and tools
 	$(MAKE) .tmux/plugins/tpm/tpm
 	gcloud components update
 	nvim +PlugUpgrade +PlugUpdate +qa
+	gh extension upgrade
 	gmailctl apply
 
 .PHONY: clean
