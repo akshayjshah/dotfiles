@@ -38,6 +38,7 @@ tig
 tmux
 tree
 unzip
+vale
 vim
 wget
 xsv
