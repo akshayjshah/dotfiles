@@ -2,6 +2,7 @@ aspell
 bash
 ca-certificates
 coreutils
+curl
 direnv
 exa
 fd
@@ -15,6 +16,7 @@ gnu-sed
 go
 graphviz
 grpcurl
+hey
 htop
 imagemagick
 jo
@@ -31,6 +33,7 @@ python
 ranger
 ripgrep
 ruby
+sd
 shellcheck
 shfmt
 sqlite
@@ -40,6 +43,7 @@ tree
 unzip
 vale
 vim
+watchman
 wget
 xsv
 zsh
