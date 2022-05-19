@@ -87,7 +87,8 @@ fi
 [[ -d "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]] && source "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/{completion,path}.zsh.inc
 [[ -d /opt/homebrew ]] && addpath '/opt/homebrew/bin' \
     && addpath '/opt/homebrew/sbin' \
-    && addpath '/opt/homebrew/opt/make/libexec/gnubin'
+    && addpath '/opt/homebrew/opt/make/libexec/gnubin' \
+    && addpath '/opt/homebrew/opt/curl/bin'
 [[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
 [[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
 [[ -d $HOME/bin ]] && addpath "$HOME/bin"
