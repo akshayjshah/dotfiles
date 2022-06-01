@@ -38,7 +38,7 @@
     l = log origin/main..
     ls = branch -v
     popf = checkout "stash@{0}" --
-    pr = !hub pull-request
+    pr = !gh pr create --reviewer
     recent = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
     review = diff --staged
     rmbranch = branch -D
