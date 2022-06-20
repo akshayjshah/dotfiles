@@ -41,6 +41,7 @@ sys-pkg:: $(HOMEBREW) .cargo/bin/cargo
 	$$(brew --prefix)/opt/fzf/install --no-fish --no-update-rc --xdg --key-bindings --completion
 	brew install --cask $$(cat caskpkg.txt)
 	.cargo/bin/rustup default stable
+	gcloud components install gke-gcloud-auth-plugin
 
 .PHONY: update
 update:: $(HOMEBREW) ## Update all managed packages and tools
