@@ -16,6 +16,7 @@ gnu-sed
 go
 graphviz
 grpcurl
+helix
 hey
 htop
 imagemagick
