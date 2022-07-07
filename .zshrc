@@ -152,6 +152,10 @@ elif has wl-copy; then
     alias pbpaste='wl-paste --type text'
 fi
 
+if has bestgo; then
+    alias vanity="bestgo -i month -repo bufbuild/connect-go"
+fi
+
 # open GUI file manager from terminals
 if has explorer.exe; then
     open() {
