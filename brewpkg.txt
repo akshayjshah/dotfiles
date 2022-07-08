@@ -4,6 +4,7 @@ ca-certificates
 coreutils
 curl
 direnv
+evans
 exa
 fd
 fzf
