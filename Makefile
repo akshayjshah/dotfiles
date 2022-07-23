@@ -57,7 +57,7 @@ update:: $(HOMEBREW) ## Update all managed packages and tools
 	$(MAKE) .tmux/plugins/tpm/tpm
 	gcloud components update
 	nvim +PlugUpgrade +PlugUpdate +qa
-	gh extension upgrade
+	gh extension upgrade --all
 	gmailctl apply
 
 .PHONY: clean
