@@ -17,6 +17,7 @@ gnu-sed
 go
 graphviz
 grpcurl
+gum
 helix
 hey
 htop
