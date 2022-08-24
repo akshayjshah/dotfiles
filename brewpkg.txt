@@ -24,6 +24,7 @@ htop
 imagemagick
 jo
 jq
+k3d
 keychain
 lsof
 make
@@ -51,5 +52,6 @@ wget
 xsv
 zsh
 
+derailed/k9s/k9s
 earthly/earthly/earthly
 bufbuild/buf/buf
