@@ -28,6 +28,7 @@ k3d
 keychain
 lsof
 make
+marta
 mcfly
 neovim
 nushell
