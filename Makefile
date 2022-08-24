@@ -79,6 +79,7 @@ go-pkg:
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/mbrt/gmailctl/cmd/gmailctl@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/lint/golint@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/perf/cmd/benchstat@latest
+	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/review/git-codereview@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install \
 		golang.org/x/tools/cmd/godoc@latest \
 		golang.org/x/tools/cmd/goimports@latest \
