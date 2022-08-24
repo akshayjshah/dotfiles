@@ -59,3 +59,5 @@
 	skippedCherryPicks = false
 [delta]
     navigate = true
+[http]
+	cookiefile = /Users/ashah/.gitcookies
