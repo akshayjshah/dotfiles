@@ -53,6 +53,7 @@ wget
 xsv
 zsh
 
+bufbuild/buf/buf
 derailed/k9s/k9s
 earthly/earthly/earthly
-bufbuild/buf/buf
+saulpw/vd/visidata
