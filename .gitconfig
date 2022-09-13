@@ -5,6 +5,7 @@
     pager = delta
     excludesfile = ~/.gitignore_global
     autocrlf = input
+    difftool = true
 [interactive]
     diffFilter = delta --color-only
 [init]
@@ -23,6 +24,11 @@
 [diff]
     algorithm = patience
     colorMoved = default
+    tool = difftastic
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 [format]
     pretty = format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
     abbrev-commit = true
@@ -35,6 +41,7 @@
     blmain = config branchless.mainBranch main
     c = commit
     co = checkout
+    difft = difftool
     l = log origin/main..
     ls = branch -v
     popf = checkout "stash@{0}" --

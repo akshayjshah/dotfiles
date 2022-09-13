@@ -3,6 +3,7 @@ bash
 ca-certificates
 coreutils
 curl
+difftastic
 direnv
 evans
 exa
