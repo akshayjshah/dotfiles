@@ -68,3 +68,5 @@
     navigate = true
 [http]
 	cookiefile = /Users/ashah/.gitcookies
+[pager]
+    difftool = true
