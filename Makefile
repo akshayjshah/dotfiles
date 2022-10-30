@@ -7,7 +7,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-print-directory
 
-GO_VERSION := 1.19
+GO_VERSION := 1.19.2
 
 ifeq ($(shell uname -m), arm64)
 	HOMEBREW=/opt/homebrew/bin/brew
@@ -86,6 +86,7 @@ go-pkg:
 		golang.org/x/tools/cmd/gorename@latest \
 		golang.org/x/tools/cmd/stringer@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/tools/gopls@latest
+	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/vuln/cmd/govulncheck@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/orlangure/gocovsh@latest
