@@ -119,8 +119,8 @@ local rules = [
   {
     filter: {
       or: [
-        { from: 'belann@pacificprimary.org' },
-        { from: 'Belann Giaretto via ParentSquare' },
+        { from: 'ilsa@pacificprimary.org' },
+        { from: 'Ilsa Miller via ParentSquare' },
       ],
     },
     actions: {
@@ -333,6 +333,15 @@ local rules = [
         { from: 'email.gap.com' },
         { not: { from: 'orders@email.gap.com' } },
         { not: { from: 'GapCash' } },
+      ],
+    },
+    actions: merchants.marketing,
+  },
+  {
+    filter: {
+      or: [
+        { from: 'email.bananarepublicfactory.com' },
+        { from: 'email.bananarepublic.com' },
       ],
     },
     actions: merchants.marketing,
