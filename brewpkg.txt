@@ -5,6 +5,7 @@ coreutils
 curl
 difftastic
 direnv
+dos2unix
 evans
 exa
 fd

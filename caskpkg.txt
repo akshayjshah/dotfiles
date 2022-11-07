@@ -5,11 +5,13 @@ docker
 dropbox
 font-fira-code-nerd-font
 font-fira-sans
+font-ia-writer-duospace
+font-ia-writer-mono
 font-powerline-symbols
-obsidian
 google-chrome
 google-cloud-sdk
 kitty
+obsidian
 signal
 slack
 spotify
