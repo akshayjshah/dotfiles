@@ -89,6 +89,7 @@ go-pkg:
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/vuln/cmd/govulncheck@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/kevwan/tproxy@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/orlangure/gocovsh@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/maaslalani/slides@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/mfridman/bestgo@latest
