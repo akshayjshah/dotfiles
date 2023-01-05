@@ -11,6 +11,7 @@ exa
 fd
 fzf
 gh
+gibo
 git
 git-absorb
 git-delta
