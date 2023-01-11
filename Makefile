@@ -93,6 +93,7 @@ go-pkg:
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/orlangure/gocovsh@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/maaslalani/slides@latest
 	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/mfridman/bestgo@latest
+	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/bufbuild/buf/cmd/buf@latest
 
 .PHONY: bin/gotip
 bin/gotip:
