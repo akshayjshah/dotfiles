@@ -564,6 +564,7 @@ local rules = [
     { name: 'schools/pac-heights-kidz' },
     { name: 'schools/pacific-primary' },
     { name: 'schools/sfday' },
+    { name: 'schools/summer' },
     { name: 'schools/yale' },
     { name: 'tax' },
     { name: 'work' },
