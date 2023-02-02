@@ -6,7 +6,6 @@ curl
 difftastic
 direnv
 dos2unix
-evans
 exa
 fd
 fzf
@@ -36,7 +35,6 @@ mcfly
 mkcert
 neovim
 nushell
-nvm
 protobuf
 python
 ranger
@@ -58,5 +56,3 @@ xsv
 zsh
 
 derailed/k9s/k9s
-earthly/earthly/earthly
-saulpw/vd/visidata
