@@ -110,7 +110,7 @@ rust-pkg: .cargo/bin/cargo
 	.cargo/bin/cargo install --locked $$(cat rustpkg.txt)
 
 $(HOMEBREW):
-	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
