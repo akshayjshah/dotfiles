@@ -30,7 +30,6 @@ setup:: sys-pkg rust-pkg ## Set up a development environment
 	$(MAKE) go-pkg py-pkg
 	$(MAKE) projects/z/z.sh
 	$(MAKE) .tmux/plugins/tpm/tpm
-	gh extension install dlvhdr/gh-dash
 
 .PHONY: sys-pkg
 sys-pkg:: $(HOMEBREW) .cargo/bin/cargo
