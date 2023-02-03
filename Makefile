@@ -33,14 +33,14 @@ setup:: sys-pkg rust-pkg ## Set up a development environment
 
 .PHONY: sys-pkg
 sys-pkg:: $(HOMEBREW) .cargo/bin/cargo
-	brew tap cantino/mcfly
-	brew tap homebrew/cask
-	brew tap homebrew/cask-fonts
-	brew tap helix-editor/helix
-	brew tap ktr0731/evans
-	brew install $$(cat brewpkg.txt)
-	$$(brew --prefix)/opt/fzf/install --no-fish --no-update-rc --xdg --key-bindings --completion
-	brew install --cask $$(cat caskpkg.txt)
+	$(HOMEBREW) tap cantino/mcfly
+	$(HOMEBREW) tap homebrew/cask
+	$(HOMEBREW) tap homebrew/cask-fonts
+	$(HOMEBREW) tap helix-editor/helix
+	$(HOMEBREW) tap ktr0731/evans
+	$(HOMEBREW) install $$(cat brewpkg.txt)
+	$$($(HOMEBREW) --prefix)/opt/fzf/install --no-fish --no-update-rc --xdg --key-bindings --completion
+	$(HOMEBREW) install --cask $$(cat caskpkg.txt)
 	.cargo/bin/rustup default stable
 	gcloud components install gke-gcloud-auth-plugin
 
@@ -48,8 +48,8 @@ sys-pkg:: $(HOMEBREW) .cargo/bin/cargo
 update:: $(HOMEBREW) ## Update all managed packages and tools
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	brew update
-	brew upgrade
+	$(HOMEBREW) update
+	$(HOMEBREW) upgrade
 	$(MAKE) rust-pkg go-pkg py-pkg
 	rm -rf projects/z .tmux/plugins
 	$(MAKE) projects/z/z.sh
@@ -61,7 +61,7 @@ update:: $(HOMEBREW) ## Update all managed packages and tools
 
 .PHONY: clean
 clean:: ## Partially clean up installed resources
-	brew cleanup
+	$(HOMEBREW) cleanup
 	rm -f $(GOPATH)/bin/go1.* $(GOPATH)/bin/go{,fmt}
 	rm -rf projects/z
 	rm -rf .tmux/plugins
