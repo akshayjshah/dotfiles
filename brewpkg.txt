@@ -1,5 +1,6 @@
 aspell
 bash
+broot
 ca-certificates
 coreutils
 curl
