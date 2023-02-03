@@ -15,5 +15,6 @@ raycast
 signal
 slack
 spotify
+tailscale
 visual-studio-code
 wireshark

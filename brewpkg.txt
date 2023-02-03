@@ -46,7 +46,6 @@ sd
 shellcheck
 shfmt
 sqlite
-tailscale
 tig
 tmux
 tree
