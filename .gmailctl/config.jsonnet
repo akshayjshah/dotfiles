@@ -424,6 +424,14 @@ local rules = [
     actions: code.newsletter,  // The Morning Paper
   },
   {
+    filter: { from: 'pointer.io' },
+    actions: code.newsletter, // Pointer
+  },
+  {
+    filter: { from: 'leaddev.com' },
+    actions: code.newsletter, // LeadDev
+  },
+  {
     filter: {
       or: [
         { from: 'contact@golangweekly.com' },  // old
