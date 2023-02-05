@@ -141,6 +141,18 @@ local rules = [
     actions: school.tag('pac-heights-kidz'),
   },
   {
+    filter: {
+      or: [
+        { from: 'make@thebutterflyjoint.com' },
+        { from: 'sanfranciscosoccercamp@gmail.com' },
+        { from: 'info@culinaryartistas.com' },
+        { from: 'coastalcamp@naturebridge.org' },
+        { from: 'info@wheelkids.com' },
+      ],
+    },
+    actions: school.tag('summer'),
+  },
+  {
     filter: { from: 'choate.edu' },
     actions: school.tag('choate'),
   },
