@@ -37,7 +37,6 @@ sys-pkg:: $(HOMEBREW) .cargo/bin/cargo
 	$(HOMEBREW) tap homebrew/cask
 	$(HOMEBREW) tap homebrew/cask-fonts
 	$(HOMEBREW) tap helix-editor/helix
-	$(HOMEBREW) tap ktr0731/evans
 	$(HOMEBREW) install $$(cat brewpkg.txt)
 	$$($(HOMEBREW) --prefix)/opt/fzf/install --no-fish --no-update-rc --xdg --key-bindings --completion
 	$(HOMEBREW) install --cask $$(cat caskpkg.txt)
