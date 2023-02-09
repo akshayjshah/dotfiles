@@ -2,6 +2,7 @@
 1password-cli
 docker
 dropbox
+firefox-developer-edition
 font-fira-code-nerd-font
 font-fira-sans
 font-ia-writer-duospace
