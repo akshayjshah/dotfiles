@@ -2,6 +2,7 @@ aspell
 bash
 broot
 ca-certificates
+cloudflare-wrangler2
 coreutils
 curl
 difftastic
