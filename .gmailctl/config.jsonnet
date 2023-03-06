@@ -225,6 +225,15 @@ local rules = [
     actions: archive,
   },
   {
+    filter: {
+      and: [
+        { from: 'noreply-dmarc-support@google.com' },
+        { to: 'akshay@akshayshah.org' },
+      ],
+    },
+    actions: archive,
+  },
+  {
     filter: { from: 'ama-assn.org' },
     actions: archive,
   },
