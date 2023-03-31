@@ -18,6 +18,7 @@ git
 git-absorb
 git-delta
 git-lfs
+gitui
 gnu-sed
 go
 graphviz
