@@ -228,7 +228,6 @@ local rules = [
     filter: {
       and: [
         { from: 'noreply-dmarc-support@google.com' },
-        { to: 'akshay@akshayshah.org' },
       ],
     },
     actions: archive,
