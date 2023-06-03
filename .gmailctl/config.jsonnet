@@ -3,7 +3,9 @@ local lib = import 'gmailctl.libsonnet';
 local me = {
   or: [
     { to: 'akshay@akshayshah.org' },
+    { to: 'me@akshayshah.org' },
     { to: 'amazon@akshayshah.org' },
+    { to: 'akshay@shahfam.org' },
     { to: 'ashah@hearsaycorp.com' },
     { to: 'akshay@hearsaycorp.com' },
     { to: 'shah@uber.com' },
@@ -107,6 +109,32 @@ local exhaust = {
 
 local rules = [
   // Keep in inbox, but tag automatically.
+  {
+    filter: {
+      or: [
+        { to: 'ishaan@shahfam.org' },
+        { to: 'akshay+ishaan@akshayshah.org' },
+      ],
+    },
+    actions: {
+      markImportant: true,
+      markSpam: false,
+      labels: ['ishaan'],
+    },
+  },
+  {
+    filter: {
+      or: [
+        { to: 'maia@shahfam.org' },
+        { to: 'akshay+maia@akshayshah.org' },
+      ],
+    },
+    actions: {
+      markImportant: true,
+      markSpam: false,
+      labels: ['maia'],
+    },
+  },
   {
     filter: {
       or: [
@@ -579,6 +607,8 @@ local rules = [
     { name: 'exhaust/twitter-favorites' },
     { name: 'expenses' },
     { name: 'founders' },
+    { name: 'ishaan' },
+    { name: 'maia' },
     { name: 'networks' },
     { name: 'networks/facebook' },
     { name: 'networks/linkedin' },
