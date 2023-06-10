@@ -334,6 +334,7 @@ local rules = [
         { from: 'yaawebtech@yale.edu' },  // Yale Alumni Digital Events
         { from: 'weilitheyalie@yale.edu' },  // YAA News
         { from: 'alumniacademy@yale.edu' },  // Yale Alumni Academy
+        { from: 'yalealumninews@yale.edu' }, // Yale Alumni News
       ],
     },
     actions: school.archive('yale'),
@@ -540,6 +541,18 @@ local rules = [
   {
     filter: { from: 'team@theprepared.org' },
     actions: code.newsletter,  // The Prepared
+  },
+  {
+    filter: { from: 'james@jamesclear.com' },
+    actions: code.newsletter, // James Clear (Atomic Habits)
+  },
+  {
+    filter: { from: 'members@arc.net' },
+    actions: code.newsletter, // Arc browser updates
+  },
+  {
+    filter: { from: 'news@changelog.com' },
+    actions: code.newsletter, // Changelog News
   },
 
 
