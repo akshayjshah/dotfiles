@@ -84,7 +84,7 @@ if has brew; then
 fi
 [[ -d /usr/local/sbin ]] && addpath '/usr/local/sbin'
 [[ -d "$BREW_PREFIX"/opt/coreutils/libexec/gnubin ]] && addpath "$BREW_PREFIX/opt/make/libexec/gnubin"
-[[ -d "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]] && source "$BREW_PREFIX"/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/{completion,path}.zsh.inc
+[[ -d "$BREW_PREFIX"/share/google-cloud-sdk ]] && source "$BREW_PREFIX"/share/google-cloud-sdk/{completion,path}.zsh.inc
 [[ -d /opt/homebrew ]] && addpath '/opt/homebrew/bin' \
     && addpath '/opt/homebrew/sbin' \
     && addpath '/opt/homebrew/opt/make/libexec/gnubin' \
