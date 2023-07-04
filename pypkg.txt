@@ -2,3 +2,4 @@ black
 neovim
 git-fame
 pipenv
+ruff
