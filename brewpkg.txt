@@ -3,6 +3,7 @@ bash
 broot
 ca-certificates
 cloudflare-wrangler2
+cmake
 coreutils
 curl
 difftastic
@@ -38,7 +39,7 @@ marta
 mcfly
 mkcert
 neovim
-nushell
+openssl
 protobuf
 python
 ranger

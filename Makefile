@@ -106,7 +106,9 @@ py-pkg:
 rust-pkg: .cargo/bin/cargo
 	.cargo/bin/rustup update
 	.cargo/bin/rustup component add rls-preview rust-analysis rust-src
-	.cargo/bin/cargo install --locked $$(cat rustpkg.txt)
+	.cargo/bin/cargo install --locked \
+		git-branchless
+	.cargo/bin/cargo install --locked nu --features=dataframe
 
 $(HOMEBREW):
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
