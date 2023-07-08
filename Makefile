@@ -26,8 +26,8 @@ todo:: ## List tasks not managed by this Makefile
 	$(info Initialize gmailctl.)
 
 .PHONY: setup
-setup:: sys-pkg rust-pkg ## Set up a development environment
-	$(MAKE) go-pkg py-pkg
+setup:: sys-pkg ## Set up a development environment
+	$(MAKE) rust-pkg go-pkg py-pkg
 	$(MAKE) projects/z/z.sh
 	$(MAKE) .tmux/plugins/tpm/tpm
 
@@ -100,7 +100,8 @@ bin/gotip:
 
 .PHONY: py-pkg
 py-pkg:
-	python3 -m pip install -U $$(cat pypkg.txt)
+	python3 -m pip install --user pip neovim
+	pipx install black hatch git-fame poetry ruff
 
 .PHONY: rust-pkg
 rust-pkg: .cargo/bin/cargo
