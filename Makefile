@@ -7,7 +7,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-print-directory
 
-GO_VERSION := 1.20.4
+GO_VERSION := 1.20.6
 
 ifeq ($(shell uname -m), arm64)
 	HOMEBREW=/opt/homebrew/bin/brew
@@ -101,7 +101,11 @@ bin/gotip:
 .PHONY: py-pkg
 py-pkg:
 	python3 -m pip install --user pip neovim
-	pipx install black hatch git-fame poetry ruff
+	pipx install --force black
+	pipx install --force ipython
+	pipx install --force git-fame
+	pipx install --force pipenv
+	pipx install --force ruff
 
 .PHONY: rust-pkg
 rust-pkg: .cargo/bin/cargo
