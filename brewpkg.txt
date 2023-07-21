@@ -18,6 +18,7 @@ gibo
 git
 git-absorb
 git-delta
+git-filter-repo
 git-lfs
 gitui
 gnu-sed
