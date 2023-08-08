@@ -20,7 +20,6 @@ git-absorb
 git-delta
 git-filter-repo
 git-lfs
-gitui
 gnu-sed
 go
 graphviz
@@ -35,6 +34,7 @@ jo
 jq
 k3d
 keychain
+lazygit
 lsof
 make
 marta
