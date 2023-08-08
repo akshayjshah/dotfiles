@@ -30,6 +30,7 @@ helix
 hey
 htop
 imagemagick
+jj
 jo
 jq
 k3d
