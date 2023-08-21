@@ -7,7 +7,8 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-print-directory
 
-GO_VERSION := 1.20.6
+export GOPATH := $(HOME)
+export GOTOOLCHAIN := go1.21.0+auto
 
 ifeq ($(shell uname -m), arm64)
 	HOMEBREW=/opt/homebrew/bin/brew
@@ -62,41 +63,31 @@ update:: $(HOMEBREW) ## Update all managed packages and tools
 .PHONY: clean
 clean:: ## Partially clean up installed resources
 	$(HOMEBREW) cleanup
-	rm -f $(GOPATH)/bin/go1.* $(GOPATH)/bin/go{,fmt}
 	rm -rf projects/z
 	rm -rf .tmux/plugins
 	nvim +PlugClean +qa
 
 .PHONY: go-pkg
 go-pkg:
-	rm -f bin/go{,$(GO_VERSION)}
-	GOPATH=$(HOME) go install golang.org/dl/go$(GO_VERSION)@latest
-	[[ -d $(HOME)/sdk/go$(GO_VERSION) ]] || bin/go$(GO_VERSION) download
-	ln -s ~/bin/go$(GO_VERSION) ~/bin/go
-	GOPATH=$(HOME) bin/go$(GO_VERSION) build -o bin/gofmt cmd/gofmt
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/boyter/scc@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/mbrt/gmailctl/cmd/gmailctl@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/lint/golint@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/perf/cmd/benchstat@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/review/git-codereview@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install \
+	go build -o bin/gofmt cmd/gofmt
+	go install github.com/boyter/scc@latest
+	go install github.com/mbrt/gmailctl/cmd/gmailctl@latest
+	go install golang.org/x/lint/golint@latest
+	go install golang.org/x/perf/cmd/benchstat@latest
+	go install golang.org/x/review/git-codereview@latest
+	go install \
 		golang.org/x/tools/cmd/godoc@latest \
 		golang.org/x/tools/cmd/goimports@latest \
 		golang.org/x/tools/cmd/gorename@latest \
 		golang.org/x/tools/cmd/stringer@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/tools/gopls@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install golang.org/x/vuln/cmd/govulncheck@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/kevwan/tproxy@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/orlangure/gocovsh@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/maaslalani/slides@latest
-	GOPATH=$(HOME) bin/go$(GO_VERSION) install github.com/bufbuild/buf/cmd/buf@latest
-
-.PHONY: bin/gotip
-bin/gotip:
-	GOPATH=$(HOME) go install golang.org/dl/gotip@latest
-	bin/gotip download
+	go install golang.org/x/tools/gopls@latest
+	go install golang.org/x/vuln/cmd/govulncheck@latest
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	go install github.com/kevwan/tproxy@latest
+	go install github.com/orlangure/gocovsh@latest
+	go install github.com/maaslalani/slides@latest
+	go install github.com/bufbuild/buf/cmd/buf@latest
 
 .PHONY: py-pkg
 py-pkg:
