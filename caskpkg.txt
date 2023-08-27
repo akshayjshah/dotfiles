@@ -7,6 +7,10 @@ font-fira-code-nerd-font
 font-fira-sans
 font-ia-writer-duospace
 font-ia-writer-mono
+font-iosevka
+font-iosevka-aile
+font-iosevka-etoile
+font-iosevka-nerd-font
 font-powerline-symbols
 google-chrome
 google-cloud-sdk
