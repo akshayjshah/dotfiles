@@ -70,9 +70,7 @@ clean:: ## Partially clean up installed resources
 .PHONY: go-pkg
 go-pkg:
 	go build -o bin/gofmt cmd/gofmt
-	go install github.com/boyter/scc@latest
-	go install github.com/mbrt/gmailctl/cmd/gmailctl@latest
-	go install golang.org/x/lint/golint@latest
+	@# From Go project.
 	go install golang.org/x/perf/cmd/benchstat@latest
 	go install golang.org/x/review/git-codereview@latest
 	go install \
@@ -82,12 +80,16 @@ go-pkg:
 		golang.org/x/tools/cmd/stringer@latest
 	go install golang.org/x/tools/gopls@latest
 	go install golang.org/x/vuln/cmd/govulncheck@latest
+	@# Third-party.
+	go install github.com/boyter/scc@latest
+	go install github.com/bufbuild/buf/cmd/buf@latest
+	go install github.com/charmbracelet/glow@latest
+	go install github.com/kevwan/tproxy@latest
+	go install github.com/maaslalani/slides@latest
+	go install github.com/mbrt/gmailctl/cmd/gmailctl@latest
+	go install github.com/orlangure/gocovsh@latest
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	go install github.com/kevwan/tproxy@latest
-	go install github.com/orlangure/gocovsh@latest
-	go install github.com/maaslalani/slides@latest
-	go install github.com/bufbuild/buf/cmd/buf@latest
 
 .PHONY: py-pkg
 py-pkg:
