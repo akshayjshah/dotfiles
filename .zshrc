@@ -129,10 +129,10 @@ export NVM_DIR=$HOME/.nvm
 alias :q="exit"
 alias :e=\$EDITOR
 
-if has exa; then
-	alias ls="exa"
-	alias ll="exa -al"
-	alias la="exa -a"
+if has eza; then
+	alias ls="eza"
+	alias ll="eza -al"
+	alias la="eza -a"
 else
 	alias ls="ls -CF"
 	alias ll="ls -ahlF"

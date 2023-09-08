@@ -10,7 +10,7 @@ difftastic
 direnv
 dos2unix
 entr
-exa
+eza
 fd
 fzf
 gh
