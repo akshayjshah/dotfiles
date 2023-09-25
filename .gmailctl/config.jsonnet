@@ -204,6 +204,7 @@ local rules = [
         { from: 'invitations-noreply@linkedin.com' },
         { from: 'jobs-listings@linkedin.com' },
         { from: 'jobs-noreply@linkedin.com' },
+        { from: 'jobalerts-noreply@linkedin.com' },
         { from: 'legalnotice@linkedin.com' },
         { from: 'member@linkedin.com' },
         { from: 'messages-noreply@linkedin.com' },
