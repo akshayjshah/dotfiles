@@ -55,6 +55,9 @@ local merchants = {
     markRead: true,
     markSpam: false,
     category: 'promotions',
+    labels: [
+      'optional',
+    ],
   },
 };
 local founders = {
@@ -409,7 +412,30 @@ local rules = [
     actions: merchants.marketing,
   },
   {
-
+    filter: { from: 'teacollection.com' },
+    actions: { labels: ['optional'] },
+  },
+  {
+    filter: { from: 'doordash.com' },
+    actions: { labels: ['optional'] },
+  },
+  {
+    filter: { from: 'grpc-io@googlegroups.com' },
+    actions: code.marketing,
+  },
+  {
+    filter: { from: 'theinformation.com' },
+    actions: code.marketing,
+  },
+  {
+    filter: { from: 'noreply@uber.com' },
+    actions: { labels: ['optional'] },
+  },
+  {
+    filter: { from: 'announcements@buf.build' },
+    actions: archive,
+  },
+  {
     filter: { list: 'GoSF-list.meetup.com' },
     actions: code.marketing,
   },
