@@ -122,7 +122,7 @@ local rules = [
     actions: {
       markImportant: true,
       markSpam: false,
-      labels: ['ishaan'],
+      labels: ['ishaan', 'fam'],
     },
   },
   {
@@ -135,7 +135,15 @@ local rules = [
     actions: {
       markImportant: true,
       markSpam: false,
-      labels: ['maia'],
+      labels: ['maia', 'fam'],
+    },
+  },
+  {
+    filter: { to: 'hi@shahfam.org' },
+    actions: {
+      markImportant: true,
+      markSpam: false,
+      labels: ['fam'],
     },
   },
   {
@@ -420,7 +428,7 @@ local rules = [
     actions: { labels: ['optional'] },
   },
   {
-    filter: { from: 'grpc-io@googlegroups.com' },
+    filter: { list: 'grpc-io@googlegroups.com' },
     actions: code.marketing,
   },
   {
@@ -646,6 +654,7 @@ local rules = [
     { name: 'exhaust/pocket' },
     { name: 'exhaust/twitter-favorites' },
     { name: 'expenses' },
+    { name: 'fam' },
     { name: 'founders' },
     { name: 'ishaan' },
     { name: 'maia' },
