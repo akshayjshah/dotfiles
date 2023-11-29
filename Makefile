@@ -72,9 +72,9 @@ go-pkg:
 	go build -o bin/gofmt cmd/gofmt
 	@# From Go project.
 	go install golang.org/x/perf/cmd/benchstat@latest
+	go install golang.org/x/pkgsite/cmd/pkgsite@latest
 	go install golang.org/x/review/git-codereview@latest
 	go install \
-		golang.org/x/tools/cmd/godoc@latest \
 		golang.org/x/tools/cmd/goimports@latest \
 		golang.org/x/tools/cmd/gorename@latest \
 		golang.org/x/tools/cmd/stringer@latest
