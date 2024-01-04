@@ -51,6 +51,7 @@ ruby
 sd
 shellcheck
 shfmt
+starship
 sqlite
 tig
 tmux
