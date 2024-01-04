@@ -94,6 +94,7 @@ fi
     && addpath '/opt/homebrew/sbin' \
     && addpath '/opt/homebrew/opt/make/libexec/gnubin' \
     && addpath '/opt/homebrew/opt/curl/bin'
+[[ -d $HOME/projects/roc ]] && addpath "$HOME/projects/roc"
 [[ -d $HOME/.cargo/bin ]] && addpath "$HOME/.cargo/bin"
 [[ -d $HOME/.local/bin ]] && addpath "$HOME/.local/bin"
 [[ -d $HOME/bin ]] && addpath "$HOME/bin"

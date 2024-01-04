@@ -35,6 +35,7 @@ jq
 k3d
 keychain
 lazygit
+llvm@16
 lsof
 make
 marta

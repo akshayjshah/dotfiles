@@ -118,6 +118,13 @@ projects/z/z.sh:
 	rm -rf $(@D)
 	git clone https://github.com/rupa/z ~/projects/z
 
+projects/roc/roc:
+	rm -rf $(@D)
+	rm -f Downloads/roc-nightly.tar.gz
+	mkdir -p projects/roc
+	curl -L -o Downloads/roc-nightly.tar.gz https://github.com/roc-lang/roc/releases/download/nightly/roc_nightly-macos_apple_silicon-latest.tar.gz
+	tar xf Downloads/roc-nightly.tar.gz -C projects/roc --strip-components=1
+
 .tmux/plugins/tpm/tpm:
 	mkdir -p .tmux/plugins/tpm
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
