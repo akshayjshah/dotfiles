@@ -139,9 +139,11 @@ else
 	alias la="ls -A"
 fi
 
-alias ts="tmux new-session -s"
-alias ta="tmux attach -t"
-alias tls="tmux ls"
+if has tmux; then
+    alias ts="tmux new-session -s"
+    alias ta="tmux attach -t"
+    alias tls="tmux ls"
+fi
 
 autoload -U zmv
 alias mmv="noglob zmv -W"
@@ -168,6 +170,21 @@ elif has nautilus; then
 		nautilus "$1" &
 	}
 fi
+
+# Make a dir and cd into it immediately
+take() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Jump to project root
+r() {
+    cd "$(git rev-parse --show-toplevel 2>/dev/null)"
+}
+
+# Jump to a git project
+cc() {
+    cd "$(fd --unrestricted --type d --max-depth 5 --exclude Library --exclude Applications '\.git$' ${1:-.} 2>/dev/null | sed 's|/\.git/$||' | fzf --preview 'eza -T -L 2 ./{}')"
+}
 
 #######################################
 # Prompt
