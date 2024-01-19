@@ -29,7 +29,6 @@ todo:: ## List tasks not managed by this Makefile
 .PHONY: setup
 setup:: sys-pkg ## Set up a development environment
 	$(MAKE) rust-pkg go-pkg py-pkg
-	$(MAKE) projects/z/z.sh
 	$(MAKE) .tmux/plugins/tpm/tpm
 
 .PHONY: sys-pkg
@@ -53,7 +52,6 @@ update:: $(HOMEBREW) ## Update all managed packages and tools
 	$(HOMEBREW) upgrade
 	$(MAKE) rust-pkg go-pkg py-pkg
 	rm -rf projects/z .tmux/plugins
-	$(MAKE) projects/z/z.sh
 	$(MAKE) .tmux/plugins/tpm/tpm
 	gcloud components update
 	nvim +PlugUpgrade +PlugUpdate +qa
@@ -113,10 +111,6 @@ $(HOMEBREW):
 
 .cargo/bin/cargo:
 	curl https://sh.rustup.rs -sSf | sh
-
-projects/z/z.sh:
-	rm -rf $(@D)
-	git clone https://github.com/rupa/z ~/projects/z
 
 projects/roc/roc:
 	rm -rf $(@D)

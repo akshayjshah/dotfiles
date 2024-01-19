@@ -22,7 +22,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 autoload -U compinit
 compinit -i
 
-[[ -f ~/projects/z/z.sh ]] && . ~/projects/z/z.sh
 [[ -f "$XDG_CONFIG_HOME"/fzf/fzf.zsh ]] && source "$XDG_CONFIG_HOME"/fzf/fzf.zsh
 if has fd; then
     export FZF_DEFAULT_COMMAND='fd --hidden --type f --follow --exclude .git'
