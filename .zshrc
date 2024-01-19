@@ -169,9 +169,6 @@ elif has nautilus; then
 	}
 fi
 
-# broot
-[[ -d ~/.config/broot/launcher/bash ]] && source ~/.config/broot/launcher/bash/br
-
 #######################################
 # Prompt
 #######################################

@@ -1,6 +1,5 @@
 aspell
 bash
-broot
 ca-certificates
 cloudflare-wrangler2
 cmake
