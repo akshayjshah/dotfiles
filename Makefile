@@ -8,7 +8,7 @@ MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-print-directory
 
 export GOPATH := $(HOME)
-export GOTOOLCHAIN := go1.21.7+auto
+export GOTOOLCHAIN := go1.22.0+auto
 
 ifeq ($(shell uname -m), arm64)
 	HOMEBREW=/opt/homebrew/bin/brew
