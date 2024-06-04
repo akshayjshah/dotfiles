@@ -28,7 +28,7 @@ if has fd; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 if has jj; then
-    source <(jj util completion --zsh)
+    source <(jj util completion zsh)
 fi
 
 #######################################
