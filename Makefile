@@ -101,10 +101,10 @@ py-pkg:
 .PHONY: rust-pkg
 rust-pkg: .cargo/bin/cargo
 	.cargo/bin/rustup update
-	.cargo/bin/rustup component add rls-preview rust-analysis rust-src
+	.cargo/bin/rustup component add rls-preview rust-analysis rust-analyzer rust-src
 	.cargo/bin/cargo install --locked \
 		git-branchless
-	.cargo/bin/cargo install --locked nu --features=dataframe
+	.cargo/bin/cargo install --locked nu
 
 $(HOMEBREW):
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
