@@ -114,7 +114,8 @@ fi
 # Go
 #######################################
 export GOPATH=$HOME
-export GOTOOLCHAIN=go1.22.1+auto
+export GOTOOLCHAIN=go1.23.2+auto
+export GOTELEMETRY=on
 
 #######################################
 # Node.js (reluctantly)
