@@ -12,6 +12,7 @@ font-iosevka-aile
 font-iosevka-etoile
 font-iosevka-nerd-font
 font-powerline-symbols
+font-recursive
 google-chrome
 google-cloud-sdk
 kitty
