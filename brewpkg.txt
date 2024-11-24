@@ -61,6 +61,7 @@ vim
 watchman
 wget
 xsv
+zig
 zsh
 
 derailed/k9s/k9s
