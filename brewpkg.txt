@@ -55,6 +55,8 @@ sqlite
 tig
 tmux
 tree
+typst
+typstyle
 unzip
 vale
 vim
