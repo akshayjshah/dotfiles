@@ -8,7 +8,7 @@ MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-print-directory
 
 export GOPATH := $(HOME)
-export GOTOOLCHAIN := go1.23.2+auto
+export GOTOOLCHAIN := go1.23.4+auto
 
 ifeq ($(shell uname -m), arm64)
 	HOMEBREW=/opt/homebrew/bin/brew
@@ -74,7 +74,6 @@ go-pkg:
 	go install golang.org/x/review/git-codereview@latest
 	go install \
 		golang.org/x/tools/cmd/goimports@latest \
-		golang.org/x/tools/cmd/gorename@latest \
 		golang.org/x/tools/cmd/stringer@latest
 	go install golang.org/x/tools/gopls@latest
 	go install golang.org/x/vuln/cmd/govulncheck@latest
