@@ -36,7 +36,6 @@ lazygit
 llvm@16
 lsof
 make
-marta
 mcfly
 mkcert
 neovim
