@@ -7,9 +7,6 @@
 !.config/
 !.config/gh-dash/
 !.config/gh-dash/config.yaml
-!.config/kitty/
-!.config/kitty/kitty.conf
-!.config/kitty/nord.conf
 !.config/nvim/
 !.config/nvim/ftdetect
 !.config/nvim/ftdetect/*
