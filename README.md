@@ -1,14 +1,12 @@
 # dotfiles
 
-Configuration for a terminal-centric development environment on MacOS.
+Configuration for a terminal-centric development environment on Arch Linux.
 
 Dotfile management is kept deliberately simple: make `$HOME` a git repository,
 ignore everything except dotfiles, and manage install scripts with a simple
 Makefile.
 
-Before any of this works, install the XCode command-line tools (running `git`
-in a Terminal will open an installation prompt) and upload a new SSH key to
-Github.
+Before any of this works, upload a new SSH key to Github.
 
 ```
 cd ~
