@@ -5,8 +5,6 @@
 
 !.bash_profile
 !.config/
-!.config/gh-dash/
-!.config/gh-dash/config.yaml
 !.config/nvim/
 !.config/nvim/ftdetect
 !.config/nvim/ftdetect/*
@@ -17,7 +15,3 @@
 !.gitignore_global
 !.tmux.conf
 !.zshrc
-!bin
-!bin/google-search
-!pypkg.txt
-!rustpkg.txt
