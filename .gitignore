@@ -19,9 +19,6 @@
 !.gitconfig
 !.gitignore
 !.gitignore_global
-!.gmailctl/
-!.gmailctl/config.jsonnet
-!.gmailctl/gmailctl.libsonnet
 !.tmux.conf
 !.zshrc
 !bin
