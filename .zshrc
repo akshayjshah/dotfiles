@@ -219,13 +219,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN="- "
 export PROMPT='${_return_status} %c $(git_prompt_info) > '
 
 #######################################
-# SSH
-#######################################
-if has keychain; then
-    eval "$(keychain --eval --quiet ~/.ssh/id_ed25519)"
-fi
-
-#######################################
 # direnv (must be last!)
 #######################################
 if has direnv; then
