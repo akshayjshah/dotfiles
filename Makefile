@@ -8,84 +8,72 @@ MAKEFLAGS += --no-builtin-rules
 MAKEFLAGS += --no-print-directory
 
 export GOPATH := $(HOME)
-export GOTOOLCHAIN := go1.25.0+auto
+export GOTOOLCHAIN := go1.27.4+auto
+
+BREW := /opt/homebrew/bin/brew
+RUSTUP := .cargo/bin/rustup
 
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
 .PHONY: setup
-setup: sys-pkg aur-pkg rust-pkg go-pkg ## Set up a development environment
-	sudo usermod -a -G docker $(USER)
-	@# Remember to:
-	@#   - Disable mDNS in /etc/systemd/resolved.conf
-	@#   - Add i915 to kernel modules in /etc/mkinitcpio.conf
-	sudo systemctl enable avahi-daemon.service
-	sudo systemctl enable bluetooth.service
-	sudo systemctl enable cups.service
-	sudo systemctl enable docker.socket
-	sudo systemctl enable gdm.service
-	sudo systemctl enable iptables.service
-	sudo systemctl enable NetworkManager.service
-	systemctl --user enable gcr-ssh-agent.socket
-
-.PHONY: sys-pkg
-sys-pkg:
-	sudo pacman -Syu --needed - < arch.txt 2>&1
-	rustup default stable
-
-.PHONY: aur-pkg
-aur-pkg: sys-pkg rust-pkg
-	@# https://support.1password.com/install-linux/#arch
-	curl -Ss https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-	.cargo/bin/rua install \
-		1password \
-		brother-hl2270dw \
-		informant \
-		google-chrome \
-		slack-desktop \
-		zulip-desktop
-	sudo usermod -a -G informant $(USER)
+setup: sys-pkg rust-pkg go-pkg ## Set up a development environment
+	@# Homebrew casks are not working reliably
+	$(info - [ ] Install Google Chrome)
+	$(info - [ ] Install 1Password)
+	$(info - [ ] Install Raycast)
+	$(info - [ ] Install Ghostty)
+	$(info - [ ] Install Docker Desktop)
+	$(info - [ ] Install Zoom)
+	$(info - [ ] Install Discord)
+	$(info - [ ] Install Slack)
+	$(info - [ ] Install Zulip)
+	$(info - [ ] Install Spotify)
+	$(info - [ ] Run `gh auth login` to set up the Github CLI)
 
 .PHONY: update
 update: ## Update all managed packages and tools
 	@# It's not worth sorting out which of these can run in parallel with
 	@# system package updates.
-	informant read
-	sudo pacman -Syu
-	$(MAKE) rust-pkg go-pkg
-	.cargo/bin/rua upgrade || true
+	$(BREW) update --quiet
+	$(BREW) upgrade --quiet
+	$(MAKE) go-pkg rust-pkg
 	nvim +PlugUpgrade +PlugUpdate +qa
 	gh extension upgrade --all
 
 .PHONY: clean
-clean: ## Partially clean up installed resources
-	sudo pacman -Sc
-	paccache -r
+clean: $(BREW) ## Partially clean up installed resources
+	$(BREW) cleanup
 	nvim +PlugClean +qa
+
+.PHONY: sys-pkg
+sys-pkg: $(BREW) $(RUSTUP)
+	$(BREW) install --quiet $$(cat brew.txt)
+	$(BREW) install --quiet $$(cat cask.txt)
+	$(RUSTUP) -q default stable
 
 .PHONY: go-pkg
 go-pkg: sys-pkg
 	go build -o bin/gofmt cmd/gofmt
 	@# From Go project.
 	go install golang.org/x/perf/cmd/benchstat@latest
-	go install golang.org/x/pkgsite/cmd/pkgsite@latest
 	go install golang.org/x/review/git-codereview@latest
 	go install \
 		golang.org/x/tools/cmd/goimports@latest \
 		golang.org/x/tools/cmd/stringer@latest
 	go install golang.org/x/tools/gopls@latest
 	go install golang.org/x/vuln/cmd/govulncheck@latest
-	@# Third-party.
-	go install github.com/boyter/scc@latest
-	go install github.com/charmbracelet/glow@latest
-	go install github.com/jesseduffield/lazydocker@latest
-	go install github.com/maaslalani/slides@latest
+	@# Third-party. Prefer Homebrew unless tools are tied to Go toolchain.
 	go install github.com/orlangure/gocovsh@latest
-	go install github.com/spf13/cobra-cli@latest
 
 .PHONY: rust-pkg
-rust-pkg: sys-pkg
-	rustup update
-	rustup component add rust-analysis rust-analyzer rust-src
-	cargo install rua
+rust-pkg: $(RUSTUP) sys-pkg
+	$(RUSTUP) -q update
+	$(RUSTUP) -q component add rust-analysis rust-analyzer rust-src
+
+$(BREW):
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+$(RUSTUP):
+	curl https://sh.rustup.rs -sSf | sh

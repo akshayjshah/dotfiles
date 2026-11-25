@@ -38,10 +38,10 @@
 [alias]
     a = add
     amend = commit -a --amend
-    blmain = config branchless.mainBranch main
     c = commit
     co = checkout
     difft = difftool
+    fpush = push --force-with-lease
     l = log origin/main..
     ls = branch -v
     popf = checkout "stash@{0}" --
@@ -52,7 +52,7 @@
     smarten = rebase -i origin/main
     s = status
     stashall = stash --include-untracked
-    ui = !lazygit
+    ui = !tig
     wipe = !git add -A && git commit -qm 'Wipe savepoint' && git reset --hard HEAD^
     wip = !git add -u . && git commit -m 'WIP'
     wtf = log --follow --stat -p

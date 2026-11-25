@@ -10,8 +10,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " General plugins.
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'shaunsingh/nord.nvim'
@@ -25,11 +23,9 @@ Plug 'vim-airline/vim-airline'
 
 " File type support. (Find more at github.com/sheerun/vim-polyglot.)
 Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'earthly/earthly.vim', { 'branch': 'main' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'tpope/vim-git', { 'for': 'git' }

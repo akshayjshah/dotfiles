@@ -1,0 +1,13 @@
+# `ghostty +show-config --default --docs` lists defaults
+# https://ghostty.org/docs/config
+
+# Appearance
+font-family = Cascadia Code
+font-family = PowerlineSymbols
+font-size = 16
+theme = Nord
+
+# Behavior
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
