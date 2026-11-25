@@ -13,6 +13,15 @@ export GOTOOLCHAIN := go1.27.4+auto
 BREW := /opt/homebrew/bin/brew
 RUSTUP := .cargo/bin/rustup
 
+# Not managed:
+# - Ghostty
+# - Chrome
+# - 1Password
+# - Claude
+# - Obsidian
+# - Spotify
+# - Raycast
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
